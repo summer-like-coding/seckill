@@ -35,4 +35,7 @@ export default {
   color: #333;
   /* text-align: center; */
 }
+a{
+  text-decoration: none;
+}
 </style>
