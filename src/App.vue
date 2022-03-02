@@ -1,14 +1,12 @@
 <template>
-  <div>
-    <el-container>
-      <el-header>
-        <Nav></Nav>
-      </el-header>
-      <el-main>
-        <router-view />
-      </el-main>
-    </el-container>
-  </div>
+  <el-container>
+    <el-header>
+      <Nav></Nav>
+    </el-header>
+    <el-main>
+      <router-view />
+    </el-main>
+  </el-container>
 </template>
 
 
@@ -22,14 +20,18 @@ export default {
 };
 </script>
 <style>
+.el-container{
+  max-width: 80%;
+  margin: 0 auto;
+}
 .el-header,
 .el-footer {
   color: #333;
-  text-align: center;
+  /* text-align: center; */
   line-height: 60px;
 }
 .el-main {
   color: #333;
-  text-align: center;
+  /* text-align: center; */
 }
 </style>
