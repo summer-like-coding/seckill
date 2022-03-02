@@ -48,10 +48,9 @@
         江苏省苏州市吴中区吴中大道 1188 号
       </el-descriptions-item>
     </el-descriptions>
-    <el-table :data="tableData" border style="width: 100%" class="footer">
-      <el-table-column prop="date" label="日期" width="180"> </el-table-column>
-      <el-table-column prop="activity" label="参与活动" width="180">
-      </el-table-column>
+    <el-table :data="tableData" border style="width: 100%">
+      <el-table-column prop="date" label="日期"> </el-table-column>
+      <el-table-column prop="activity" label="参与活动"></el-table-column>
       <el-table-column prop="number" label="购买数量"> </el-table-column>
       <el-table-column prop="Iscredit" label="是否赊账"> </el-table-column>
     </el-table>
@@ -63,31 +62,31 @@ export default {
   data() {
     return {
       circleUrl:
-        "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+        "https://tse1-mm.cn.bing.net/th/id/OIP-C.nfC2tVNM9TgwQ5QuqECd6wHaFj?w=213&h=180&c=7&r=0&o=5&dpr=1.25&pid=1.7",
       tableData: [
         {
           date: "2016-05-02",
           activity: "余额宝",
           number: 100,
-          Iscredit: '是',
+          Iscredit: "是",
         },
         {
           date: "2016-05-02",
           activity: "余额宝",
           number: 100,
-          Iscredit: '是',
+          Iscredit: "是",
         },
         {
           date: "2016-05-02",
           activity: "余额宝",
           number: 100,
-          Iscredit: '是',
+          Iscredit: "是",
         },
         {
           date: "2016-05-02",
           activity: "余额宝",
           number: 100,
-          Iscredit: '是',
+          Iscredit: "是",
         },
       ],
     };
@@ -96,11 +95,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  max-width: 80%;
-  margin: 0 auto;
-}
-.footer {
+.el-table {
   margin-top: 15px;
   height: 400px;
 }

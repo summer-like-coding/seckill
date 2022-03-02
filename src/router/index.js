@@ -6,7 +6,7 @@ import Errmsg from '../views/errmsg.vue'
 import Signin from '../views/signin.vue'
 import Imessage from '../views/imessage.vue'
 // public用户的页面
-import Signup from '../views/public/signup.vue'
+
 import Orders from '../views/public/orders.vue'
 import Grap from '../views/public/grap.vue'
 import Pay from '../views/public/pay.vue'

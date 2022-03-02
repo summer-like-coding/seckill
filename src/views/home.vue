@@ -19,8 +19,8 @@
             <time class="time"
               >倒计时：{{ hour }}:{{ minute }}:{{ second }}</time
             >
-            <el-button class="button">操作按钮</el-button>
           </div>
+           <el-button class="button">操作按钮</el-button>
         </div>
       </el-card>
     </el-col>
@@ -113,11 +113,6 @@ export default {
 </script>
 
 <style scoped>
-.row {
-  margin-top: 30px;
-  max-width: 99%;
-  /* margin: 0 auto; */
-}
 .column {
   max-width: 32%;
   margin-left: 10px;
@@ -139,7 +134,7 @@ export default {
 .button {
   margin-top: 10px;
   padding: 0;
-  /* float: right; */
+  float: right;
 }
 
 .image {

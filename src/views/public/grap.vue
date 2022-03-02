@@ -46,16 +46,6 @@ export default {
 </script>
 
 <style scoped>
-.el-container {
-  max-width: 80%;
-  margin: 0 auto;
-}
-.el-footer {
-  /* background-color: #b3c0d1; */
-  color: #333;
-  /* text-align: center; */
-  /* line-height: 60px; */
-}
 .el-aside {
   /* background-color: #d3dce6; */
   color: #333;
