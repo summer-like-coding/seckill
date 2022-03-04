@@ -1,13 +1,13 @@
 <template>
-    <h2>admin的所有活动</h2>
+  
 </template>
 
 <script>
 export default {
-    name:'Activities'
+    name:"Rule"
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>

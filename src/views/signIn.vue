@@ -15,53 +15,36 @@
         label-width="100px"
       >
         <el-form-item label="用户名" prop="name">
-          <el-input v-model="ruleForm.name"></el-input>
+          <el-input v-model="ruleForm.name" auto-complete="on"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
           <el-input v-model="ruleForm.password" show-password></el-input>
         </el-form-item>
-      </el-form>
-      <div class="frontfooter">
-        <el-button type="primary" @click="submitForm('ruleForm')" size="medium"
-          >登录</el-button
-        >
-        <el-button type="primary" @click="dialogFormVisible = true" size="medium"
-          >免费注册</el-button
-        >
-      </div>
-      <el-dialog title="普通用户注册" :visible.sync="dialogFormVisible">
-        <el-form :model="form">
-          <el-form-item label="用户名" :label-width="formLabelWidth">
-            <el-input v-model="form.name" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="身份证" :label-width="formLabelWidth">
-            <el-input v-model="form.idcard" autocomplete="off"> </el-input>
-          </el-form-item>
-          <el-form-item label="密码" :label-width="formLabelWidth">
-            <el-input v-model="form.password" autocomplete="off" show-password>
-            </el-input>
-          </el-form-item>
-          <el-form-item label="确认密码" :label-width="formLabelWidth">
-            <el-input
-              v-model="form.repassword"
-              autocomplete="off"
-              show-password
-            ></el-input>
-          </el-form-item>
-        </el-form>
-        <div slot="footer">
-          <el-button @click="dialogFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="dialogFormVisible = false"
-            >确 定</el-button
+        <el-form-item>
+          <el-button
+            type="primary"
+            @click="submitForm('ruleForm')"
+            
+            >登录</el-button
           >
-        </div>
-      </el-dialog>
+          <el-button
+            type="primary"
+            @click="$store.state.dialogFormVisible = true"
+            
+            >免费注册</el-button
+          >
+        </el-form-item>
+      </el-form>
+      <Signup></Signup>
     </el-main>
   </el-container>
 </template>
 
 <script>
+import Signup from "./signup.vue";
 export default {
+  name: "Signin",
+  components: { Signup },
   data() {
     return {
       ruleForm: {
@@ -82,18 +65,7 @@ export default {
             trigger: "blur",
           },
         ],
-        dialogTableVisible: false,
-        dialogFormVisible: false,
       },
-      dialogTableVisible: false,
-      dialogFormVisible: false,
-      form: {
-        name: "",
-        idcard: "",
-        password: "",
-        repassword: "",
-      },
-      formLabelWidth: "120px",
     };
   },
   methods: {
@@ -115,9 +87,12 @@ export default {
 .el-main {
   max-width: 600px;
 }
-.frontfooter{
+.frontfooter {
   text-align: center;
   margin: 0 auto;
 }
+.el-button{
+  width: 100px;
+  /* height: 36px; */
+}
 </style>
-// 表单验证加入有问题

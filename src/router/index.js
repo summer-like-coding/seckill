@@ -11,6 +11,14 @@ import Orders from '../views/public/orders.vue'
 import Grap from '../views/public/grap.vue'
 import Pay from '../views/public/pay.vue'
 
+// admin用户页面
+import Activities from '../views/admin/activities'
+import Manage from '../views/admin/manage'
+import Details from '../views/admin/details'
+import Launch from '../views/admin/launch'
+
+//root用户界面
+import Promote from '../views/root/promote'
 Vue.use(VueRouter)
 
 const routes = [
@@ -53,6 +61,31 @@ const routes = [
     path: '/pay',
     name: 'Pay',
     component: Pay
+  },
+  {
+    path: '/manage',
+    name: 'Manage',
+    component: Manage
+  },
+  {
+    path: '/launch',
+    name: 'Launch',
+    component: Launch
+  },
+  {
+    path: '/Details',
+    name: 'details',
+    component: Details
+  },
+  {
+    path: '/activities',
+    name: 'Activities',
+    component: Activities
+  },
+  {
+    path: '/promote',
+    name: 'Promote',
+    component: Promote
   },
 ]
 

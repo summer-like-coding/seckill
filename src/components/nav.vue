@@ -7,7 +7,7 @@
     background-color="darkred"
     text-color="#fff"
     active-text-color="#ffd04b"
-    router=true
+    router
   >
     <el-menu-item index="1">
       <a href="https://www.ele.me" target="_blank">logo</a>
