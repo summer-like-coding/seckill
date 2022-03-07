@@ -11,7 +11,7 @@
 <script>
 import Orderlist from "../../components/orderlist.vue";
 export default {
-  name: "orders",
+  name: "Orders",
   components: { Orderlist },
 };
 </script>

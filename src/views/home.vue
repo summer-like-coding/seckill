@@ -1,5 +1,6 @@
 <template>
-  <el-row class="row">
+  <div>
+    <el-row class="row">
     <el-col
       :span="8"
       v-for="(item, index) in title.length"
@@ -20,15 +21,18 @@
               >倒计时：{{ hour }}:{{ minute }}:{{ second }}</time
             >
           </div>
-           <el-button class="button">操作按钮</el-button>
+           <el-button class="button" @click="pushShow()">抢购</el-button>
         </div>
       </el-card>
     </el-col>
   </el-row>
+  <!-- <router-view></router-view> -->
+  </div>
 </template>
 
 <script>
 export default {
+  name:"Home",
   data() {
     return {
       title:["余额宝",'悄悄攒','荷花','零钱通'],
@@ -78,6 +82,11 @@ export default {
         }
       }, 1000);
     },
+    pushShow(){
+      this.$router.push({
+        name:"Grap",
+      })
+    }
   },
   watch: {
     // 监听数值变化

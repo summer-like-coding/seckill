@@ -4,7 +4,9 @@
       <Nav></Nav>
     </el-header>
     <el-main>
-      <router-view />
+      <!-- <router-view ></router-view> -->
+      <!-- <router-link to="/home">主页</router-link> -->
+      <router-view></router-view>
     </el-main>
   </el-container>
 </template>

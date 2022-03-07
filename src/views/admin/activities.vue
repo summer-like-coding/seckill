@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="tableData" style="width: 100%">
+  <el-table :data="activities" >
     <el-table-column type="expand">
       <template slot-scope="props">
         <el-form label-position="left" inline class="demo-table-expand">
@@ -21,6 +21,9 @@
     <el-table-column label="活动 ID" prop="id"> </el-table-column>
     <el-table-column label="活动名称" prop="name"> </el-table-column>
     <el-table-column label="描述" prop="desc"> </el-table-column>
+    <el-table-column label="操作" >
+      <el-button size="mini" @click="pushmanage()">管理</el-button>
+    </el-table-column>
   </el-table>
 </template>
 
@@ -40,37 +43,22 @@
 </style>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   name: "Activities",
   data() {
     return {
-      tableData: [
-        {
-          id: "12987122",
-          name: "好滋好味鸡蛋仔",
-          category: "江浙小吃、小吃零食",
-          desc: "荷兰优质淡奶，奶香浓而不腻",
-        },
-        {
-          id: "12987123",
-          name: "好滋好味鸡蛋仔",
-          category: "江浙小吃、小吃零食",
-          desc: "荷兰优质淡奶，奶香浓而不腻",
-        },
-        {
-          id: "12987125",
-          name: "好滋好味鸡蛋仔",
-          category: "江浙小吃、小吃零食",
-          desc: "荷兰优质淡奶，奶香浓而不腻",
-        },
-        {
-          id: "12987126",
-          name: "好滋好味鸡蛋仔",
-          category: "江浙小吃、小吃零食",
-          desc: "荷兰优质淡奶，奶香浓而不腻",
-        },
-      ],
     };
   },
+  computed:{
+    ...mapState('Activity',['activities'])
+  },
+  methods:{
+    pushmanage(){
+      this.$router.push({
+        name:"Manage"
+      })
+    }
+  }
 };
 </script>

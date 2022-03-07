@@ -30,7 +30,14 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    component: Home
+    component: Home,
+    // children: [
+    //   {
+    //     path: 'grap',
+    //     name: 'Grap',
+    //     component: Grap
+    //   },
+    // ]
   },
   {
     path: '/errmsg',
@@ -53,14 +60,14 @@ const routes = [
     component: Orders
   },
   {
-    path: '/grap',
-    name: 'Grap',
-    component: Grap
-  },
-  {
     path: '/pay',
     name: 'Pay',
     component: Pay
+  },
+  {
+    path: '/grap',
+    name: 'Grap',
+    component: Grap
   },
   {
     path: '/manage',
@@ -92,7 +99,8 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
+  // moudle
 })
 
 export default router

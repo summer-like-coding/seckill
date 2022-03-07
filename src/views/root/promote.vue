@@ -32,45 +32,16 @@
   </el-table>
 </template>
 <script>
+import {mapMutations, mapState} from 'vuex'
 export default {
   name: "Promote",
   data() {
     return {
-      tableData: [
-        {
-          ID: 123,
-          name: "张三",
-          age: 13,
-          phone: 123456789,
-          late: "false",
-          honest: "true",
-        },
-        {
-          ID: 123,
-          name: "张三",
-          age: 13,
-          phone: 123456789,
-          late: "false",
-          honest: "true",
-        },
-        {
-          ID: 123,
-          name: "张三",
-          age: 13,
-          phone: 123456789,
-          late: "false",
-          honest: "true",
-        },
-        {
-          ID: 123,
-          name: "张三",
-          age: 13,
-          phone: 123456789,
-          late: "false",
-          honest: "true",
-        },
-      ],
+      search:''
     };
+  },
+  computed: {
+    ...mapState("User", ["tableData"]),
   },
   methods: {
     handleEdit(index, row) {
@@ -79,6 +50,7 @@ export default {
     handleDelete(index, row) {
       console.log(index, row);
     },
+    // ...mapMutations("User",['newdata'])
   },
 };
 </script>
