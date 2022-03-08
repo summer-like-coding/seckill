@@ -31,6 +31,7 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home,
+    meta: { title: '主页' }
     // children: [
     //   {
     //     path: 'grap',
@@ -42,57 +43,77 @@ const routes = [
   {
     path: '/errmsg',
     name: 'Errmsg',
-    component: Errmsg
+    component: Errmsg,
+    meta: { title: '错误页面' }
+
   },
   {
     path: '/signin',
     name: 'Signin',
-    component: Signin
+    component: Signin,
+    meta: { title: '登录' }
+
   },
   {
     path: '/imessage',
     name: 'Imessage',
-    component: Imessage
+    component: Imessage,
+    meta: { title: '我的信息',isAuth: true }
   },
   {
     path: '/orders',
     name: 'Orders',
-    component: Orders
+    component: Orders,
+    meta: { title: '订单详情',isAuth: true }
+
   },
   {
     path: '/pay',
     name: 'Pay',
-    component: Pay
+    component: Pay,
+    meta: { title: '支付',isAuth: true }
+
   },
   {
     path: '/grap',
     name: 'Grap',
-    component: Grap
+    component: Grap,
+    meta: { title: '抢购',isAuth: true }
+
   },
   {
     path: '/manage',
     name: 'Manage',
-    component: Manage
+    component: Manage,
+    meta: { title: '管理活动' ,isAuth: true}
+
   },
   {
     path: '/launch',
     name: 'Launch',
-    component: Launch
+    component: Launch,
+    meta: { title: '发布活动',isAuth: true }
   },
   {
     path: '/Details',
     name: 'details',
-    component: Details
+    component: Details,
+    meta: { title: '申请记录',isAuth: true }
+
   },
   {
     path: '/activities',
     name: 'Activities',
-    component: Activities
+    component: Activities,
+    meta: { title: '所有活动',isAuth: true }
+
   },
   {
     path: '/promote',
     name: 'Promote',
-    component: Promote
+    component: Promote,
+    meta: { title: '人员升级', isAuth: true }
+
   },
 ]
 
@@ -101,6 +122,29 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
   // moudle
+})
+// 全局前置拦截
+router.beforeEach((to, from, next) => {
+  if (to.meta.isAuth) {
+    // 需要接口判断身份
+    if (localStorage.getItem("id") === "root") {
+      next()
+    } else if (localStorage.getItem("id") === "admin") {
+      next()
+    } else if (localStorage.getItem("id") === "public") {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+// 全局后置拦截
+router.afterEach((to, from) => {
+  if (to.meta.title) {
+    document.title = to.meta.title
+  } else {
+    document.title = "秒杀活动"
+  }
 })
 
 export default router
