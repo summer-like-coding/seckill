@@ -13,6 +13,7 @@ export default {
           }
     },
     state: {
+        userIdentity:0,
         tableData: [
             {
                 ID: 123,
