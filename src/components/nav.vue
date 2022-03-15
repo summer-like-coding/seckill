@@ -17,10 +17,13 @@
       <el-menu-item index="2">
         <router-link to="/signin">请登录</router-link>
       </el-menu-item>
-      <el-menu-item index="3" style="float: right">
-        <router-link to="/imessage">我的信息</router-link>
+      <el-menu-item index="3">
+        <router-link to="/signup">注册</router-link>
       </el-menu-item>
       <el-menu-item index="4" style="float: right">
+        <router-link to="/imessage">我的信息</router-link>
+      </el-menu-item>
+      <el-menu-item index="5" style="float: right">
         <router-link to="/orders">我的订单</router-link>
       </el-menu-item>
 
@@ -44,7 +47,7 @@
         <router-link to="/signin">请登录</router-link>
       </el-menu-item>
       <el-menu-item index="5" style="float: right">
-        <router-link to="/">所有活动</router-link>
+        <router-link to="/activities">所有活动</router-link>
       </el-menu-item>
       <el-menu-item index="3" style="float: right">
         <router-link to="/launch">发起活动</router-link>

@@ -40,6 +40,10 @@
   margin-bottom: 0;
   width: 50%;
 }
+.el-table{
+  width: 600px;
+  margin: 0 auto;
+}
 </style>
 
 <script>

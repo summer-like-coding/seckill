@@ -21,30 +21,20 @@
           <el-input v-model="ruleForm.password" show-password></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button
-            type="primary"
-            @click="submitForm('ruleForm')"
-            
-            >登录</el-button
-          >
-          <el-button
-            type="primary"
-            @click="$store.state.dialogFormVisible = true"
-            
-            >免费注册</el-button
-          >
+          <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
+          <!-- <el-button type="primary" @click="$store.state.dialogFormVisible = true">免费注册</el-button> -->
         </el-form-item>
       </el-form>
-      <Signup></Signup>
+      <!-- <Signup></Signup> -->
     </el-main>
   </el-container>
 </template>
 
 <script>
-import Signup from "./signup.vue";
+// import Signup from "./signup.vue";
 export default {
   name: "Signin",
-  components: { Signup },
+  // components: { Signup },
   data() {
     return {
       ruleForm: {

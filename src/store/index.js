@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    dialogFormVisible: false,
+    // dialogFormVisible: false,
     // userIdentity:0,
   },
   mutations: {

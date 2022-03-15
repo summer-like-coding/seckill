@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/home.vue'
 import Errmsg from '../views/errmsg.vue'
 import Signin from '../views/signin.vue'
+import Signup from '../views/signup.vue'
 import Imessage from '../views/imessage.vue'
 // public用户的页面
 
@@ -52,6 +53,13 @@ const routes = [
     name: 'Signin',
     component: Signin,
     meta: { title: '登录' }
+
+  },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: Signup,
+    meta: { title: '注册' }
 
   },
   {

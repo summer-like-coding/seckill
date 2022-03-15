@@ -76,4 +76,8 @@ export default {
 </script>
 
 <style scoped>
+.el-form{
+  width: 600px;
+  margin: 0 auto;
+}
 </style>
