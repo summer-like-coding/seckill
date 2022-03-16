@@ -8,24 +8,25 @@
       <Orderlist></Orderlist>
     </div>
     <Pagination></Pagination>
+    <!-- <h2>woshi1{{IsPay}}</h2> -->
   </div>
 </template>
 
 <script>
 import Orderlist from "../../components/orderlist.vue";
+// import { mapState } from "vuex";
 // import Pagination from '../../components/pagination.vue';
 export default {
   name: "Orders",
   components: { Orderlist},
-  mounted(){
-    console.log("我已经挂载l");
-    this.$bus.$on("IsPay",(data)=>{
-      console.log(`我收到数据${data}`);
-    })
+  data(){
+    return{
+      msg:''
+    }
   },
-  beforeDestroy(){
-    this.$bus.$off('IsPay')
-  }
+  // computed:{
+  //   ...mapState(['IsPay'])
+  // },
 };
 </script>
 

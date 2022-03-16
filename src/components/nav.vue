@@ -35,7 +35,7 @@
       class="el-menu-demo"
       mode="horizontal"
       @select="handleSelect"
-      background-color="darkred"
+      
       text-color="#fff"
       active-text-color="#ffd04b"
       v-if="$store.state.User.userIdentity === 1"

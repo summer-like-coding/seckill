@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name:"Grap",
   data() {
@@ -54,22 +55,33 @@ export default {
           // console.log(instance);
           if (action === "confirm") {
             // 如果用户点击了支付
-            this.isPay = action
-            done();
+            // this.isPay = action
+            // done();
             // debugger;
-            this.$bus.$emit('IsPay',this.isPay);
+            // this.$bus.$emit('IsPay',this.isPay);
+            // debugger;
+            // this.IsPay = this.isPay;
+            this.$store.commit('pay',action);
+            done();
             this.$router.push({name:"Orders"})
           } else {
             // 如果用户未点击
-            this.isPay = action
+            // this.IsPay = action
+            // done();
+            this.$store.commit('pay',action);
             done();
-            this.$bus.$emit('IsPay',this.isPay);
+            // this.$bus.$emit('IsPay',this.isPay);
+            // this.IsPay = this.isPay;
             this.$router.push({name:"Orders"});
+            // console.log(this.IsPay);
           }
         },
       })
     },
   },
+  computed:{
+    ...mapState(['IsPay'])
+  }
 
 };
 </script>

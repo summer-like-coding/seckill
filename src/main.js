@@ -5,9 +5,11 @@ import store from './store'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
-
 // 注册全局组件
-import Pagination from './components/pagination'
+import Pagination from './components/pagination';
+
+import '../theme/index.css'
+
 
 Vue.component(Pagination.name,Pagination)
 
