@@ -2,7 +2,7 @@
   <el-container>
     <el-aside width="200px">
       <img
-        src="https://tse1-mm.cn.bing.net/th/id/OIP-C.nfC2tVNM9TgwQ5QuqECd6wHaFj?w=221&h=180&c=7&r=0&o=5&dpr=1.25&pid=1.7"
+        src="https://www.csxbank.com/Upload/Template/yizhu/SiteConfigPhoto/Original/202008/d8afdbe4-f5e2-4897-8f00-8e7b762b7e27.png"
         alt=""
         width="100%"
       />

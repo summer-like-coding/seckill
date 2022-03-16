@@ -41,7 +41,7 @@ a{
   text-decoration: none;
 }
 .el-form{
-  width: 600px;
+  width: 500px;
   margin: 0 auto;
 }
 .pagination{

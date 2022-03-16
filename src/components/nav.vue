@@ -12,8 +12,10 @@
       v-show="$store.state.User.userIdentity === 0"
       router="true"
     >
-      <el-menu-item>
-        <a href="https://www.csxbank.com/" target="_blank">logo</a>
+      <el-menu-item index="home">
+        <!-- <a href="https://www.csxbank.com/" target="_blank">logo</a> -->
+        <i class="el-icon-house"></i>
+        <span>首页</span>
       </el-menu-item>
       <el-menu-item index="signin">
         <!-- <router-link to="/signin">请登录</router-link> -->
@@ -69,8 +71,10 @@
       v-if="$store.state.User.userIdentity === 1"
       router="true"
     >
-      <el-menu-item>
-        <a href="https://www.csxbank.com/" target="_blank">logo</a>
+     <el-menu-item index="home">
+        <!-- <a href="https://www.csxbank.com/" target="_blank">logo</a> -->
+        <i class="el-icon-house"></i>
+        <span>首页</span>
       </el-menu-item>
       <el-menu-item index="signin">
         <!-- <router-link to="/signin">请登录</router-link> -->
@@ -125,8 +129,10 @@
       v-if="$store.state.User.userIdentity === 2"
       router="true"
     >
-      <el-menu-item>
-        <a href="https://www.csxbank.com/" target="_blank">logo</a>
+      <el-menu-item index="home">
+        <!-- <a href="https://www.csxbank.com/" target="_blank">logo</a> -->
+        <i class="el-icon-house"></i>
+        <span>首页</span>
       </el-menu-item>
       <el-menu-item index="signin">
         <!-- <router-link to="/signin">请登录</router-link> -->
