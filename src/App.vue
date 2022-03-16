@@ -35,9 +35,14 @@ export default {
 }
 .el-main {
   color: #333;
-  text-align: center;
+  /* text-align: center; */
 }
 a{
   text-decoration: none;
 }
+.el-form{
+  width: 600px;
+  margin: 0 auto;
+}
+
 </style>

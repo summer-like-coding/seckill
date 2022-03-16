@@ -141,8 +141,7 @@ export default {
 }
 
 .button {
-  margin-top: 10px;
-  padding: 0;
+  margin: 10px;
   float: right;
 }
 

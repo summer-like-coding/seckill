@@ -1,4 +1,5 @@
 import axios from "axios"
+// vuex里面的用户信息，我只可以放当前登录的用户
 export default {
     namespaced: true,
     actions: {

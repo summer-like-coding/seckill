@@ -1,97 +1,93 @@
 <template>
-  <div class="container">
-    <el-descriptions class="margin-top" :column="3" border>
-      <el-descriptions-item>
-        <template slot="label">
-          <!-- <i class="el-icon-user"> </i> -->
-          <el-row class="demo-avatar demo-basic">
-            <el-col :span="12">
-              <div class="demo-basic--circle">
-                <div class="block">
-                  <el-avatar :size="50" :src="circleUrl"></el-avatar>
-                </div>
-                <div class="block" v-for="size in sizeList" :key="size">
-                  <el-avatar :size="size" :src="circleUrl"></el-avatar>
-                </div>
-              </div>
-            </el-col>
-          </el-row>
-        </template>
-        kooriookami
-      </el-descriptions-item>
-      <el-descriptions-item>
-        <template slot="label">
-          <i class="el-icon-mobile-phone"></i>
-          手机号
-        </template>
-        18100000000
-      </el-descriptions-item>
-      <el-descriptions-item>
-        <template slot="label">
-          <i class="el-icon-location-outline"></i>
-          居住地
-        </template>
-        苏州市
-      </el-descriptions-item>
-      <el-descriptions-item>
-        <template slot="label">
-          <i class="el-icon-tickets"></i>
-          备注
-        </template>
-        <el-tag>学校</el-tag>
-      </el-descriptions-item>
-      <el-descriptions-item>
-        <template slot="label">
-          <i class="el-icon-office-building"></i>
-          联系地址
-        </template>
-        江苏省苏州市吴中区吴中大道 1188 号
-      </el-descriptions-item>
-    </el-descriptions>
-    <el-table :data="tableData" border style="width: 100%">
-      <el-table-column prop="date" label="日期"> </el-table-column>
-      <el-table-column prop="activity" label="参与活动"></el-table-column>
-      <el-table-column prop="number" label="购买数量"> </el-table-column>
-      <el-table-column prop="Iscredit" label="是否赊账"> </el-table-column>
-    </el-table>
-  </div>
+  <el-form ref="form" :model="tableData" label-width="80px">
+    <el-form-item label="用户名">
+      <!-- <el-input v-model="tableData.id"></el-input> -->
+      {{tableData.id}}
+    </el-form-item>
+    <el-form-item label="昵称">
+      <el-input v-model="tableData.name"></el-input>
+    </el-form-item>
+    <!-- 头像 -->
+    <el-form-item label="头像">
+      <!-- <el-input v-model="tableData.id"></el-input> -->
+      <!-- {{tableData.id}} -->
+       <div class="block"><el-avatar shape="square" ></el-avatar></div>
+    </el-form-item>
+     <!-- 密码 -->
+     <el-form-item label="密码">
+      <el-input v-model="tableData.password"></el-input>
+    </el-form-item>
+    <!-- 性别 -->
+    <el-form-item label="性别">
+      <el-radio-group v-model="radio">
+        <el-radio :label="3">男</el-radio>
+        <el-radio :label="6">女</el-radio>
+        <el-radio :label="9">保密</el-radio>
+      </el-radio-group>
+    </el-form-item>
+    <!-- 生日 -->
+    <el-form-item label="生日" >
+      <el-dropdown size="medium">
+        <el-button type="primary">
+          请选择<i class="el-icon-arrow-down el-icon--right"></i>
+        </el-button>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>年</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+      年
+      <el-dropdown size="medium">
+        <el-button type="primary">
+          请选择<i class="el-icon-arrow-down el-icon--right"></i>
+        </el-button>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>月</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+      月
+       <el-dropdown size="medium">
+        <el-button type="primary">
+          请选择<i class="el-icon-arrow-down el-icon--right"></i>
+        </el-button>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>日</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+      日
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" @click="onSubmit">提交</el-button>
+    </el-form-item>
+  </el-form>
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
-  name:"Imessage",
+  name: "Imessage",
   data() {
     return {
-      circleUrl:
-        "https://tse1-mm.cn.bing.net/th/id/OIP-C.nfC2tVNM9TgwQ5QuqECd6wHaFj?w=213&h=180&c=7&r=0&o=5&dpr=1.25&pid=1.7",
-      tableData: [
-        {
-          date: "2016-05-02",
-          activity: "余额宝",
-          number: 100,
-          Iscredit: "是",
-        },
-        {
-          date: "2016-05-02",
-          activity: "余额宝",
-          number: 100,
-          Iscredit: "是",
-        },
-        {
-          date: "2016-05-02",
-          activity: "余额宝",
-          number: 100,
-          Iscredit: "是",
-        },
-        {
-          date: "2016-05-02",
-          activity: "余额宝",
-          number: 100,
-          Iscredit: "是",
-        },
-      ],
+      radio: 3,
     };
   },
+  methods: {
+    onSubmit() {
+      console.log("submit!");
+      this.$alert('这是一段内容', '标题名称', {
+          confirmButtonText: '确定',
+          // 它这个回调，是一个promise对象，到时候，我直接区和服务器进行操作
+          // callback: action => {
+          //   this.$message({
+          //     type: 'info',
+          //     message: `action: ${ action }`
+          //   });
+          // }
+        });
+    },
+  },
+  computed:{
+    ...mapState('User',['tableData'])
+  }
 };
 </script>
 
