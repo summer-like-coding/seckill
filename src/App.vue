@@ -44,5 +44,8 @@ a{
   width: 600px;
   margin: 0 auto;
 }
-
+.pagination{
+  text-align: center;
+  margin: 0 auto;
+}
 </style>

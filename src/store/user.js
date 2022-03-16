@@ -15,7 +15,7 @@ export default {
     },
     state: {
         // 这个时用来表示用户的身份
-        userIdentity:0,
+        userIdentity:2,
         tableData: [
             {
                 ID: 123,

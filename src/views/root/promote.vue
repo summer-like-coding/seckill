@@ -32,7 +32,7 @@
       </el-table-column>
     </el-table>
     <!-- 添加分页器 -->
-    <Pagination></Pagination>
+    <Pagination class="pagination"></Pagination>
   </div>
 </template>
 <script>
@@ -71,4 +71,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>

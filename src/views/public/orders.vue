@@ -7,7 +7,7 @@
       <br />
       <Orderlist></Orderlist>
     </div>
-    <Pagination></Pagination>
+    <Pagination class="pagination"></Pagination>
     <!-- <h2>woshi1{{IsPay}}</h2> -->
   </div>
 </template>

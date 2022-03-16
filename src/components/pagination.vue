@@ -33,6 +33,8 @@ export default {
 
 <style scoped>
     .block{
+        /* margin-top: 30px; */
+        /* margin: 0 auto; */
         margin-top: 30px;
     }
 </style>

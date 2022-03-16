@@ -1,20 +1,19 @@
 <template>
   <div>
     <el-container>
-    <el-aside width="200px">
+    <el-aside>
       <img
         src="https://tse1-mm.cn.bing.net/th/id/OIP-C.nfC2tVNM9TgwQ5QuqECd6wHaFj?w=213&h=180&c=7&r=0&o=5&dpr=1.25&pid=1.7"
         alt=""
         width="100%"
       />
-      <span>￥1000</span>
-      <el-progress :percentage="50"></el-progress>
+      <div>价格：$1000</div>
+      <!-- <el-progress :percentage="50"></el-progress> -->
     </el-aside>
     <el-container>
-      <el-main>{{ text }}</el-main>
-      <el-footer>
+      <el-main>
+        <p>{{ text }}</p>
         <el-input-number
-          size="mini"
           v-model="num"
           @change="handleChange"
           :min="1"
@@ -22,7 +21,8 @@
           label="描述文字"
         ></el-input-number>
         <el-button @click="pushShow()">点击购买</el-button>
-      </el-footer>
+      </el-main>
+      
     </el-container>
   </el-container>
   <router-view></router-view>
@@ -100,5 +100,11 @@ export default {
   color: #333;
   text-align: center;
   /* line-height: 160px; */
+}
+.el-button{
+  margin-left:30px ;
+}
+.el-input-number{
+  margin-right: 30px;
 }
 </style>
