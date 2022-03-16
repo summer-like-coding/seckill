@@ -5,8 +5,8 @@
     <el-descriptions-item label="下单时间">2021-11-5 16:34</el-descriptions-item>
     <el-descriptions-item label="支付时间">2021-11-5 17:56</el-descriptions-item>
     <el-descriptions-item label="原活动名" :span="2">余额宝</el-descriptions-item>
-    <el-descriptions-item ><button @click="pushgrap()">查看活动</button></el-descriptions-item>
-    <el-descriptions-item ><button @click="pushpay()">付款</button></el-descriptions-item>
+    <el-descriptions-item ><el-button size="mini" @click="pushgrap()">查看活动</el-button></el-descriptions-item>
+    <el-descriptions-item ><el-button size="mini" @click="pushpay()">付款</el-button></el-descriptions-item>
   </el-descriptions>
 </template>
 

@@ -19,26 +19,27 @@
           <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
         </template>
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row);open()"
             >提升</el-button
           >
           <el-button
             size="mini"
             type="danger"
-            @click="handleDelete(scope.$index, scope.row)"
+            @click.prevent="handleDelete(scope.$index, scope.row);open()"
             >删除</el-button
           >
         </template>
       </el-table-column>
     </el-table>
     <!-- 添加分页器 -->
-    <el-pagination background layout="prev, pager, next" :total="1000" page-size="10">
-    </el-pagination>
+    <Pagination></Pagination>
   </div>
 </template>
 <script>
 import { mapMutations, mapState } from "vuex";
+// import pagination from '../../components/pagination.vue';
 export default {
+  // components: { pagination },
   name: "Promote",
   data() {
     return {
@@ -55,6 +56,15 @@ export default {
     handleDelete(index, row) {
       console.log(index, row);
     },
+    open(){
+      // 在这里面进行异步操作，点击以后，我再次判断一次，如果有，我就成功，没有就失败
+        this.$notify({
+          title: '成功',
+          message: '操作完成',
+          type:'success'
+        });
+    },
+
     // ...mapMutations("User",['newdata'])
   },
 };
