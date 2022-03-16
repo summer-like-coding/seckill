@@ -17,6 +17,15 @@ import Orderlist from "../../components/orderlist.vue";
 export default {
   name: "Orders",
   components: { Orderlist},
+  mounted(){
+    console.log("我已经挂载l");
+    this.$bus.$on("IsPay",(data)=>{
+      console.log(`我收到数据${data}`);
+    })
+  },
+  beforeDestroy(){
+    this.$bus.$off('IsPay')
+  }
 };
 </script>
 

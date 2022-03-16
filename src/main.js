@@ -14,9 +14,17 @@ Vue.component(Pagination.name,Pagination)
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 
+
+//引入全局事件总线
+// export const $bus = new Vue() 
+
+
 new Vue({
   router,
   store,
   Pagination,
-  render: h => h(App)
+  render: h => h(App),
+  beforeCreate() {
+    Vue.prototype.$bus= this
+  }
 }).$mount('#app')

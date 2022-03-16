@@ -10,7 +10,6 @@ import Imessage from '../views/imessage.vue'
 
 import Orders from '../views/public/orders.vue'
 import Grap from '../views/public/grap.vue'
-import Pay from '../views/public/pay.vue'
 
 // admin用户页面
 import Activities from '../views/admin/activities'
@@ -73,13 +72,6 @@ const routes = [
     name: 'Orders',
     component: Orders,
     meta: { title: '订单详情',isAuth: true }
-
-  },
-  {
-    path: '/pay',
-    name: 'Pay',
-    component: Pay,
-    meta: { title: '支付',isAuth: true }
 
   },
   {

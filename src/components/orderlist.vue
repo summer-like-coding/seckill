@@ -19,11 +19,11 @@ export default {
         name:"Grap"
       })
     },
-    pushpay(){
-      this.$router.push({
-        name:"Pay"
-      })
-    }
+    // pushpay(){
+    //   this.$router.push({
+    //     name:"Pay"
+    //   })
+    // }
   }
 };
 </script>
