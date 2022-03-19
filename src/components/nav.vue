@@ -9,8 +9,8 @@
       background-color="darkred"
       text-color="#fff"
       active-text-color="#ffd04b"
-      v-show="$store.state.User.userIdentity === 0"
-      router="true"
+      v-show="$store.state.userIdentity === 0"
+      :router="true"
     >
       <el-menu-item index="home">
         <!-- <a href="https://www.csxbank.com/" target="_blank">logo</a> -->
@@ -28,7 +28,7 @@
       <el-submenu index="imessage" style="float: right">
         <template slot="title">
           <i class="el-icon-user"></i>
-          <span>我的</span>
+          <span>{{$store.state.userInfo.userName || '我的'}}</span>
         </template>
         <el-menu-item index="imessage">
           <!-- <router-link to="/imessage">
@@ -68,8 +68,8 @@
       background-color="darkred"
       text-color="#fff"
       active-text-color="#ffd04b"
-      v-if="$store.state.User.userIdentity === 1"
-      router="true"
+      v-if="$store.state.userIdentity === 1"
+      :router="true"
     >
      <el-menu-item index="home">
         <!-- <a href="https://www.csxbank.com/" target="_blank">logo</a> -->
@@ -126,8 +126,8 @@
       background-color="darkred"
       text-color="#fff"
       active-text-color="#ffd04b"
-      v-if="$store.state.User.userIdentity === 2"
-      router="true"
+      v-if="$store.state.userIdentity === 2"
+      :router="true"
     >
       <el-menu-item index="home">
         <!-- <a href="https://www.csxbank.com/" target="_blank">logo</a> -->

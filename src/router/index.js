@@ -19,6 +19,7 @@ import Launch from '../views/admin/launch'
 
 //root用户界面
 import Promote from '../views/root/promote'
+import store from '../store'
 Vue.use(VueRouter)
 
 const routes = [
@@ -123,19 +124,56 @@ const router = new VueRouter({
   routes,
   // moudle
 })
+
+
 // 全局前置拦截
 router.beforeEach((to, from, next) => {
-  if (to.meta.isAuth) {
-    // 需要接口判断身份
-    if (localStorage.getItem("id") === "root") {
-      next()
-    } else if (localStorage.getItem("id") === "admin") {
-      next()
-    } else if (localStorage.getItem("id") === "public") {
+  // if (to.meta.isAuth) {
+  //   // 需要接口判断身份
+  //   if (localStorage.getItem("ROLE") === "root") {
+  //     next()
+  //   } else if (localStorage.getItem("ROLE") === "admin") {
+  //     next()
+  //   } else if (localStorage.getItem("ROLE") === "user") {
+  //     next()
+  //   }
+  // } else {
+  //   next()
+  // }
+  
+
+  // 如果我已经获取到了token，那么就表示，我已经登录过了，那么就登陆不了
+  if (localStorage.getItem("TOKEN")) {
+    if (to.path === '/signin' || to.path === '/signup') {
+      next('/home')
+    } else {
+      // 我不是去注册登录，对于其他页面只要没有用户名的，我都不允许进入
+      // 这时候就要判断类型
+      // alert('你已经登录或注册过了')
+      // 我需要在页面上显示用户名
+      if (store.state.userInfo.userName) {
+        next()
+      } else {
+        try {
+          store.dispatch('getUserInfo');
+          next()
+        } catch (error) {
+          store.dispatch('login');
+          next('/login')
+        }
+      }
+    }
+  }
+  // 为获取到token
+  else
+  {
+    if (to.path.indexOf('/imessage') !== -1) {
+      // 未登录情况，就是在路径里有'/message'，我们就让他登录
+      alert('请登录')
+      next('/home')
+    } else {
       next()
     }
-  } else {
-    next()
   }
 })
 // 全局后置拦截

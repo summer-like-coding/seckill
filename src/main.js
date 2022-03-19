@@ -10,6 +10,9 @@ import Pagination from './components/pagination';
 
 import '../theme/index.css'
 
+// 引入mock
+import './mock/mockServer'
+
 
 Vue.component(Pagination.name,Pagination)
 

@@ -1,0 +1,11 @@
+{
+    "code": "200",
+    "msg": "",
+    "data": {
+      "phone": "18605276639",
+      "password": "123456",
+      "userName": "HELLO",
+      "role": "user",
+      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNTA0NDA5NjYyOTIwNDA0OTkyIiwiZXhwIjoxNjQ3NTIyNjQwfQ.v_4xO4wp5jF5gA12t_dZdlGfj96BdJguuunUSKuGW8c"
+    }
+  }

@@ -10,18 +10,17 @@
     <el-main>
       <el-form
         :model="ruleForm"
-        :rules="rules"
         ref="ruleForm"
         label-width="100px"
       >
-        <el-form-item label="用户名" prop="name">
+        <el-form-item label="用户名" prop="phone">
           <el-input v-model="ruleForm.name" auto-complete="on"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
           <el-input v-model="ruleForm.password" show-password></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
+          <el-button type="primary" @click="submitForm()">登录</el-button>
           <!-- <el-button type="primary" @click="$store.state.dialogFormVisible = true">免费注册</el-button> -->
         </el-form-item>
       </el-form>
@@ -38,36 +37,31 @@ export default {
   data() {
     return {
       ruleForm: {
-        name: "",
+        phone: "",
         password: "",
-      },
-      rules: {
-        name: [
-          { required: true, message: "请输入用户名", trigger: "blur" },
-          { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" },
-        ],
-        password: [
-          { required: true, message: "请输入密码", trigger: "blur" },
-          {
-            min: 8,
-            max: 15,
-            message: "长度在 8 到 15 个字符",
-            trigger: "blur",
-          },
-        ],
-      },
+      }
     };
   },
   methods: {
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          alert("submit!");
-        } else {
-          console.log("error submit!!");
-          return false;
-        }
-      });
+    async submitForm() {
+      // this.$refs[formName].validate((valid) => {
+      //   if (valid) {
+      //     alert("submit!");
+      //   } else {
+      //     console.log("error submit!!");
+      //     return false;
+      //   }
+      // });
+      // this.$store.dispatch('login')
+      
+      try {
+        const {phone,password} = this;
+        await this.$store.dispatch('login',{phone,password})
+        this.$router.push({name:'Home'})
+        
+      } catch (error) {
+        
+      }
     },
   },
 };

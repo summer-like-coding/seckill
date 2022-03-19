@@ -1,14 +1,16 @@
 // 对axios进行封装
 import axios from "axios";
-import { config } from "vue/types/umd";
+// import { config } from "vue/types/umd";
 
 const requests = axios.create({
-    baseURL: '/api',
+    // baseURL: '/api',
     timeout: 5000
 });
 
 // 配置请求拦截器
 requests.interceptors.request.use((config) => {
+    // 获取用户信息，我需要携带token数据
+    
     return config
 })
 

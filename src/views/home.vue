@@ -27,7 +27,7 @@
     </el-col>
   </el-row>
   <!-- <router-view></router-view> -->
-  <el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop>
+  <!-- <el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop> -->
   </div>
 </template>
 
@@ -44,6 +44,9 @@ export default {
   },
   mounted() {
     this.add();
+    // home页面一挂载，我就去获取用户信息
+    // this.$store.dispatch('getUserInfo');
+
   },
   methods: {
     // 防止数值小于10时，出现一位数
