@@ -149,7 +149,7 @@
           </router-link> -->
           我的信息
         </el-menu-item>
-        <el-menu-item index="home">
+        <el-menu-item index="home" @click="loginout">
           <!-- <router-link to="/home">
             退出
           </router-link> -->
@@ -182,6 +182,9 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
+    loginout(){
+      this.$store.dispatch('logout')
+    }
   },
   mounted() {
     console.log(this.$store.state.User.userIdentity);

@@ -29,3 +29,10 @@ export const reLogin = (data) => {
         method:'post'
     })
 }
+
+// 用户退出登录
+export const reLogout = ()=>{
+    return mockrequest({
+        // 没有退出登录
+    })
+}

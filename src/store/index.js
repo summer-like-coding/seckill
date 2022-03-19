@@ -3,22 +3,22 @@ import Vuex from 'vuex'
 import User from './user.js'
 import Activity from './activity.js'
 
-import { reRegister ,reLogin} from "../api/index";
+import { reRegister, reLogin,reLogout } from "../api/index";
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     // dialogFormVisible: false,
-    userIdentity:0,
+    userIdentity: 0,
     IsPay: '',
     token: localStorage.getItem('TOKEN'),
-    role:localStorage.getItem("ROLE"),
-    userInfo:{}
+    role: localStorage.getItem("ROLE"),
+    userInfo: {}
   },
   mutations: {
     pay($state, data) {
       console.log("mutation----", data);
-      console.log(typeof(data));
+      console.log(typeof (data));
       $state.IsPay = data
     },
     LOGIN($state, data) {
@@ -26,11 +26,19 @@ export default new Vuex.Store({
     },
     GETUSERINFO($state, data) {
       $state.userInfo = data
+    },
+    LOGOUT() {
+      // 清除token
+      // 删除localstorage
+      $state.token = "",
+      $state.role = "",
+      localStorage.removeItem('TOKEN'),
+      localStorage.removeItem('ROLE')
     }
 
   },
   actions: {
-    async register(context,data) {
+    async register(context, data) {
       let result = await reRegister(data)
       console.log(result);
       if (result.code === 200) {
@@ -39,7 +47,7 @@ export default new Vuex.Store({
         return Promise.reject(new Error('fail'))
       }
     },
-    async login(context,data) {
+    async login(context, data) {
       let result = await reLogin(data)
       console.log(result.data.data);
       if (result.code === 200) {
@@ -60,6 +68,12 @@ export default new Vuex.Store({
         context.commit("GETUSERINFO", result.data.data);
       } else {
         return Promise.reject(new Error('fail'))
+      }
+    },
+    async logout(context, data) {
+      let result = await reLogout()
+      if (result.code == 200) {
+        context.commit('LOGOUT')
       }
     }
 
