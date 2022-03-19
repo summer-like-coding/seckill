@@ -3,17 +3,18 @@ import Vuex from 'vuex'
 import User from './user.js'
 import Activity from './activity.js'
 
-import { reRegister, reLogin,reLogout } from "../api/index";
+import { reRegister, reLogin,reLogout ,reGetAllList} from "../api/index";
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     // dialogFormVisible: false,
-    userIdentity: 0,
+    // userIdentity: 0,
     IsPay: '',
     token: localStorage.getItem('TOKEN'),
     role: localStorage.getItem("ROLE"),
-    userInfo: {}
+    userInfo: {},
+    userlist:[]
   },
   mutations: {
     pay($state, data) {
@@ -27,13 +28,16 @@ export default new Vuex.Store({
     GETUSERINFO($state, data) {
       $state.userInfo = data
     },
-    LOGOUT() {
+    LOGOUT($state) {
       // 清除token
       // 删除localstorage
       $state.token = "",
       $state.role = "",
       localStorage.removeItem('TOKEN'),
       localStorage.removeItem('ROLE')
+    },
+    GETALLLIST($state, data) {
+      $state.userlist = data
     }
 
   },
@@ -52,7 +56,7 @@ export default new Vuex.Store({
       console.log(result.data.data);
       if (result.code === 200) {
         // return 'ok'
-        // console.log(result.data.data.token);
+        console.log(result.data.data.role);
         context.commit('LOGIN', result.data.data.token);
         localStorage.setItem('TOKEN', result.data.data.token);
         localStorage.setItem('ROLE', result.data.data.role);
@@ -63,23 +67,26 @@ export default new Vuex.Store({
     },
     async getUserInfo(context, data) {
       let result = await reLogin(data)
-      console.log(result.data.data);
+      // console.log(result.data.data);
       if (result.code === 200) {
         context.commit("GETUSERINFO", result.data.data);
       } else {
         return Promise.reject(new Error('fail'))
       }
     },
-    async logout(context, data) {
+    async Logout(context) {
       let result = await reLogout()
-      if (result.code == 200) {
-        context.commit('LOGOUT')
+      // console.log(result);
+      if (result.code === 200) {
+        context.commit('LOGOUT',result.data)
+      }
+    },
+    async getAlllist(context) {
+      let result = await reGetAllList()
+      console.log(result.data.data.records);
+      if (result.code === 200) {
+        context.commit("GETALLLIST",result.data.data.records)
       }
     }
-
   },
-  modules: {
-    User,
-    Activity
-  }
 })

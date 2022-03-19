@@ -31,8 +31,21 @@ export const reLogin = (data) => {
 }
 
 // 用户退出登录
-export const reLogout = ()=>{
+export const reLogout = (data)=>{
     return mockrequest({
         // 没有退出登录
+        url: '/logout',
+        data,
+        method:'post'
+    })
+}
+
+
+// 所有数据
+export const reGetAllList = (data) => {
+    return mockrequest({
+        url: '/promote',
+        data,
+        method:'post'
     })
 }

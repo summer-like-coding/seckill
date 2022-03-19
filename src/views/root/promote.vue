@@ -2,30 +2,52 @@
   <div>
     <el-table
       :data="
-        tableData.filter(
+        userlist.filter(
           (data) =>
-            !search || data.name.toLowerCase().includes(search.toLowerCase())
+            !search ||
+            data.userName.toLowerCase().includes(search.toLowerCase()) ||
+            data.phone.indexOf(search) !== -1
         )
       "
     >
-      <el-table-column prop="ID" label="ID号"> </el-table-column>
-      <el-table-column prop="name" label="姓名"> </el-table-column>
+      <!-- <el-table> -->
+      <el-table-column prop="userId" label="ID号"> </el-table-column>
+      <el-table-column prop="userName" label="姓名"> </el-table-column>
       <el-table-column prop="age" label="年龄"> </el-table-column>
       <el-table-column prop="phone" label="电话"> </el-table-column>
-      <el-table-column prop="late" label="三年逾期情况"> </el-table-column>
-      <el-table-column prop="honest" label="诚信程度"> </el-table-column>
+      <el-table-column prop="hasWork" label="工作情况">
+        <!-- <i class="el-icon-success" v-show="prop"></i>
+        <i class="el-icon-error" v-show="!prop"></i> -->
+        <el-button type="danger" icon="el-icon-error"></el-button>
+        <el-button type="success" icon="el-icon-success"></el-button>
+      </el-table-column>
+      <el-table-column prop="hasCredit" label="诚信程度">
+        <!-- <i class="el-icon-success" v-show="prop"></i>
+        <i class="el-icon-error" v-show="!prop"></i> -->
+        <el-button type="danger" icon="el-icon-error"></el-button>
+        <el-button type="success" icon="el-icon-success"></el-button>
+      </el-table-column>
       <el-table-column align="right">
-        <template slot="header">
-          <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
-        </template>
+      <template slot="header" slot-scope="scope">
+        <el-input
+          v-model="search"
+          size="mini"
+          placeholder="输入关键字搜索"/>
+      </template>
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row);open()"
+          <el-button
+            @click="
+              handleEdit(scope.$index, scope.row);
+              open();
+            "
             >提升</el-button
           >
           <el-button
-            size="mini"
             type="danger"
-            @click.prevent="handleDelete(scope.$index, scope.row);open()"
+            @click.native.prevent="
+              handleDelete(scope.$index, userlist);
+              open();
+            "
             >删除</el-button
           >
         </template>
@@ -47,29 +69,36 @@ export default {
     };
   },
   computed: {
-    ...mapState("User", ["tableData"]),
+    ...mapState(["userlist"]),
   },
   methods: {
     handleEdit(index, row) {
       console.log(index, row);
     },
     handleDelete(index, row) {
-      console.log(index, row);
+      row.splice(index, 1);
     },
-    open(){
+    open() {
       // 在这里面进行异步操作，点击以后，我再次判断一次，如果有，我就成功，没有就失败
-        this.$notify({
-          title: '成功',
-          message: '操作完成',
-          type:'success'
-        });
+      this.$notify({
+        title: "成功",
+        message: "操作完成",
+        type: "success",
+      });
     },
 
     // ...mapMutations("User",['newdata'])
+  },
+  mounted() {
+    // 挂载之前，我就去获取所有的数据
+    this.$store.dispatch("getAlllist");
   },
 };
 </script>
 
 <style scoped>
-
+.el-table-column {
+  text-align: center;
+  margin: 0 auto;
+}
 </style>

@@ -21,8 +21,10 @@ Vue.use(ElementUI);
 
 
 //引入全局事件总线
-// export const $bus = new Vue() 
+// export const $bus = new Vue()
 
+
+// console.log(store.state.role);
 
 new Vue({
   router,

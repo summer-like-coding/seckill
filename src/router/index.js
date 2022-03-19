@@ -127,7 +127,7 @@ const router = new VueRouter({
 
 
 // 全局前置拦截
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   // if (to.meta.isAuth) {
   //   // 需要接口判断身份
   //   if (localStorage.getItem("ROLE") === "root") {
@@ -158,7 +158,7 @@ router.beforeEach((to, from, next) => {
           store.dispatch('getUserInfo');
           next()
         } catch (error) {
-          store.dispatch('login');
+          await store.dispatch('login');
           next('/login')
         }
       }

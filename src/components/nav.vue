@@ -9,7 +9,7 @@
       background-color="darkred"
       text-color="#fff"
       active-text-color="#ffd04b"
-      v-show="$store.state.userIdentity === 0"
+      v-show="$store.state.role === 'user' || $store.state.role === null"
       :router="true"
     >
       <el-menu-item index="home">
@@ -28,7 +28,7 @@
       <el-submenu index="imessage" style="float: right">
         <template slot="title">
           <i class="el-icon-user"></i>
-          <span>{{$store.state.userInfo.userName || '我的'}}</span>
+          <span>{{ $store.state.userInfo.userName || "我的" }}</span>
         </template>
         <el-menu-item index="imessage">
           <!-- <router-link to="/imessage">
@@ -36,7 +36,7 @@
           </router-link> -->
           我的信息
         </el-menu-item>
-        <el-menu-item index="home">
+        <el-menu-item index="home" @click="logout">
           <!-- <router-link to="/home">
             退出
           </router-link> -->
@@ -68,10 +68,10 @@
       background-color="darkred"
       text-color="#fff"
       active-text-color="#ffd04b"
-      v-if="$store.state.userIdentity === 1"
+      v-show="$store.state.role === 'admin'"
       :router="true"
     >
-     <el-menu-item index="home">
+      <el-menu-item index="home">
         <!-- <a href="https://www.csxbank.com/" target="_blank">logo</a> -->
         <i class="el-icon-house"></i>
         <span>首页</span>
@@ -83,7 +83,7 @@
       <el-submenu index="imessage" style="float: right">
         <template slot="title">
           <i class="el-icon-user"></i>
-          <span>我的</span>
+          <span>{{ $store.state.userInfo.userName || "我的" }}</span>
         </template>
         <el-menu-item index="imessage">
           <!-- <router-link to="/imessage">
@@ -126,7 +126,7 @@
       background-color="darkred"
       text-color="#fff"
       active-text-color="#ffd04b"
-      v-if="$store.state.userIdentity === 2"
+      v-show="$store.state.role === 'root'"
       :router="true"
     >
       <el-menu-item index="home">
@@ -141,7 +141,7 @@
       <el-submenu index="imessage" style="float: right">
         <template slot="title">
           <i class="el-icon-user"></i>
-          <span>我的</span>
+          <span>{{ $store.state.userInfo.userName || "我的" }}</span>
         </template>
         <el-menu-item index="imessage">
           <!-- <router-link to="/imessage">
@@ -149,7 +149,7 @@
           </router-link> -->
           我的信息
         </el-menu-item>
-        <el-menu-item index="home" @click="loginout">
+        <el-menu-item @click="logout">
           <!-- <router-link to="/home">
             退出
           </router-link> -->
@@ -182,12 +182,19 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
-    loginout(){
-      this.$store.dispatch('logout')
-    }
+    async logout() {
+      // console.log("我要退出");
+      // debugger;
+      try {
+        await this.$store.dispatch("Logout");
+        this.$router.push({ name: "Home" });
+      } catch (error) {
+        alert('fail')
+      }
+    },
   },
   mounted() {
-    console.log(this.$store.state.User.userIdentity);
+    // console.log(this.$store.state.User.userIdentity);
     // console.log(this.$store);
   },
   // computed: {
