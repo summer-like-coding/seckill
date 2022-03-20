@@ -1,5 +1,5 @@
 // 用于所有的接口管理
-import requests from "./request";
+import request from "./request";
 // mock数据
 import mockrequest from './mockrequest'
 
@@ -13,8 +13,16 @@ import mockrequest from './mockrequest'
 // }
 
 // 用户注册
+// export const reRegister = (data) => {
+//     return mockrequest({
+//         url: '/register',
+//         data,
+//         method:'post'
+//     })
+// }
+
 export const reRegister = (data) => {
-    return mockrequest({
+    return request({
         url: '/register',
         data,
         method:'post'
@@ -22,13 +30,22 @@ export const reRegister = (data) => {
 }
 
 // 用户登录
+// export const reLogin = (data) => {
+//     return mockrequest({
+//         url: '/login',
+//         data,
+//         method:'post'
+//     })
+// }
+
 export const reLogin = (data) => {
-    return mockrequest({
+    return request({
         url: '/login',
         data,
         method:'post'
     })
 }
+
 
 // 用户退出登录
 export const reLogout = (data)=>{
@@ -41,10 +58,19 @@ export const reLogout = (data)=>{
 }
 
 
+
 // 所有数据
+// export const reGetAllList = (data) => {
+//     return mockrequest({
+//         url: '/promote',
+//         data,
+//         method:'post'
+//     })
+// }
+
 export const reGetAllList = (data) => {
-    return mockrequest({
-        url: '/promote',
+    return request({
+        url: '/index',
         data,
         method:'post'
     })

@@ -18,8 +18,8 @@
       <el-table-column prop="hasWork" label="工作情况">
         <!-- <i class="el-icon-success" v-show="prop"></i>
         <i class="el-icon-error" v-show="!prop"></i> -->
-        <el-button type="danger" icon="el-icon-error"></el-button>
-        <el-button type="success" icon="el-icon-success"></el-button>
+        <el-button type="danger" icon="el-icon-error" v-show="!props"></el-button>
+        <el-button type="success" icon="el-icon-success" v-show="props"></el-button>
       </el-table-column>
       <el-table-column prop="hasCredit" label="诚信程度">
         <!-- <i class="el-icon-success" v-show="prop"></i>
@@ -32,6 +32,7 @@
         <el-input
           v-model="search"
           size="mini"
+          clearable="true"
           placeholder="输入关键字搜索"/>
       </template>
         <template slot-scope="scope">
@@ -54,11 +55,11 @@
       </el-table-column>
     </el-table>
     <!-- 添加分页器 -->
-    <Pagination class="pagination"></Pagination>
+    <Pagination class="pagination" :paginationData = 'paginationData'></Pagination>
   </div>
 </template>
 <script>
-import { mapMutations, mapState } from "vuex";
+import { mapMutations, mapState ,mapGetters} from "vuex";
 // import pagination from '../../components/pagination.vue';
 export default {
   // components: { pagination },
@@ -69,8 +70,15 @@ export default {
     };
   },
   computed: {
-    ...mapState(["userlist"]),
+    // ...mapState(["userlist"]),
+    ...mapGetters('user',['userlist'])
   },
+  // watch:{
+  //   immediate:true,
+  //   userlist(newvalue,oldvalue){
+  //     alert("变化了")
+  //   }
+  // },
   methods: {
     handleEdit(index, row) {
       console.log(index, row);
@@ -91,14 +99,11 @@ export default {
   },
   mounted() {
     // 挂载之前，我就去获取所有的数据
-    this.$store.dispatch("getAlllist");
+    this.$store.dispatch("user/getAlllist");
   },
 };
 </script>
 
 <style scoped>
-.el-table-column {
-  text-align: center;
-  margin: 0 auto;
-}
+
 </style>

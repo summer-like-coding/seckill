@@ -8,13 +8,9 @@
       />
     </el-aside>
     <el-main>
-      <el-form
-        :model="ruleForm"
-        ref="ruleForm"
-        label-width="100px"
-      >
+      <el-form :model="ruleForm" ref="ruleForm" label-width="100px">
         <el-form-item label="用户名" prop="phone">
-          <el-input v-model="ruleForm.name" auto-complete="on"></el-input>
+          <el-input v-model="ruleForm.phone" auto-complete="on"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
           <el-input v-model="ruleForm.password" show-password></el-input>
@@ -39,7 +35,7 @@ export default {
       ruleForm: {
         phone: "",
         password: "",
-      }
+      },
     };
   },
   methods: {
@@ -53,15 +49,16 @@ export default {
       //   }
       // });
       // this.$store.dispatch('login')
-      
+
       try {
-        const {phone,password} = this;
-        await this.$store.dispatch('login',{phone,password})
-        this.$router.push({name:'Home'})
-        
-      } catch (error) {
-        
-      }
+        const { phone, password } = this.ruleForm;
+        console.log("电话", phone);
+        console.log("密码", password);
+        console.log("电话", typeof phone);
+        console.log("密码", typeof password);
+        // await this.$store.dispatch('user/login',{phone,password})
+        // this.$router.push({name:'Home'})
+      } catch (error) {}
     },
   },
 };
@@ -75,7 +72,7 @@ export default {
   text-align: center;
   margin: 0 auto;
 }
-.el-button{
+.el-button {
   width: 100px;
   /* height: 36px; */
 }

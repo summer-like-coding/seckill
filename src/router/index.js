@@ -164,10 +164,10 @@ router.beforeEach(async (to, from, next) => {
       }
     }
   }
-  // 为获取到token
+  // 未获取到token
   else
   {
-    if (to.path.indexOf('/imessage') !== -1) {
+    if (to.path.indexOf('/imessage') !== -1 || to.path.indexOf('/orders') !== -1) {
       // 未登录情况，就是在路径里有'/message'，我们就让他登录
       alert('请登录')
       next('/home')

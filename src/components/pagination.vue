@@ -2,39 +2,51 @@
   <div class="block">
     <!-- <span class="demonstration">显示总数</span> -->
     <el-pagination
-      @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-      :current-page.sync="currentPage"
-      :page-size="100"
+      @prev-click="handlePrevClick"
+      @next-click="handleNextClick"
+      :current-page.sync="alllist.pageNum"
+      :page-size="alllist.size"
       layout="total, prev, pager, next"
-      :total="1000">
+      :total="alllist.total"
+    >
     </el-pagination>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
-    name:"Pagination",
-    methods: {
-      handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
-      },
-      handleCurrentChange(val) {
-        console.log(`当前页: ${val}`);
-      }
+  name: "Pagination",
+  methods: {
+    handleCurrentChange(val) {  
+      console.log(`我是处理当前页: ${val}`);
+      // console.log(b);
+      // this.$store.dispatch("currentList",val,)
     },
-    data() {
-      return {
-        currentPage: 5,
-      };
-    }
-}
+    handlePrevClick(val,b) {
+      console.log(`我是处理前一页: ${val}`);
+    },
+    handleNextClick(val) {
+      console.log(`我是处理后一页: ${val}`);
+    },
+  },
+  data() {
+    return {
+      // currentPage: 5,
+    };
+  },
+  computed: {
+    ...mapState('user',["alllist"]),
+  },
+  props:['paginationData']
+};
 </script>
 
 <style scoped>
-    .block{
-        /* margin-top: 30px; */
-        /* margin: 0 auto; */
-        margin-top: 30px;
-    }
+.block {
+  /* margin-top: 30px; */
+  /* margin: 0 auto; */
+  margin-top: 30px;
+}
 </style>

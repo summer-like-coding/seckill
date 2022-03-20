@@ -3,7 +3,7 @@ import axios from "axios";
 // import { config } from "vue/types/umd";
 
 const requests = axios.create({
-    // baseURL: '/api',
+    baseURL: '/user',
     timeout: 5000
 });
 

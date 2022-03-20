@@ -28,7 +28,7 @@ export default {
     // }
   },
   computed:{
-    ...mapState(['IsPay'])
+    // ...mapState(['IsPay'])
   },
 };
 </script>

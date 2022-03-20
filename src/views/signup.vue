@@ -100,17 +100,17 @@ export default {
     };
   },
   methods: {
-    submitForm(formName) {
-      // this.$refs[formName].validate((valid) => {
-      //   if (valid) {
-      //     alert("submit!");
-      //   } else {
-      //     console.log("error submit!!");
-      //     return false;
-      //   }
-      // });
-      // this.$store.dispatch("register")
-    },
+    // submitForm(formName) {
+    //   // this.$refs[formName].validate((valid) => {
+    //   //   if (valid) {
+    //   //     alert("submit!");
+    //   //   } else {
+    //   //     console.log("error submit!!");
+    //   //     return false;
+    //   //   }
+    //   // });
+    //   // this.$store.dispatch("register")
+    // },
     async submitForm(formName) {
       try {
         // this.$refs[formName].validate((valid) => {
@@ -120,8 +120,10 @@ export default {
           //   this.router.push({ name: "Signin" });
           // }
         // });
-        const {phone,iscard,pass} = this
-        await this.$store.dispatch("register"),{phone,iscard,pass};
+        const {phone,iscard,pass} = this.ruleForm;
+        // console.log("手机号",typeof phone);
+        // console.log('密码',typeof pass);
+        await this.$store.dispatch("user/register"),{phone,pass};
         this.$router.push({ name: "Signin" });
       } catch (error) {
         

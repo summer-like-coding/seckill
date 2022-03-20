@@ -9,7 +9,7 @@
       background-color="darkred"
       text-color="#fff"
       active-text-color="#ffd04b"
-      v-show="$store.state.role === 'user' || $store.state.role === null"
+      v-show="$store.state.user.role === 'user' || $store.state.user.role === null"
       :router="true"
     >
       <el-menu-item index="home">
@@ -28,7 +28,7 @@
       <el-submenu index="imessage" style="float: right">
         <template slot="title">
           <i class="el-icon-user"></i>
-          <span>{{ $store.state.userInfo.userName || "我的" }}</span>
+          <span>{{ $store.state.user.userInfo.userName || "我的" }}</span>
         </template>
         <el-menu-item index="imessage">
           <!-- <router-link to="/imessage">
@@ -68,7 +68,7 @@
       background-color="darkred"
       text-color="#fff"
       active-text-color="#ffd04b"
-      v-show="$store.state.role === 'admin'"
+      v-show="$store.state.user.role === 'admin'"
       :router="true"
     >
       <el-menu-item index="home">
@@ -83,7 +83,7 @@
       <el-submenu index="imessage" style="float: right">
         <template slot="title">
           <i class="el-icon-user"></i>
-          <span>{{ $store.state.userInfo.userName || "我的" }}</span>
+          <span>{{ $store.state.user.userInfo.userName || "我的" }}</span>
         </template>
         <el-menu-item index="imessage">
           <!-- <router-link to="/imessage">
@@ -126,7 +126,7 @@
       background-color="darkred"
       text-color="#fff"
       active-text-color="#ffd04b"
-      v-show="$store.state.role === 'root'"
+      v-show="$store.state.user.role === 'root'"
       :router="true"
     >
       <el-menu-item index="home">
@@ -141,7 +141,7 @@
       <el-submenu index="imessage" style="float: right">
         <template slot="title">
           <i class="el-icon-user"></i>
-          <span>{{ $store.state.userInfo.userName || "我的" }}</span>
+          <span>{{ $store.state.user.userInfo.userName || "我的" }}</span>
         </template>
         <el-menu-item index="imessage">
           <!-- <router-link to="/imessage">
@@ -186,7 +186,7 @@ export default {
       // console.log("我要退出");
       // debugger;
       try {
-        await this.$store.dispatch("Logout");
+        await this.$store.dispatch("user/Logout");
         this.$router.push({ name: "Home" });
       } catch (error) {
         alert('fail')
