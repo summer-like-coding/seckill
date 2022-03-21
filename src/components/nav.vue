@@ -9,7 +9,11 @@
       background-color="darkred"
       text-color="#fff"
       active-text-color="#ffd04b"
-      v-show="$store.state.user.role === 'user' || $store.state.user.role === null"
+      v-show="
+        $store.state.user.role === 'user' ||
+        $store.state.user.role === '' ||
+        $store.state.user.role === null
+      "
       :router="true"
     >
       <el-menu-item index="home">
@@ -185,12 +189,9 @@ export default {
     async logout() {
       // console.log("我要退出");
       // debugger;
-      try {
-        await this.$store.dispatch("user/Logout");
-        this.$router.push({ name: "Home" });
-      } catch (error) {
-        alert('fail')
-      }
+      await this.$store.dispatch("user/Logout");
+      console.log("我退出了，回到主页");
+      this.$router.push({ name: "Home" });
     },
   },
   mounted() {

@@ -4,7 +4,10 @@ import axios from "axios";
 
 const requests = axios.create({
     baseURL: '/user',
-    timeout: 5000
+    timeout: 5000,
+    headers: {
+        'Content-Type':'application/json'
+    }
 });
 
 // 配置请求拦截器

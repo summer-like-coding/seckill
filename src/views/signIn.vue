@@ -52,13 +52,12 @@ export default {
 
       try {
         const { phone, password } = this.ruleForm;
-        console.log("电话", phone);
-        console.log("密码", password);
-        console.log("电话", typeof phone);
-        console.log("密码", typeof password);
-        // await this.$store.dispatch('user/login',{phone,password})
-        // this.$router.push({name:'Home'})
-      } catch (error) {}
+        await this.$store.dispatch('user/login',{phone,password})
+        this.$router.push({name:'Home'})
+      } catch (error) {
+        // console.log(error);
+        alert(error.name)
+      }
     },
   },
 };

@@ -21,10 +21,11 @@ export default {
   methods: {
     handleCurrentChange(val) {  
       console.log(`我是处理当前页: ${val}`);
+      console.log("搜索内容",search);
       // console.log(b);
-      // this.$store.dispatch("currentList",val,)
+      this.$store.dispatch("currentList",val,)
     },
-    handlePrevClick(val,b) {
+    handlePrevClick(val) {
       console.log(`我是处理前一页: ${val}`);
     },
     handleNextClick(val) {
@@ -39,7 +40,7 @@ export default {
   computed: {
     ...mapState('user',["alllist"]),
   },
-  props:['paginationData']
+  props:['search']
 };
 </script>
 

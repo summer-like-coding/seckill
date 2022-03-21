@@ -128,20 +128,6 @@ const router = new VueRouter({
 
 // 全局前置拦截
 router.beforeEach(async (to, from, next) => {
-  // if (to.meta.isAuth) {
-  //   // 需要接口判断身份
-  //   if (localStorage.getItem("ROLE") === "root") {
-  //     next()
-  //   } else if (localStorage.getItem("ROLE") === "admin") {
-  //     next()
-  //   } else if (localStorage.getItem("ROLE") === "user") {
-  //     next()
-  //   }
-  // } else {
-  //   next()
-  // }
-  
-
   // 如果我已经获取到了token，那么就表示，我已经登录过了，那么就登陆不了
   if (localStorage.getItem("TOKEN")) {
     if (to.path === '/signin' || to.path === '/signup') {
@@ -151,14 +137,20 @@ router.beforeEach(async (to, from, next) => {
       // 这时候就要判断类型
       // alert('你已经登录或注册过了')
       // 我需要在页面上显示用户名
-      if (store.state.userInfo.userName) {
+      if (store.state.user.userInfo.userName) {
+        console.log("我有用户名，直接跳转");
         next()
       } else {
         try {
-          store.dispatch('getUserInfo');
+          // let id = localStorage.getItem("USERID")
+          let phone = localStorage.getItem("PHONE");
+          console.log("--------,用phone查询信息");
+          console.log("我是phone",phone);
+          // console.log("我想获取数据",store.state.user.userInfo);
+          // store.dispatch('user/getUserInfo',phone);
           next()
         } catch (error) {
-          await store.dispatch('login');
+          await store.dispatch('user/login');
           next('/login')
         }
       }

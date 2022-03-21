@@ -55,7 +55,7 @@
       </el-table-column>
     </el-table>
     <!-- 添加分页器 -->
-    <Pagination class="pagination" :paginationData = 'paginationData'></Pagination>
+    <Pagination class="pagination" :search='search' ></Pagination>
   </div>
 </template>
 <script>
@@ -66,7 +66,13 @@ export default {
   name: "Promote",
   data() {
     return {
-      search: "",
+      // paginationData:{
+      //   search:'',
+      //   pageNum:'',
+      //   size:'',
+      //   total:''
+      // }
+      search:''
     };
   },
   computed: {

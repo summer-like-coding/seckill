@@ -22,8 +22,10 @@ import mockrequest from './mockrequest'
 // }
 
 export const reRegister = (data) => {
+    console.log(data);
     return request({
         url: '/register',
+        // data:JSON.stringify(data),
         data,
         method:'post'
     })
@@ -48,14 +50,14 @@ export const reLogin = (data) => {
 
 
 // 用户退出登录
-export const reLogout = (data)=>{
-    return mockrequest({
-        // 没有退出登录
-        url: '/logout',
-        data,
-        method:'post'
-    })
-}
+// export const reLogout = (data)=>{
+//     return mockrequest({
+//         // 没有退出登录
+//         url: '/logout',
+//         data,
+//         method:'post'
+//     })
+// }
 
 
 
@@ -68,10 +70,27 @@ export const reLogout = (data)=>{
 //     })
 // }
 
-export const reGetAllList = (data) => {
+export const reGetAllList = () => {
     return request({
         url: '/index',
-        data,
+        method:'get'
+    })
+}
+
+
+// 修改用户信息
+export const reSaveUser = (data) => {
+    return request({
+        url: '/save',
         method:'post'
+    })
+}
+
+
+// 获取当前用户信息
+export const reGetUserInfo = (phone) => {
+    return request({
+        url: `/index/${phone}`,
+        method:'get'
     })
 }

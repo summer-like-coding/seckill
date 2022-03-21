@@ -46,6 +46,7 @@ export default new Vuex.Store({
   },
   actions: {
     // async register(context, data) {
+    //   console.log(data);
     //   let result = await reRegister(data)
     //   console.log(result);
     //   if (result.code === 200) {

@@ -1,31 +1,34 @@
 <template>
   <el-form ref="form" :model="userInfo" label-width="80px">
+    <el-form-item label="用户ID">
+      <!-- <el-input v-model="userInfo.id"></el-input> -->
+      {{ userInfo.userId }}
+    </el-form-item>
     <el-form-item label="用户名">
       <!-- <el-input v-model="userInfo.id"></el-input> -->
-      {{userInfo.userName}}
+      {{ userInfo.userName }}
     </el-form-item>
-    <el-form-item label="昵称">
+    <el-form-item label="手机号">
       <el-input v-model="userInfo.phone"></el-input>
     </el-form-item>
-    <!-- 头像 -->
-    <el-form-item label="头像">
+    <!-- 权限 -->
+    <el-form-item label="角色">
       <!-- <el-input v-model="userInfo.id"></el-input> -->
-      <!-- {{userInfo.id}} -->
-       <div class="block"><el-avatar shape="square"></el-avatar></div>
+      {{ userInfo.role }}
     </el-form-item>
-     <!-- 密码 -->
-     <el-form-item label="密码">
+    <!-- 密码 -->
+    <el-form-item label="密码">
       <el-input v-model="userInfo.password"></el-input>
     </el-form-item>
-    <!-- 性别 -->
-    <el-form-item label="性别">
+    <!-- 性别，生日 -->
+    <!-- <el-form-item label="性别">
       <el-radio-group v-model="radio">
         <el-radio :label="3">男</el-radio>
         <el-radio :label="6">女</el-radio>
         <el-radio :label="9" >保密</el-radio>
       </el-radio-group>
     </el-form-item>
-    <!-- 生日 -->
+    生日
     <el-form-item label="生日" >
       <el-dropdown size="medium">
         <el-button type="primary">
@@ -54,6 +57,28 @@
         </el-dropdown-menu>
       </el-dropdown>
       日
+    </el-form-item> -->
+    <el-form-item label="身份证">
+      <el-input v-model="userInfo.idCard"></el-input>
+      <!-- {{userInfo.userName}} -->
+      <!-- 是否有工作 -->
+    </el-form-item>
+    <el-form-item label="年龄">
+      <el-input v-model="userInfo.age"></el-input>
+      <!-- {{userInfo.userName}} -->
+      <!-- 是否有工作 -->
+    </el-form-item>
+    <el-form-item label="就业情况">
+      <el-radio-group>
+        <el-radio :label="userInfo.hasCredit">在职</el-radio>
+        <el-radio :label="userInfo.hasCredit">无业</el-radio>
+      </el-radio-group>
+    </el-form-item>
+    <el-form-item label="诚信度">
+      <el-radio-group>
+        <el-radio :label="userInfo.hasWork">诚信</el-radio>
+        <el-radio :label="userInfo.hasWork">失信</el-radio>
+      </el-radio-group>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onSubmit">提交</el-button>
@@ -62,22 +87,28 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import { mapState } from "vuex";
 export default {
   name: "Imessage",
   data() {
     return {
-      radio: 3,
+      // radioCredit:true
     };
   },
   methods: {
-    onSubmit() {
-      console.log("submit!");
-      this.$router.push({name:'Home'})
+    async onSubmit() {
+      try {
+        console.log("submit!");
+        console.log(this.$store.state.user.userInfo);
+        await this.$store.dispatch("user/saveUser", this.$store.user.userInfo);
+        this.$router.push({ name: "Home" });
+      } catch (error) {
+        console.log("hello");
+      }
     },
   },
-  computed:{
-    ...mapState(['userInfo'])
+  computed: {
+    ...mapState("user", ["userInfo"]),
   },
   // mounted(){
   //   this.$store.dispatch('getUserInfo');

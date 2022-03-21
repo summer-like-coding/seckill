@@ -17,17 +17,17 @@
     <el-form-item label="身份证" prop="idCard">
       <el-input
         type="text"
-        v-model="ruleForm.isCard"
+        v-model="ruleForm.idCard"
         autocomplete="off"
       ></el-input>
     </el-form-item>
     <el-form-item label="年龄" prop="age">
       <el-input v-model.number="ruleForm.age"></el-input>
     </el-form-item>
-    <el-form-item label="密码" prop="pass">
+    <el-form-item label="密码" prop="password">
       <el-input
         type="password"
-        v-model="ruleForm.pass"
+        v-model="ruleForm.password"
         autocomplete="off"
       ></el-input>
     </el-form-item>
@@ -78,7 +78,7 @@ export default {
     var validatePass2 = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请再次输入密码"));
-      } else if (value !== this.ruleForm.pass) {
+      } else if (value !== this.ruleForm.password) {
         callback(new Error("两次输入密码不一致!"));
       } else {
         callback();
@@ -88,12 +88,12 @@ export default {
       ruleForm: {
         phone: "",
         idCard: "",
-        pass: "",
+        password: "",
         checkPass: "",
         age: "",
       },
       rules: {
-        pass: [{ validator: validatePass, trigger: "blur" }],
+        password: [{ validator: validatePass, trigger: "blur" }],
         checkPass: [{ validator: validatePass2, trigger: "blur" }],
         age: [{ validator: checkAge, trigger: "blur" }],
       },
@@ -111,23 +111,18 @@ export default {
     //   // });
     //   // this.$store.dispatch("register")
     // },
-    async submitForm(formName) {
+    async submitForm() {
       try {
-        // this.$refs[formName].validate((valid) => {
-          // if (valid) {
-          //   // alert("submit!");
-          //   await this.$store.dispatch("register");
-          //   this.router.push({ name: "Signin" });
-          // }
-        // });
-        const {phone,iscard,pass} = this.ruleForm;
-        // console.log("手机号",typeof phone);
-        // console.log('密码',typeof pass);
-        await this.$store.dispatch("user/register"),{phone,pass};
+        const { phone, iscard, password } = this.ruleForm;
+        console.log(phone, password);
+        console.log("手机号", typeof phone);
+        console.log("密码", typeof password);
+        const msg = { phone, password };
+        await this.$store.dispatch("user/register", msg);
+        console.log("是否执行");
         this.$router.push({ name: "Signin" });
       } catch (error) {
-        
-        
+        // alert('fail')
       }
     },
     resetForm(formName) {
