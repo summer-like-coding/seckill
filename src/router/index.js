@@ -147,7 +147,7 @@ router.beforeEach(async (to, from, next) => {
           console.log("--------,用phone查询信息");
           console.log("我是phone",phone);
           // console.log("我想获取数据",store.state.user.userInfo);
-          // store.dispatch('user/getUserInfo',phone);
+          store.dispatch('user/getUserInfo',phone);
           next()
         } catch (error) {
           await store.dispatch('user/login');

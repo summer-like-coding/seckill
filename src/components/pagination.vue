@@ -5,42 +5,52 @@
       @current-change="handleCurrentChange"
       @prev-click="handlePrevClick"
       @next-click="handleNextClick"
-      :current-page.sync="alllist.pageNum"
-      :page-size="alllist.size"
+      :current-page.sync="newcurrent"
+      :page-size="newsize"
       layout="total, prev, pager, next"
-      :total="alllist.total"
+      :total="newtotal"
     >
     </el-pagination>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState,mapGetters } from "vuex";
 export default {
   name: "Pagination",
   methods: {
     handleCurrentChange(val) {  
-      console.log(`我是处理当前页: ${val}`);
-      console.log("搜索内容",search);
+      // console.log(`我是处理当前页: ${val}`);
+      // console.log("搜索内容",userName);
       // console.log(b);
-      this.$store.dispatch("currentList",val,)
+      // this.$store.dispatch("currentList",val,)
+      this.$emit("getPages",val)
     },
     handlePrevClick(val) {
-      console.log(`我是处理前一页: ${val}`);
+      // console.log(`我是处理前一页: ${val}`);
+      // console.log("++++++",this.newsize,this.newtotal,this.newcurrent);
+      this.$emit("getPages",val)
     },
     handleNextClick(val) {
-      console.log(`我是处理后一页: ${val}`);
+      // console.log(`我是处理后一页: ${val}`);
+      this.$emit("getPages",val)
     },
   },
   data() {
     return {
       // currentPage: 5,
+      newsize:this.size,
+      newtotal:this.total,
+      newpages:this.pages,
+      newcurrent:this.current
     };
   },
-  computed: {
-    ...mapState('user',["alllist"]),
-  },
-  props:['search']
+  // pages,页数
+  // total，请求数
+  // current，当前页数
+  // size，页面大小
+  props:['size','total','pages','current']
+    // ...mapGetters('user',['size','current','pages','total']),
 };
 </script>
 

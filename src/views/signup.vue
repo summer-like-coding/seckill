@@ -7,10 +7,17 @@
     label-width="100px"
     class="demo-ruleForm"
   >
-    <el-form-item label="账号" prop="phone">
+    <el-form-item label="手机" prop="phone">
       <el-input
         type="text"
         v-model="ruleForm.phone"
+        autocomplete="off"
+      ></el-input>
+    </el-form-item>
+    <el-form-item label="用户名" prop="userName">
+      <el-input
+        type="text"
+        v-model="ruleForm.userName"
         autocomplete="off"
       ></el-input>
     </el-form-item>
@@ -20,9 +27,6 @@
         v-model="ruleForm.idCard"
         autocomplete="off"
       ></el-input>
-    </el-form-item>
-    <el-form-item label="年龄" prop="age">
-      <el-input v-model.number="ruleForm.age"></el-input>
     </el-form-item>
     <el-form-item label="密码" prop="password">
       <el-input
@@ -49,22 +53,6 @@
 export default {
   name: "Signup",
   data() {
-    var checkAge = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error("年龄不能为空"));
-      }
-      setTimeout(() => {
-        if (!Number.isInteger(value)) {
-          callback(new Error("请输入数字值"));
-        } else {
-          if (value < 18) {
-            callback(new Error("必须年满18岁"));
-          } else {
-            callback();
-          }
-        }
-      }, 1000);
-    };
     var validatePass = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请输入密码"));
@@ -90,36 +78,24 @@ export default {
         idCard: "",
         password: "",
         checkPass: "",
-        age: "",
+        userName:'',
       },
       rules: {
         password: [{ validator: validatePass, trigger: "blur" }],
-        checkPass: [{ validator: validatePass2, trigger: "blur" }],
-        age: [{ validator: checkAge, trigger: "blur" }],
+        checkPass: [{ validator: validatePass2, trigger: "blur" }]
       },
     };
   },
   methods: {
-    // submitForm(formName) {
-    //   // this.$refs[formName].validate((valid) => {
-    //   //   if (valid) {
-    //   //     alert("submit!");
-    //   //   } else {
-    //   //     console.log("error submit!!");
-    //   //     return false;
-    //   //   }
-    //   // });
-    //   // this.$store.dispatch("register")
-    // },
     async submitForm() {
       try {
-        const { phone, iscard, password } = this.ruleForm;
-        console.log(phone, password);
-        console.log("手机号", typeof phone);
-        console.log("密码", typeof password);
-        const msg = { phone, password };
+        const { phone, idCard, password ,userName} = this.ruleForm;
+        // console.log(phone, password);
+        // console.log("手机号", typeof phone);
+        // console.log("密码", typeof password);
+        const msg = { phone, password ,idCard,userName};
         await this.$store.dispatch("user/register", msg);
-        console.log("是否执行");
+        // console.log("是否执行");
         this.$router.push({ name: "Signin" });
       } catch (error) {
         // alert('fail')

@@ -1,18 +1,14 @@
 import axios from "axios"
-import { reRegister, reLogin, reGetAllList,reSaveUser,reGetUserInfo } from "../api/index";
+import { reRegister, reLogin, reGetAllList, reSaveUser, reGetUserInfo, rePage } from "../api/index";
 // vuex里面的用户信息，我只可以放当前登录的用户
 export default {
   namespaced: true,
   actions: {
     async register(context, data) {
-      console.log(data);
+      // console.log(data);
       let result = await reRegister(data);
-      console.log(result.data.userId);
+      // console.log(result.data.userId);
       if (result.code === "200") {
-        // return 'ok'
-        // localStorage.setItem("USERID", result.data.userId)
-        // return 'ok'
-        // console.log(result.data);
         context.commit("GETUSERINFO", result.data);
         return "ok"
       } else {
@@ -20,33 +16,27 @@ export default {
       }
     },
     async login(context, data) {
-      console.log('传过去的', data);
-      let result = await reLogin(data)
-      console.log("到这儿", result);
+      // console.log('传过去的', data);
+      let result = await reLogin(data);
+      // console.log("到这儿", result);
       if (result.code === "200") {
-        // return 'ok'
-        // console.log(result.data.role);
-        // context.commit('LOGIN', result.data.token);
         localStorage.setItem('TOKEN', result.data.token);
         localStorage.setItem('ROLE', result.data.role);
         localStorage.setItem('PHONE', result.data.phone);
-        // localStorage.setItem("PHONE", result.data.phone);
-        // localStorage.setItem("PASSWORD",result.data.password)
-        // context.commit("GETUSERINFO", result.data);
         return 'ok'
       } else {
         return Promise.reject(new Error('fail'))
       }
     },
     async getUserInfo(context, data) {
-      console.log("传过来的id",data);
+      // console.log("传过来的id", data);
       let result = await reGetUserInfo(data)
-      console.log("我要获取当前用户信息", result);
+      // console.log("我要获取当前用户信息", result);
       if (result.code === "200") {
-        // localStorage.setItem('userInfo', result.data);
         context.commit("GETUSERINFO", result.data);
       } else {
-        return Promise.reject(new Error('fail'))
+        console.log("我的code不是200");
+        // return Promise.reject(new Error('fail'))
       }
     },
     Logout(context) {
@@ -55,21 +45,36 @@ export default {
     // 获取所有用户信息
     async getAlllist(context) {
       let result = await reGetAllList();
-      console.log("获取所有用户信息，在promote使用");
-      console.log(result);
+      // console.log("获取所有用户信息，在promote使用", result);
+      // console.log(result);
       if (result.code === "200") {
         context.commit("GETALLLIST", result.data)
       }
     },
-    async saveUser(context,data) {
+    // 修改数据
+    async saveUser(context, data) {
+      // console.log("我要修改信息",data);
       let result = await reSaveUser(data);
-      console.log(result);
+      // localStorage.setItem("PHONE",result.data.phone)
+      console.log("修改", result);
+      if (result.code === '200') {
+        console.log("成功修改");
+      } else {
+        console.log("未修改");
+      }
+    },
+    // 获取page信息
+    async getPage(context, data) {
+      // console.log("获取分页信息");
+      let result = await rePage(data);
+      console.log("分页",result.data);
+      context.commit("GETPAGE", result.data)
     }
   },
   mutations: {
     pay($state, data) {
       console.log("mutation----", data);
-      console.log(typeof (data));
+      // console.log(typeof (data));
       $state.IsPay = data
     },
     LOGIN($state, data) {
@@ -84,46 +89,54 @@ export default {
       // 删除localstorage
       $state.token = "",
         $state.role = "",
-        // $state.password = "",
-        // $state.phone = "",
         $state.phone = '',
-        // $state.userInfo = {},
         localStorage.removeItem('TOKEN'),
         localStorage.removeItem('ROLE'),
         localStorage.removeItem('PHONE')
-      // localStorage.removeItem('PHONE'),
-      // localStorage.removeItem("PASSWORD")
+
     },
     GETALLLIST($state, data) {
       console.log("获取所有数据", data);
-      console.log(data.records);
-      // $state.userlist = data.records;
       $state.alllist = data;
+    },
+    GETPAGE($state, data) {
+      $state.allPage = data
     }
   },
   state: {
-    // dialogFormVisible: false,
-    // userIdentity: 0,
     IsPay: '',
-    // password: '',
-    // phone:'',
     token: localStorage.getItem('TOKEN'),
-    role: localStorage.getItem("ROLE"), 
-    phone:localStorage.getItem("PHONE"),
+    role: localStorage.getItem("ROLE"),
+    phone: localStorage.getItem("PHONE"),
     userInfo: {},
-    // userlist: [],
+    alllist: {},
+    allPage: {}
     // 分页
-    alllist: {}
   },
   getters: {
     userlist(state) {
-      return state.alllist.records
+      // console.log("所有用户信息",state);
+      return state.alllist
     },
-    // phone(state) {
-    //   return state.userInfo.phone
-    // },
-    // password(state) {
-    //   return state.userInfo.password
-    // }
+    records(state) {
+      return state.allPage.records
+    },
+    size(state) {
+      // console.log("每页数",state.allPage.size);
+      return state.allPage.size
+    },
+    total(state) {
+      // console.log("请求个数",state.allPage.total);
+      return state.allPage.total
+    },
+    current(state) {
+      // console.log("当前页数",state.allPage.current);
+      return state.allPage.current
+    },
+    pages(state) {
+      // console.log("总页码",state.allPage.pages);
+      return state.allPage.pages
+    },
+
   }
 }

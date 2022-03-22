@@ -82,15 +82,29 @@ export const reGetAllList = () => {
 export const reSaveUser = (data) => {
     return request({
         url: '/save',
-        method:'post'
+        method: 'post',
+        data
     })
 }
 
 
 // 获取当前用户信息
 export const reGetUserInfo = (phone) => {
+    // console.log("axios封装的电话", phone);
+    // console.log("axios封装的电话",phone);
     return request({
-        url: `/index/${phone}`,
-        method:'get'
+        url: `/myself/${phone}`,
+        // params: {
+        //   phone:phone
+        // },
+        method: 'get'
     })
+}
+
+export const rePage = (params) => {
+    return request({
+        url: '/page',
+        params,
+        method:'get'
+    }) 
 }

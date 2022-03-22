@@ -9,7 +9,7 @@
     </el-aside>
     <el-main>
       <el-form :model="ruleForm" ref="ruleForm" label-width="100px">
-        <el-form-item label="用户名" prop="phone">
+        <el-form-item label="手机" prop="phone">
           <el-input v-model="ruleForm.phone" auto-complete="on"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
