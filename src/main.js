@@ -9,7 +9,7 @@ import Router from 'vue-router'
 // 注册全局组件
 import Pagination from './components/pagination';
 
-import '../theme/index.css'
+// import '../theme/index.css'
 
 // 引入mock
 // import './mock/mockServer'
