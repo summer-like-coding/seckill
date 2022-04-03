@@ -52,8 +52,8 @@ export default {
       }
     },
     // 修改数据
-    async saveUser(context, data) {
-      // console.log("我要修改信息",data);
+    async saveUser(data) {
+      console.log("我要修改信息",data);
       let result = await reSaveUser(data);
       // localStorage.setItem("PHONE",result.data.phone)
       console.log("修改", result);

@@ -5,10 +5,10 @@
       @current-change="handleCurrentChange"
       @prev-click="handlePrevClick"
       @next-click="handleNextClick"
-      :current-page.sync="newcurrent"
-      :page-size="newsize"
+      :current-page.sync="current"
+      :page-size="size"
       layout="total, prev, pager, next"
-      :total="newtotal"
+      :total="total"
     >
     </el-pagination>
   </div>
@@ -18,6 +18,7 @@
 import { mapState,mapGetters } from "vuex";
 export default {
   name: "Pagination",
+  props:['size','total','pages','current'],
   methods: {
     handleCurrentChange(val) {  
       // console.log(`我是处理当前页: ${val}`);
@@ -45,11 +46,16 @@ export default {
       newcurrent:this.current
     };
   },
+  watch:{
+    size(newval, oldval){
+      this.newsize = newval
+    }
+  }
   // pages,页数
   // total，请求数
   // current，当前页数
   // size，页面大小
-  props:['size','total','pages','current']
+
     // ...mapGetters('user',['size','current','pages','total']),
 };
 </script>

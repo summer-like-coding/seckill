@@ -69,10 +69,10 @@ export default {
   methods: {
     handleEdit(index, row) {
       row.role = "admin";
-      console.log(index, row);
-      console.log("用户信息", { ...row });
+      // console.log(index, row);
+      console.log("用户信息", row);
       // console.log(this.$route);
-      // this.$store.dispatch("user/saveUser", {...row});
+      this.$store.dispatch("user/saveUser", row);
       // console.log("提升", this.alllist);
     },
     open() {

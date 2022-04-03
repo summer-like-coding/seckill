@@ -120,6 +120,10 @@
         <!-- <router-link to="/details">报名详情</router-link> -->
         报名详情
       </el-menu-item>
+      <el-menu-item index="rules" style="float: right">
+        <!-- <router-link to="/details">报名详情</router-link> -->
+        规则准入
+      </el-menu-item>
     </el-menu>
     <!-- root用户 -->
     <el-menu

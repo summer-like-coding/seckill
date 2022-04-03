@@ -16,6 +16,7 @@ import Activities from '../views/admin/activities'
 import Manage from '../views/admin/manage'
 import Details from '../views/admin/details'
 import Launch from '../views/admin/launch'
+import Rules from "../views/admin/rules";
 
 //root用户界面
 import Promote from '../views/root/promote'
@@ -33,16 +34,9 @@ const routes = [
     name: 'Home',
     component: Home,
     meta: { title: '主页' }
-    // children: [
-    //   {
-    //     path: 'grap',
-    //     name: 'Grap',
-    //     component: Grap
-    //   },
-    // ]
   },
   {
-    path: '/errmsg',
+    path: '/404',
     name: 'Errmsg',
     component: Errmsg,
     meta: { title: '错误页面' }
@@ -116,6 +110,13 @@ const routes = [
     meta: { title: '人员升级', isAuth: true }
 
   },
+  {
+    path: '/rules',
+    name: 'Rules',
+    component: Rules,
+    meta: { title: '规则准入', isAuth: true }
+  },
+  { path: '*', redirect: '/404' },
 ]
 
 const router = new VueRouter({
