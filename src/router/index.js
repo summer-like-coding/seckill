@@ -1,29 +1,68 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Router from 'vue-router'
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
-const routes = [
+/* Layout */
+import Layout from '../views/layout/Layout'
+
+export const constantRouterMap = [
+  { path: '/login', component: () => import('@/views/login/index'), hidden: true },
+  { path: '/404', component: () => import('@/views/404'), hidden: true },
+
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    component: Layout,
+    redirect: '/dashboard',
+    name: 'Dashboard',
+    hidden: true,
+    children: [{
+      path: 'dashboard',
+      component: () => import('@/views/dashboard/index')
+    }]
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: '/rule2',
+    component: Layout,
+    children: [
+      {
+        path: 'drl',
+        name: 'rule',
+        component: () => import('@/views/rule2/drl'),
+        meta: { title: '规则', icon: 'form' }
+      }
+    ]
+  },
+  {
+    path: '/variables',
+    component: Layout,
+    children: [
+      {
+        path: 'index2',
+        name: 'variables',
+        component: () => import('@/views/variables/index2'),
+        meta: { title: '变量', icon: 'form' }
+      }
+    ]
+  },
+  {
+    path: '/test',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'test',
+        component: () => import('@/views/test/index'),
+        meta: { title: '测试', icon: 'form' }
+      }
+    ]
+  },
+  { path: '*', redirect: '/404', hidden: true }
 ]
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+export default new Router({
+  mode: 'history', //后端支持可开
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRouterMap
 })
 
-export default router
