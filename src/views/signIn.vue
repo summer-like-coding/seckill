@@ -24,10 +24,9 @@
 </template>
 
 <script>
-// import Signup from "./signup.vue";
+import ElementUI from 'element-ui';
 export default {
   name: "Signin",
-  // components: { Signup },
   data() {
     return {
       ruleForm: {
@@ -43,7 +42,10 @@ export default {
         await this.$store.dispatch('user/login',{phone,password})
         this.$router.push({name:'Home'})
       } catch (error) {
-        alert(error.name)
+        ElementUI.Message({
+          type:'error',
+          message:'登陆失败，请检查用户名或密码是否正确'
+        })
       }
     },
   },

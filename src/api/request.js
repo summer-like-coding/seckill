@@ -1,19 +1,23 @@
 // 对axios进行封装
 import axios from "axios";
 import store from "../store";
+import ElementUI from 'element-ui';
+
 const requests = axios.create({
     baseURL: '/user',
     timeout: 5000,
     headers: {
-        'Content-Type':'application/json'
+        'Content-Type': 'application/json'
     }
 });
 
 // 配置请求拦截器
 requests.interceptors.request.use((config) => {
     // 获取用户信息，我需要携带token数据
-    if (store.state.user.token) {
-        config.headers.token = store.state.user.token
+    let token = localStorage.getItem("TOKEN");
+    // console.log("请求头",config.headers);
+    if (!config.headers.hasOwnProperty('token')&&token) {
+        config.headers.token = token;
     }
     return config
 })
@@ -22,12 +26,21 @@ requests.interceptors.request.use((config) => {
 requests.interceptors.response.use(
     // 请求成功，返回数据
     (response) => {
+        //Message 消息提示
+        // ElementUI.Message({
+        //     message: '恭喜你，这是一条成功消息',
+        //     type: 'success'
+        // });
         return response.data
     },
     // 请求失败，failed
     (error) => {
-        // return Promise.reject(new Error('fail'))
-        return error.message
+        ElementUI.Notification({
+            title: '警告',
+            message: '警告',
+            type: 'warning'
+        });
+        return Promise.reject(error);
     })
 
 export default requests

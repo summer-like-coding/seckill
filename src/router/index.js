@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+import ElementUI from 'element-ui';
 import Home from '../views/home.vue'
 import Errmsg from '../views/errmsg.vue'
 import Signin from '../views/signin.vue'
@@ -142,18 +142,11 @@ router.beforeEach(async (to, from, next) => {
         console.log("我有用户名，直接跳转");
         next()
       } else {
-        // try {
-          // let id = localStorage.getItem("USERID")
           let phone = localStorage.getItem("PHONE");
           console.log("--------,用phone查询信息");
           console.log("我是phone",phone);
-          // console.log("我想获取数据",store.state.user.userInfo);
           store.dispatch('user/getUserInfo',phone);
           next()
-        // } catch (error) {
-        //   await store.dispatch('user/login');
-        //   next('/login')
-        // }
       }
     }
   }
@@ -162,7 +155,11 @@ router.beforeEach(async (to, from, next) => {
   {
     if (to.path.indexOf('/imessage') !== -1 || to.path.indexOf('/orders') !== -1) {
       // 未登录情况，就是在路径里有'/message'，我们就让他登录
-      alert('请登录')
+      // alert('请登录')
+      ElementUI.Message({
+        message: '请登录',
+        type:'error'
+      })
       next('/home')
     } else {
       next()
