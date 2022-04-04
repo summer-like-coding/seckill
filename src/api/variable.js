@@ -1,4 +1,4 @@
-import request from '@/utils/request'
+import request from './request.js'
 
 export function listVariable(token) {
   return request({

@@ -142,7 +142,7 @@ router.beforeEach(async (to, from, next) => {
         console.log("我有用户名，直接跳转");
         next()
       } else {
-        try {
+        // try {
           // let id = localStorage.getItem("USERID")
           let phone = localStorage.getItem("PHONE");
           console.log("--------,用phone查询信息");
@@ -150,10 +150,10 @@ router.beforeEach(async (to, from, next) => {
           // console.log("我想获取数据",store.state.user.userInfo);
           store.dispatch('user/getUserInfo',phone);
           next()
-        } catch (error) {
-          await store.dispatch('user/login');
-          next('/login')
-        }
+        // } catch (error) {
+        //   await store.dispatch('user/login');
+        //   next('/login')
+        // }
       }
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <el-table
     :data="
-      tableData.filter(
+      activities.filter(
         (data) =>
           !search || data.name.toLowerCase().includes(search.toLowerCase())
       )
@@ -41,7 +41,7 @@ export default {
     };
   },
   computed:{
-    ...mapState('User',['tableData'])
+    ...mapState('activity',['activities'])
   },
   methods: {
     handleEdit(index, row) {

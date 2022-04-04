@@ -8,7 +8,7 @@
       <el-row v-for="(item, index) in list" :key="index">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
-            <span>规则名</span>
+            规则名
             <el-input style="width: 200px;" class="filter-item" placeholder="必选" v-model="list[index].name">
             </el-input>
           </div>
@@ -20,10 +20,12 @@
               <el-table :data="item.rule" style="width: 100%">
                 <el-table-column width="180">
                   <template slot-scope="scope">
-                    <el-select filterable v-if="scope.$index % 2 == 0" style="width: 150px" class="filter-item" v-model="scope.row.l" clearable>
+                    <!-- <el-select filterable v-if="scope.$index % 2 == 0" style="width: 150px" class="filter-item" v-model="scope.row.l" clearable>
                       <el-option v-for="t in variables" :key="t.name" :label="t.name" :value="t.name">
                       </el-option>
-                    </el-select>
+                    </el-select> -->
+                    <el-input v-if="scope.$index % 2 == 0" style="width: 150px;" class="filter-item"  v-model="scope.row.l" :placeholder="scope.row.l">
+                    </el-input>
                   </template>
                 </el-table-column>
                 <el-table-column width="180">
@@ -57,10 +59,13 @@
 </template>
 
 <script>
+// 引入的发送数据的东西
 import { getLatestRule, insertRule } from '@/api/rule'
 import { listVariable } from '@/api/variable'
+// 一些js方法
 import { clone } from '@/utils/util'
 const constant = require('@/utils/constant')
+
 let nid = 100
 
 export default {
@@ -71,8 +76,6 @@ export default {
         value: '',
         variable: '',
         determine: ''
-      },
-      formRule: {
       },
       list: [],
       variables: [],
@@ -107,8 +110,6 @@ export default {
     this.mapper = constant.m
     this.op = constant.op
     this.expressionOp = constant.expressionOp
-    // 向服务器获取数据
-    // this.fetchData()
   },
   methods: {
     fetchData() {
@@ -179,7 +180,6 @@ export default {
       }
       console.log(result)
       console.log(JSON.stringify(result))
-      // result.variables = variables
       result.expression.coarse = this.hitRadio
       result.expression.fine = this.flow
       insertRule({ input: JSON.stringify(result), id: 1, name: this.rule.name }).then(response => {

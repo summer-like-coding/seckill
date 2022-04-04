@@ -1,6 +1,6 @@
 const mm = [
-  ['and', '并且'],
-  ['or', '或者'],
+  ['and', '且'],
+  ['or', '或'],
   ['gt', '大于'],
   ['lt', '小于'],
   ['ge', '大于等于'],
@@ -14,7 +14,6 @@ const mm = [
   ['null', '空值']
 ]
 
-// arr to obj ,such as { CN : "China", US : "USA" }
 const mmm = mm.reduce((acc, cur) => {
   acc[cur[0]] = cur[1]
   acc[cur[1]] = cur[0]
@@ -23,8 +22,8 @@ const mmm = mm.reduce((acc, cur) => {
 
 module.exports = {
   op: [
-    'or',
-    'and'
+    '或',
+    '且'
   ],
   expressionOp: [
     '>',
@@ -35,8 +34,8 @@ module.exports = {
     '!='
   ],
   relationMap: {
-    and: '并且',
-    or: '或者'
+    and: '且',
+    or: '或'
   },
   opMap: [
     {
@@ -74,8 +73,8 @@ module.exports = {
       ]
     },
     [
-      '并且',
-      '或者'
+      '且',
+      '或'
     ]
   ],
   m: mmm,

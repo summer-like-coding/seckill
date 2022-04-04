@@ -55,7 +55,7 @@ export default {
     };
   },
   computed:{
-    ...mapState('Activity',['activities'])
+    ...mapState('activity',['activities'])
   },
   methods:{
     pushmanage(){

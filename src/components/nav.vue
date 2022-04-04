@@ -164,6 +164,7 @@
 <script>
 export default {
   name: "Nav",
+  inject:['reload'],
   data() {
     return {
       activeIndex: "1",
@@ -173,21 +174,18 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
-    async logout() {
-      // console.log("我要退出");
+    logout() {
+      console.log("我要退出");
       // debugger;
-      await this.$store.dispatch("user/Logout");
+      this.$store.dispatch("user/Logout");
       console.log("我退出了，回到主页");
-      this.$router.push({ name: "Home" });
+      // this.$router.push({ name: "Home" });
+      setTimeout(() => {
+        console.log("需要重新加载下");
+        this.reload()
+      }, 500);
     },
   },
-  mounted() {
-    // console.log(this.$store.state.User.userIdentity);
-    // console.log(this.$store);
-  },
-  // computed: {
-  //   ...mapState("User", ["userIdentity"]),
-  // },
 };
 </script>
 

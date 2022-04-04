@@ -29,9 +29,9 @@ export default {
       }
     },
     async getUserInfo(context, data) {
-      // console.log("传过来的id", data);
+      console.log("传过来的id", data);
       let result = await reGetUserInfo(data)
-      // console.log("我要获取当前用户信息", result);
+      console.log("我要获取当前用户信息", result);
       if (result.code === "200") {
         context.commit("GETUSERINFO", result.data);
       } else {
@@ -40,6 +40,7 @@ export default {
       }
     },
     Logout(context) {
+      console.log("我要退出");
       context.commit("LOGOUT");
     },
     // 获取所有用户信息
@@ -53,7 +54,7 @@ export default {
     },
     // 修改数据
     async saveUser(data) {
-      console.log("我要修改信息",data);
+      console.log("我要修改信息", data);
       let result = await reSaveUser(data);
       // localStorage.setItem("PHONE",result.data.phone)
       console.log("修改", result);
@@ -67,7 +68,7 @@ export default {
     async getPage(context, data) {
       // console.log("获取分页信息");
       let result = await rePage(data);
-      console.log("分页",result.data);
+      console.log("分页", result.data);
       context.commit("GETPAGE", result.data)
     }
   },
@@ -87,13 +88,10 @@ export default {
     LOGOUT($state) {
       // 清除token
       // 删除localstorage
+      localStorage.clear()
       $state.token = "",
-        $state.role = "",
-        $state.phone = '',
-        localStorage.removeItem('TOKEN'),
-        localStorage.removeItem('ROLE'),
-        localStorage.removeItem('PHONE')
-
+      $state.role = "",
+      $state.phone = ''
     },
     GETALLLIST($state, data) {
       console.log("获取所有数据", data);

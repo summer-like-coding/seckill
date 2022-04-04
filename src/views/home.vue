@@ -34,6 +34,7 @@
 <script>
 export default {
   name:"Home",
+  inject:['reload'],
   data() {
     return {
       title:["余额宝",'悄悄攒','荷花','零钱通'],
@@ -44,9 +45,12 @@ export default {
   },
   mounted() {
     this.add();
+    console.log("挂载一次");
+    // this.$router.go(0)
+    // this.reload()
     // home页面一挂载，我就去获取用户信息
     // this.$store.dispatch('getUserInfo');
-
+    // this.refresh()
   },
   methods: {
     // 防止数值小于10时，出现一位数
@@ -90,7 +94,15 @@ export default {
       this.$router.push({
         name:"Grap",
       })
-    }
+    },
+    // 如果我获取到了token数据，那么就说明，登录了，那么就刷新一次
+    // refresh(){
+    //   if(localStorage.getItem('TOKEN')){
+    //     setTimeout(() => {
+    //       this.reload()
+    //     }, 20);
+    //   }
+    // }
   },
   watch: {
     // 监听数值变化

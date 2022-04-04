@@ -17,10 +17,8 @@
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm()">登录</el-button>
-          <!-- <el-button type="primary" @click="$store.state.dialogFormVisible = true">免费注册</el-button> -->
         </el-form-item>
       </el-form>
-      <!-- <Signup></Signup> -->
     </el-main>
   </el-container>
 </template>
@@ -40,22 +38,11 @@ export default {
   },
   methods: {
     async submitForm() {
-      // this.$refs[formName].validate((valid) => {
-      //   if (valid) {
-      //     alert("submit!");
-      //   } else {
-      //     console.log("error submit!!");
-      //     return false;
-      //   }
-      // });
-      // this.$store.dispatch('login')
-
       try {
         const { phone, password } = this.ruleForm;
         await this.$store.dispatch('user/login',{phone,password})
         this.$router.push({name:'Home'})
       } catch (error) {
-        // console.log(error);
         alert(error.name)
       }
     },
@@ -73,6 +60,5 @@ export default {
 }
 .el-button {
   width: 100px;
-  /* height: 36px; */
 }
 </style>
