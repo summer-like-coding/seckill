@@ -11,16 +11,20 @@ const requests = axios.create({
     }
 });
 
+
 // 配置请求拦截器
+// 配置前端限流
 requests.interceptors.request.use((config) => {
     // 获取用户信息，我需要携带token数据
     let token = localStorage.getItem("TOKEN");
     // console.log("请求头",config.headers);
-    if (!config.headers.hasOwnProperty('token')&&token) {
+    if (!config.headers.hasOwnProperty('token') && token) {
         config.headers.token = token;
     }
     return config
 })
+
+
 // 配置响应拦截器
 
 requests.interceptors.response.use(

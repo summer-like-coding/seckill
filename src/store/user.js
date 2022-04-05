@@ -36,7 +36,6 @@ export default {
         context.commit("GETUSERINFO", result.data);
       } else {
         console.log("我的code不是200");
-        // return Promise.reject(new Error('fail'))
       }
     },
     Logout(context) {

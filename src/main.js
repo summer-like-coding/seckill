@@ -5,7 +5,8 @@ import store from './store'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import axios from 'axios';
-import Router from 'vue-router'
+import Router from 'vue-router';
+import lodash from "lodash";
 // 注册全局组件
 import Pagination from './components/pagination';
 

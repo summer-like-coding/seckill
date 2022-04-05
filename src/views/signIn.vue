@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import ElementUI from 'element-ui';
+import ElementUI from "element-ui";
 export default {
   name: "Signin",
   data() {
@@ -39,13 +39,17 @@ export default {
     async submitForm() {
       try {
         const { phone, password } = this.ruleForm;
-        await this.$store.dispatch('user/login',{phone,password})
-        this.$router.push({name:'Home'})
+        await this.$store.dispatch("user/login", { phone, password });
+        this.$router.push({ name: "Home" });
+        // 为了显示我的nav
+        setTimeout(() => {
+          location.reload(); // 强制刷新
+        }, 1000);
       } catch (error) {
         ElementUI.Message({
-          type:'error',
-          message:'登陆失败，请检查用户名或密码是否正确'
-        })
+          type: "error",
+          message: "登陆失败，请检查用户名或密码是否正确",
+        });
       }
     },
   },

@@ -9,10 +9,7 @@
       class="column"
     >
       <el-card>
-        <img
-          src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-          class="image"
-        />
+        
         <div class="boxbottom">
           <span>{{title[index]}}</span>
           <!-- <span >未参与</span> -->
@@ -26,15 +23,13 @@
       </el-card>
     </el-col>
   </el-row>
-  <!-- <router-view></router-view> -->
-  <!-- <el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop> -->
   </div>
 </template>
 
 <script>
 export default {
   name:"Home",
-  inject:['reload'],
+  // inject:['reload'],
   data() {
     return {
       title:["余额宝",'悄悄攒','荷花','零钱通'],
@@ -95,14 +90,6 @@ export default {
         name:"Grap",
       })
     },
-    // 如果我获取到了token数据，那么就说明，登录了，那么就刷新一次
-    // refresh(){
-    //   if(localStorage.getItem('TOKEN')){
-    //     setTimeout(() => {
-    //       this.reload()
-    //     }, 20);
-    //   }
-    // }
   },
   watch: {
     // 监听数值变化

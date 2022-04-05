@@ -22,13 +22,9 @@
     </el-form-item>
     <el-form-item label="身份证">
       <el-input v-model="userInfo.idCard"></el-input>
-      <!-- {{userInfo.userName}} -->
-      <!-- 是否有工作 -->
     </el-form-item>
     <el-form-item label="年龄">
       <el-input v-model.number="userInfo.age"></el-input>
-      <!-- {{userInfo.userName}} -->
-      <!-- 是否有工作 -->
     </el-form-item>
     <el-form-item label="就业情况">
       <el-radio-group v-model="userInfo.hasCredit">
@@ -72,9 +68,6 @@ export default {
   computed: {
     ...mapState("user", ["userInfo"]),
   },
-  // mounted(){
-  //   this.$store.dispatch('getUserInfo');
-  // }
 };
 </script>
 

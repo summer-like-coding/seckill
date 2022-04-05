@@ -74,9 +74,6 @@ export const reGetUserInfo = (phone) => {
     // console.log("axios封装的电话",phone);
     return request({
         url: `/myself/${phone}`,
-        // params: {
-        //   phone:phone
-        // },
         method: 'get'
     })
 }

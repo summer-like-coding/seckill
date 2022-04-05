@@ -4,7 +4,7 @@
       <Nav></Nav>
     </el-header>
     <el-main>
-      <router-view v-if="isRouterAlive"></router-view>
+      <router-view></router-view>
     </el-main>
   </el-container>
 </template>
@@ -17,28 +17,25 @@ export default {
   components: {
     Nav,
   },
-  provide(){
-    return {
-      reload:this.reload
-    }
+  data() {
+    return {};
   },
-  data(){
-    return{
-      isRouterAlive:true
-    }
+  mounted() {
+    window.addEventListener("offline", () => {
+      // 网络由正常常到异常时触发
+      sessionStorage.locationUrl = window.location.href;
+      this.$router.replace("/errmsg");
+    });
+    window.addEventListener("online", () => {
+      window.location.href = sessionStorage.locationUrl;
+    });
   },
-  methods :{
-    reload(){
-      this.isRouterAlive = false;
-      this.$nextTick(function(){
-        this.isRouterAlive = true
-      })
-    }
-  }
+  methods: {
+  },
 };
 </script>
 <style>
-.el-container{
+.el-container {
   max-width: 80%;
   margin: 0 auto;
 }
@@ -53,14 +50,14 @@ export default {
   color: #333;
   /* text-align: center; */
 }
-a{
+a {
   text-decoration: none;
 }
-.el-form{
+.el-form {
   width: 500px;
   margin: 0 auto;
 }
-.pagination{
+.pagination {
   text-align: center;
   margin: 0 auto;
 }

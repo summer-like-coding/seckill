@@ -20,6 +20,7 @@ import Rules from "../views/admin/rules";
 
 //root用户界面
 import Promote from '../views/root/promote'
+
 import store from '../store'
 Vue.use(VueRouter)
 
@@ -153,7 +154,8 @@ router.beforeEach(async (to, from, next) => {
   // 未获取到token
   else
   {
-    if (to.path.indexOf('/imessage') !== -1 || to.path.indexOf('/orders') !== -1) {
+    console.log(to.path);
+    if (to.path.indexOf('/imessage') !== -1 || to.path.indexOf('/orders') !== -1 || to.path.indexOf('/grap') !== -1) {
       // 未登录情况，就是在路径里有'/message'，我们就让他登录
       // alert('请登录')
       ElementUI.Message({
