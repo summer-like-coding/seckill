@@ -4,7 +4,7 @@ import store from "../store";
 import ElementUI from 'element-ui';
 
 const requests = axios.create({
-    baseURL: '/user',
+    // baseURL: '/user',
     timeout: 5000,
     headers: {
         'Content-Type': 'application/json'

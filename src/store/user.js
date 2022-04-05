@@ -18,20 +18,21 @@ export default {
     async login(context, data) {
       // console.log('传过去的', data);
       let result = await reLogin(data);
-      // console.log("到这儿", result);
+      console.log("到这儿", result);
       if (result.code === "200") {
         localStorage.setItem('TOKEN', result.data.token);
         localStorage.setItem('ROLE', result.data.role);
         localStorage.setItem('PHONE', result.data.phone);
+        // localStorage.setItem('ID', result.data.userId);
         return 'ok'
       } else {
         return Promise.reject(new Error('fail'))
       }
     },
     async getUserInfo(context, data) {
-      console.log("传过来的id", data);
+      // console.log("传过来的id", data);
       let result = await reGetUserInfo(data)
-      console.log("我要获取当前用户信息", result);
+      // console.log("我要获取当前用户信息", result);
       if (result.code === "200") {
         context.commit("GETUSERINFO", result.data);
       } else {

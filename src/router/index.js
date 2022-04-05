@@ -154,7 +154,7 @@ router.beforeEach(async (to, from, next) => {
   // 未获取到token
   else
   {
-    console.log(to.path);
+    // console.log(to.path);
     if (to.path.indexOf('/imessage') !== -1 || to.path.indexOf('/orders') !== -1 || to.path.indexOf('/grap') !== -1) {
       // 未登录情况，就是在路径里有'/message'，我们就让他登录
       // alert('请登录')

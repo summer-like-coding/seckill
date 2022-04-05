@@ -1,38 +1,50 @@
 <template>
   <div>
     <el-row class="row">
-    <el-col
-      :span="8"
-      v-for="(item, index) in title.length"
-      :key="item"
-      :offset="index > 0 ? title.length : 0"
-      class="column"
-    >
-      <el-card>
-        
-        <div class="boxbottom">
-          <span>{{title[index]}}</span>
-          <!-- <span >未参与</span> -->
-          <div class="bottom clearfix">
-            <time class="time"
-              >倒计时：{{ hour }}:{{ minute }}:{{ second }}</time
-            >
-          </div>
-           <el-button class="button" @click="pushShow()">抢购</el-button>
-        </div>
-      </el-card>
-    </el-col>
-  </el-row>
+      <el-col
+        :span="8"
+        v-for="(item, index) in activities"
+        :key="item.productId"
+        :offset="index > 0 ? activities.length : 0"
+        class="column"
+      >
+        <el-card>
+          <el-form ref="item" :model="item" label-width="80px">
+            <el-form-item label="活动名称">
+              <!-- <el-input v-model="item.productName"></el-input> -->
+              {{ item.productName }}
+            </el-form-item>
+            <el-form-item label="活动简介">
+              <!-- <el-input v-model="item.productDetail"></el-input> -->
+              {{ item.productDetail }}
+            </el-form-item>
+            <el-form-item label="活动类型">
+              <!-- <el-input v-model="item.productType"></el-input> -->
+              {{ item.productType }}
+            </el-form-item>
+            <!-- <el-form-item>
+              <time class="time">
+                倒计时：{{ hour }}:{{ minute }}:{{ second }}
+              </time>
+            </el-form-item> -->
+            <el-form-item>
+              <el-button type="primary" @click="pushShow(item.productId)">抢购</el-button>
+            </el-form-item>
+          </el-form>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
-  name:"Home",
+  name: "Home",
   // inject:['reload'],
   data() {
     return {
-      title:["余额宝",'悄悄攒','荷花','零钱通'],
+      // activities:[],
       hours: 1,
       minutes: 0,
       seconds: 0,
@@ -46,6 +58,9 @@ export default {
     // home页面一挂载，我就去获取用户信息
     // this.$store.dispatch('getUserInfo');
     // this.refresh()
+
+    // 页面一挂载，我就去获取商品列表
+    this.$store.dispatch("activity/productList");
   },
   methods: {
     // 防止数值小于10时，出现一位数
@@ -85,10 +100,15 @@ export default {
         }
       }, 1000);
     },
-    pushShow(){
+    pushShow(data) {
+      console.log(data);
+      let user_id = this.userInfo.userId;
+      let product_id = data;
+      // 现在就要去获取当前的数据
+      this.$store.dispatch('activity/oneProduct',{product_id})
       this.$router.push({
-        name:"Grap",
-      })
+        name: "Grap",
+      });
     },
   },
   watch: {
@@ -120,6 +140,8 @@ export default {
     hour() {
       return this.num(this.hours);
     },
+    ...mapState("activity", ["activities"]),
+    ...mapState('user',['userInfo'])
   },
 };
 </script>

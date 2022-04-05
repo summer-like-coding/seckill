@@ -4,7 +4,7 @@
       <Nav></Nav>
     </el-header>
     <el-main>
-      <router-view></router-view>
+      <router-view v-if="isRouterAlive"></router-view>
     </el-main>
   </el-container>
 </template>
@@ -17,20 +17,33 @@ export default {
   components: {
     Nav,
   },
+  provide() {
+    return {
+      reload: this.reload,
+    };
+  },
   data() {
-    return {};
+    return {
+      isRouterAlive: true,
+    };
   },
   mounted() {
     window.addEventListener("offline", () => {
       // 网络由正常常到异常时触发
       sessionStorage.locationUrl = window.location.href;
-      this.$router.replace("/errmsg");
+      this.$router.replace("/networkError");
     });
     window.addEventListener("online", () => {
       window.location.href = sessionStorage.locationUrl;
     });
   },
   methods: {
+    reload() {
+      this.isRouterAlive = false;
+      this.$nextTick(function () {
+        this.isRouterAlive = true;
+      });
+    },
   },
 };
 </script>
