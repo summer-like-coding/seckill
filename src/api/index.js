@@ -123,3 +123,13 @@ export const reGetPath = (params) => {
         method:'get'
     })
 }
+
+
+// 获取真正的秒杀
+export const reGetTruePath = (params) => {
+    console.log("获取真正的参数", params);
+    return request({
+        url: `/${params.userId}/${params.path}/${params.productId}`,
+        method:'get'
+    })
+}

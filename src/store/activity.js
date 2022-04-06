@@ -1,4 +1,5 @@
-import { reProductList ,reOneProduct,reGetPath} from "../api"
+import { result } from "lodash";
+import { reProductList ,reOneProduct,reGetPath,reGetTruePath} from "../api"
 export default {
     namespaced: true,
     actions: {
@@ -26,6 +27,13 @@ export default {
                 // 现在我需要将data存储起来，等会拼接起来
                 context.commit('GETPATH',result.data)
             }
+        },
+        async getTruePath(context, data) {
+            console.log("获取真正的路径", data);
+            let reuslt = await reGetTruePath(data);
+            if (result.code === 666) {
+                console.log(result);
+            }
         }
     },
     mutations: {
@@ -42,6 +50,7 @@ export default {
             $state.IsPay = data
         },
         GETPATH($state, data) {
+            console.log(data);
             $state.onePath = data 
         }
     },
