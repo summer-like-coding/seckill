@@ -52,7 +52,8 @@ export default {
         GETPATH($state, data) {
             console.log(data);
             $state.onePath = data 
-        }
+        },
+        
     },
     state: {
         activities: [],
@@ -61,6 +62,11 @@ export default {
         onePath:''
     },
     getters: {
-
+        times(state) {
+            let time = [];
+            time.push(state.product.startDate);
+            time.push(state.product.endDate);
+            return time
+        }
     }
 }

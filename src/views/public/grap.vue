@@ -1,32 +1,40 @@
 <template>
   <el-form ref="product" :model="product" label-width="80px">
     <el-form-item label="活动名称">
-      {{ product.productName }}
+      <!-- {{ product.productName }} -->
+      <el-input v-model="product.productName" :readonly="true"></el-input>
     </el-form-item>
     <el-form-item label="价格">
-      {{ product.productPrice }}
+      <el-input v-model="product.productPrice" :readonly="true"></el-input>
+      <!-- {{ product.productPrice }} -->
     </el-form-item>
     <el-form-item label="类型">
-      {{ product.productType }}
+      <el-input v-model="product.productType" :readonly="true"></el-input>
+      <!-- {{ product.productType }} -->
     </el-form-item>
     <el-form-item label="利率">
-      {{ product.productAagr }}
+      <el-input v-model="product.productAagr" :readonly="true"></el-input>
+      <!-- {{ product.productAagr }} -->
     </el-form-item>
-    <!-- <el-form-item label="时间">
+    <el-form-item label="时间">
       <el-date-picker
-        v-model="product.startDate"
+        v-model="times"
         type="datetimerange"
         range-separator="至"
         start-placeholder="开始日期"
         end-placeholder="结束日期"
+        :readonly="true"
+        :clearable="false"
       >
       </el-date-picker>
-    </el-form-item> -->
+    </el-form-item>
     <el-form-item label="库存">
-      {{ product.stockCount }}
+      <el-input v-model="product.stockCount" :readonly="true"></el-input>
+      <!-- {{ product.stockCount }} -->
     </el-form-item>
     <el-form-item label="活动形式">
-      {{ product.productDetail }}
+      <el-input v-model="product.productDetail" :readonly="true"></el-input>
+      <!-- {{ product.productDetail }} -->
     </el-form-item>
     <el-form-item>
       <el-button @click="pushShow()">点击购买</el-button>
@@ -36,7 +44,7 @@
 
 <script>
 import _ from "lodash";
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 export default {
   name: "Grap",
   data() {
@@ -62,34 +70,38 @@ export default {
             user_id,
             product_id,
           });
-          if (action === "confirm") {
-            // 现在获得真正的路径
-            let userId = this.userInfo.userId;
-            let path = this.onePath;
-            let productId = this.product.productId;
-            console.log(userId);
-            console.log(path);
-            console.log(productId);
-            this.$store.dispatch("activity/getTruePath", {
-              userId,
-              path,
-              productId,
-            });
-            done();
-            
-          } else {
-            // 不和服务器交互，自己搞一点其他的
-            done();
-            // 我没有秒杀
+          try {
+            if (action === "confirm") {
+              // 现在获得真正的路径
+              let userId = this.userInfo.userId;
+              let path = this.onePath;
+              let productId = this.product.productId;
+              console.log(userId);
+              console.log(path);
+              console.log(productId);
+              this.$store.dispatch("activity/getTruePath", {
+                userId,
+                path,
+                productId,
+              });
+              done();
+            } else {
+              // 不和服务器交互，自己搞一点其他的
+              done();
+              // 我没有秒杀
+            }
+          } catch (error) {
+            console.log("出错",error);
           }
         },
       });
-    }, 3000),
+    }, 5000),
   },
   computed: {
     ...mapState("activity", ["product", "activities", "onePath"]),
     // ...mapState("activity", ["activities"]),
     ...mapState("user", ["userInfo"]),
+    ...mapGetters("activity", ["times"]),
   },
 };
 </script>
