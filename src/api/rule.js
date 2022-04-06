@@ -2,7 +2,7 @@ import request from './request'
 
 export function getList(id) {
   return request({
-    url: process.env.GATEWAY_API + '/drl/list',
+    // url: process.env.GATEWAY_API + '/drl/list',
     method: 'get',
     params: { sceneId: id }
   })
@@ -10,21 +10,21 @@ export function getList(id) {
 
 export function getVariables() {
   return request({
-    url: process.env.TSHIRT_API + '/variables',
+    // url: process.env.TSHIRT_API + '/variables',
     method: 'get'
   })
 }
 
 export function getActions() {
   return request({
-    url: process.env.TSHIRT_API + '/actions',
+    // url: process.env.TSHIRT_API + '/actions',
     method: 'get'
   })
 }
 
 export function getVersion(envId) {
   return request({
-    url: process.env.GATEWAY_API + '/version',
+    // url: process.env.GATEWAY_API + '/version',
     method: 'get',
     params: { env: envId }
   })
@@ -32,7 +32,7 @@ export function getVersion(envId) {
 
 export function getVersionHistory(id, envId) {
   return request({
-    url: process.env.GATEWAY_API + '/version/' + id,
+    // url: process.env.GATEWAY_API + '/version/' + id,
     method: 'get',
     params: { env: envId }
   })
@@ -65,14 +65,14 @@ export function activateRule(data) {
 
 export function getDrl(id) {
   return request({
-    url: process.env.GATEWAY_API + '/engine-service/sally/v1/rule/' + id,
+    // url: process.env.GATEWAY_API + '/engine-service/sally/v1/rule/' + id,
     method: 'get'
   })
 }
 
 export function getLatestRule(id) {
   return request({
-    url: process.env.GATEWAY_API + '/engine-service/sally/v1/rule/latest',
+    // url: process.env.GATEWAY_API + '/engine-service/sally/v1/rule/latest',
     method: 'get'
   })
 }
@@ -83,7 +83,7 @@ export function insertFlow(data) {
 
 export function getFlow(data) {
   return request({
-    url: process.env.GATEWAY_API + '/workflow/latest',
+    // url: process.env.GATEWAY_API + '/workflow/latest',
     method: 'get',
     params: data
   })
@@ -97,3 +97,11 @@ export function deployProd(flowId) {
   return request.formPost(process.env.GATEWAY_API + '/deploy/prod/' + flowId)
 }
 
+
+export function listVariable(token) {
+  return request({
+    url: process.env.GATEWAY_API + '/variable-service/sally/v1/variables',
+    method: 'get',
+    params: { token }
+  })
+}

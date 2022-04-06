@@ -49,4 +49,15 @@ requests.interceptors.response.use(
     }
 )
 
+requests.formPost = (url, params) => {
+    const dataStr = qs.stringify(params, {
+        arrayFormat: 'brackets'
+    })
+    return requests.post(url, dataStr)
+}
+
+requests.jsonPost = (url, params) => {
+    return requests.post(url, params)
+}
+
 export default requests

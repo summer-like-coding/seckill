@@ -33,7 +33,7 @@
       <!-- {{ product.stockCount }} -->
     </el-form-item>
     <el-form-item label="活动形式">
-      <el-input v-model="product.productDetail" :readonly="true"></el-input>
+      <el-input v-model="product.productDetail"  type="textarea" :rows="8" :readonly="true"></el-input>
       <!-- {{ product.productDetail }} -->
     </el-form-item>
     <el-form-item>
@@ -85,14 +85,18 @@ export default {
                 productId,
               });
               done();
-            } else {
-              // 不和服务器交互，自己搞一点其他的
-              
-              done();
-              // 我没有秒杀
+              this.$router.push({
+                name:'Orders'
+              })
             }
           } catch (error) {
             console.log("出错",error);
+            done();
+            if(action === 'cancel' || action === 'close'){
+              this.$router.push({
+                name:"Orders"
+              })
+            }
           }
         },
       });

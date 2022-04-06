@@ -1,20 +1,15 @@
 <template>
   <div>
-    <div class="list">
-      <Orderlist></Orderlist>
+    <div class="list" v-for="(item,index) in activities" :key="index">
+      <Orderlist :item='item'></Orderlist>
       <br />
-      <Orderlist></Orderlist>
-      <br />
-      <Orderlist></Orderlist>
     </div>
-    <Pagination class="pagination"></Pagination>
-    <!-- <h2>woshi1{{IsPay}}</h2> -->
   </div>
 </template>
 
 <script>
 import Orderlist from "../../components/orderlist.vue";
-// import { mapState } from "vuex";
+import { mapState } from "vuex";
 // import Pagination from '../../components/pagination.vue';
 export default {
   name: "Orders",
@@ -24,9 +19,9 @@ export default {
       msg:''
     }
   },
-  // computed:{
-  //   ...mapState(['IsPay'])
-  // },
+  computed:{
+    ...mapState('activity',['activities'])
+  },
 };
 </script>
 

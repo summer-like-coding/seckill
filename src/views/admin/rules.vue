@@ -20,8 +20,12 @@
               <el-table :data="item.rule" style="width: 100%">
                 <el-table-column width="180">
                   <template slot-scope="scope">
-                    <el-input v-if="scope.$index % 2 == 0" style="width: 150px;" class="filter-item"  v-model="scope.row.l" :placeholder="scope.row.l">
-                    </el-input>
+                    <!-- scope.$index,获取每一行的index -->
+                    <!-- scope.$row,获取每一行的数据 -->
+                    <el-select filterable v-if="scope.$index % 2 == 0" style="width: 150px" class="filter-item" v-model="scope.row.l" clearable>
+                      <el-option v-for="t in variables" :key="t.name" :label="t.name" :value="t.name">
+                      </el-option>
+                    </el-select>
                   </template>
                 </el-table-column>
                 <el-table-column width="180">
@@ -56,8 +60,7 @@
 
 <script>
 // 引入的发送数据的东西
-import { getLatestRule, insertRule } from '@/api/rule'
-import { listVariable } from '@/api/variable'
+// import { getLatestRule, insertRule ,listVariable} from '@/api/rule'
 // 一些js方法
 import { clone } from '@/utils/util'
 const constant = require('@/utils/constant')

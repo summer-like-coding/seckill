@@ -49,7 +49,7 @@
       v-show="$store.state.user.role === 'admin'"
       :router="true"
     >
-      <el-menu-item index="home">
+      <el-menu-item index="activities">
         <i class="el-icon-house"></i>
         <span>首页</span>
       </el-menu-item>
@@ -67,16 +67,17 @@
         </el-menu-item>
         <el-menu-item index="home" @click="logout"> 退出 </el-menu-item>
       </el-submenu>
-      <el-menu-item index="activities" style="float: right">
+      <!-- <el-menu-item index="activities" style="float: right">
         所有活动
-      </el-menu-item>
-      <el-menu-item index="launch" style="float: right">
-        发起活动
-      </el-menu-item>
-      <el-menu-item index="details" style="float: right">
+      </el-menu-item> -->
+      <!-- <el-menu-item index="manage" style="float: right">
+        管理活动
+      </el-menu-item> -->
+      <!-- <el-menu-item index="details" style="float: right">
         报名详情
-      </el-menu-item>
+      </el-menu-item> -->
       <el-menu-item index="rules" style="float: right"> 规则准入 </el-menu-item>
+      <el-menu-item index="variables" style="float: right"> 变量描述 </el-menu-item>
     </el-menu>
     <!-- root用户 -->
     <el-menu
@@ -90,7 +91,7 @@
       v-show="$store.state.user.role === 'root'"
       :router="true"
     >
-      <el-menu-item index="home">
+      <el-menu-item index="promote">
         <i class="el-icon-house"></i>
         <span>首页</span>
       </el-menu-item>

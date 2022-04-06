@@ -15,8 +15,8 @@ import Grap from '../views/public/grap.vue'
 import Activities from '../views/admin/activities'
 import Manage from '../views/admin/manage'
 import Details from '../views/admin/details'
-import Launch from '../views/admin/launch'
 import Rules from "../views/admin/rules";
+import Variables from '../views/admin/variables.vue'
 
 //root用户界面
 import Promote from '../views/root/promote'
@@ -61,48 +61,48 @@ const routes = [
     path: '/imessage',
     name: 'Imessage',
     component: Imessage,
-    meta: { title: '我的信息',isAuth: true }
+    meta: { title: '我的信息', isAuth: true }
   },
   {
     path: '/orders',
     name: 'Orders',
     component: Orders,
-    meta: { title: '订单详情',isAuth: true }
+    meta: { title: '订单详情', isAuth: true }
 
   },
   {
     path: '/grap',
     name: 'Grap',
     component: Grap,
-    meta: { title: '抢购',isAuth: true }
+    meta: { title: '抢购', isAuth: true }
 
   },
   {
     path: '/manage',
     name: 'Manage',
     component: Manage,
-    meta: { title: '管理活动' ,isAuth: true}
+    meta: { title: '管理活动', isAuth: true }
 
   },
   {
-    path: '/launch',
-    name: 'Launch',
-    component: Launch,
-    meta: { title: '发布活动',isAuth: true }
-  },
-  {
-    path: '/Details',
-    name: 'details',
+    path: '/details',
+    name: 'Details',
     component: Details,
-    meta: { title: '申请记录',isAuth: true }
+    meta: { title: '申请记录', isAuth: true }
 
   },
   {
     path: '/activities',
     name: 'Activities',
     component: Activities,
-    meta: { title: '所有活动',isAuth: true }
+    meta: { title: '所有活动', isAuth: true }
 
+  },
+  {
+    path: '/variables',
+    name: 'Variables',
+    component: Variables,
+    meta: { title: '变量', isAuth: true }
   },
   {
     path: '/promote',
@@ -143,24 +143,23 @@ router.beforeEach(async (to, from, next) => {
         console.log("我有用户名，直接跳转");
         next()
       } else {
-          let phone = localStorage.getItem("PHONE");
-          console.log("--------,用phone查询信息");
-          console.log("我是phone",phone);
-          store.dispatch('user/getUserInfo',phone);
-          next()
+        let phone = localStorage.getItem("PHONE");
+        console.log("--------,用phone查询信息");
+        console.log("我是phone", phone);
+        store.dispatch('user/getUserInfo', phone);
+        next()
       }
     }
   }
   // 未获取到token
-  else
-  {
+  else {
     // console.log(to.path);
     if (to.path.indexOf('/imessage') !== -1 || to.path.indexOf('/orders') !== -1 || to.path.indexOf('/grap') !== -1) {
       // 未登录情况，就是在路径里有'/message'，我们就让他登录
       // alert('请登录')
       ElementUI.Message({
         message: '请登录',
-        type:'error'
+        type: 'error'
       })
       next('/home')
     } else {
