@@ -5,7 +5,7 @@ import request from "./request";
 export const reRegister = (data) => {
     console.log(data);
     return request({
-        url: '/user/register',
+        url: 'http://121.5.166.154:9090/user/register',
         // data:JSON.stringify(data),
         data,
         method:'post'
@@ -23,9 +23,11 @@ export const reRegister = (data) => {
 
 export const reLogin = (data) => {
     return request({
-        url: '/user/login',
+        // baseURL: 'http://121.5.166.154:9090/',
+        url: 'http://121.5.166.154:9090/user/login',
         data,
-        method:'post'
+        method: 'post',
+        
     })
 }
 
@@ -53,7 +55,7 @@ export const reLogin = (data) => {
 
 export const reGetAllList = () => {
     return request({
-        url: '/user/index',
+        url: 'http://121.5.166.154:9090/user/index',
         method:'get'
     })
 }
@@ -62,7 +64,7 @@ export const reGetAllList = () => {
 // 修改用户信息
 export const reSaveUser = (data) => {
     return request({
-        url: '/user/save',
+        url: 'http://121.5.166.154:9090/user/save',
         method: 'post',
         data
     })
@@ -74,14 +76,14 @@ export const reGetUserInfo = (phone) => {
     // console.log("axios封装的电话", phone);
     // console.log("axios封装的电话",phone);
     return request({
-        url: `/user/myself/${phone}`,
+        url: `http://121.5.166.154:9090/user/myself/${phone}`,
         method: 'get'
     })
 }
 
 export const rePage = (params) => {
     return request({
-        url: '/user/page',
+        url: 'http://121.5.166.154:9090/user/page',
         params,
         method:'get'
     }) 
@@ -99,7 +101,7 @@ export const rePage = (params) => {
 export const reProductList = () => {
     console.log("发送请求");
     return request({
-        url: '/product/list',
+        url: 'http://47.96.38.160:7777/product/list',
         method:'get'
     })
 }
@@ -110,7 +112,7 @@ export const reOneProduct = (params) => {
     // console.log("获取用户ID",params.user_id);
     // console.log("获取商品ID",params);
     return request({
-        url: `/product/${params.product_id}`,
+        url: `http://47.96.38.160:7777/product/${params.product_id}`,
         method:'get'
     })
 }
@@ -119,7 +121,7 @@ export const reOneProduct = (params) => {
 export const reGetPath = (params) => {
     console.log("获取参数",params);
     return request({
-        url: `/getPath/${params.user_id}/${params.product_id}`,
+        url: `http://47.96.38.160:8888/getPath/${params.user_id}/${params.product_id}`,
         method:'get'
     })
 }
@@ -129,7 +131,7 @@ export const reGetPath = (params) => {
 export const reGetTruePath = (params) => {
     console.log("获取真正的参数", params);
     return request({
-        url: `/${params.userId}/${params.path}/${params.productId}`,
+        url: `http://47.96.38.160:8888/${params.userId}/${params.path}/${params.productId}`,
         method:'get'
     })
 }

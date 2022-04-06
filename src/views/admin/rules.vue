@@ -20,10 +20,6 @@
               <el-table :data="item.rule" style="width: 100%">
                 <el-table-column width="180">
                   <template slot-scope="scope">
-                    <!-- <el-select filterable v-if="scope.$index % 2 == 0" style="width: 150px" class="filter-item" v-model="scope.row.l" clearable>
-                      <el-option v-for="t in variables" :key="t.name" :label="t.name" :value="t.name">
-                      </el-option>
-                    </el-select> -->
                     <el-input v-if="scope.$index % 2 == 0" style="width: 150px;" class="filter-item"  v-model="scope.row.l" :placeholder="scope.row.l">
                     </el-input>
                   </template>

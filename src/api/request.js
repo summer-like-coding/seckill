@@ -4,11 +4,12 @@ import store from "../store";
 import ElementUI from 'element-ui';
 
 const requests = axios.create({
-    // baseURL: '/user',
+    baseURL: '/',
     timeout: 5000,
     headers: {
         'Content-Type': 'application/json'
-    }
+    },
+
 });
 
 
@@ -31,20 +32,21 @@ requests.interceptors.response.use(
     // 请求成功，返回数据
     (response) => {
         //Message 消息提示
-        // ElementUI.Message({
-        //     message: '恭喜你，这是一条成功消息',
-        //     type: 'success'
-        // });
+        ElementUI.Message({
+            message: '恭喜你，这是一条成功消息',
+            type: 'success'
+        });
         return response.data
     },
     // 请求失败，failed
     (error) => {
-        ElementUI.Notification({
-            title: '警告',
+        ElementUI.Message({
             message: '警告',
             type: 'warning'
         });
+        console.log("是这里问题");
         return Promise.reject(error);
-    })
+    }
+)
 
 export default requests

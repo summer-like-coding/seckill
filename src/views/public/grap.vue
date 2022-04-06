@@ -87,6 +87,7 @@ export default {
               done();
             } else {
               // 不和服务器交互，自己搞一点其他的
+              
               done();
               // 我没有秒杀
             }
