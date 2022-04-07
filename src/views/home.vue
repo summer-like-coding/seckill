@@ -1,40 +1,40 @@
 <template>
-  <div>
-    <el-row class="row">
-      <el-col
-        :span="8"
-        v-for="(item, index) in activities"
-        :key="item.productId"
-        :offset="index > 0 ? activities.length : 0"
-        class="column"
-      >
-        <el-card>
-          <el-form ref="item" :model="item" label-width="80px">
-            <el-form-item label="活动名称">
-              <!-- <el-input v-model="item.productName"></el-input> -->
-              {{ item.productName }}
-            </el-form-item>
-            <el-form-item label="活动简介">
-              <!-- <el-input v-model="item.productDetail"></el-input> -->
-              {{ item.productDetail }}
-            </el-form-item>
-            <el-form-item label="活动类型">
-              <!-- <el-input v-model="item.productType"></el-input> -->
-              {{ item.productType }}
-            </el-form-item>
-            <!-- <el-form-item>
-              <time class="time">
-                倒计时：{{ hour }}:{{ minute }}:{{ second }}
-              </time>
-            </el-form-item> -->
-            <el-form-item>
-              <el-button type="primary" @click="pushShow(item.productId)">抢购</el-button>
-            </el-form-item>
-          </el-form>
-        </el-card>
-      </el-col>
-    </el-row>
-  </div>
+  <el-row>
+    <el-col
+      :span="8"
+      v-for="(item, index) in activities"
+      :key="item.productId"
+      :offset="index > 0 ? activities.length : 0"
+      class="column"
+    >
+      <el-card shadow="hover">
+        <!-- <div class="card-image">
+          <img src="https://picturepan2.github.io/spectre/img/macos-sierra-2.jpg" alt="" class="img-responsive" />
+        </div> -->
+        <el-form ref="item" :model="item">
+          <div class="card-header">
+            <el-form-item class="card-title">{{
+              item.productName
+            }}</el-form-item>
+            <el-form-item class="card-subtitle text-gray">{{
+              item.productType
+            }}</el-form-item>
+          </div>
+          <el-form-item class="card-body">{{
+            item.productDetail
+          }}</el-form-item>
+          <div class="card-footer">
+            <el-button
+              type="primary"
+              @click="pushShow(item.productId)"
+              class="btn btn-primary"
+              >抢购</el-button
+            >
+          </div>
+        </el-form>
+      </el-card>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
@@ -105,7 +105,7 @@ export default {
       let user_id = this.userInfo.userId;
       let product_id = data;
       // 现在就要去获取当前的数据
-      this.$store.dispatch('activity/oneProduct',{product_id})
+      this.$store.dispatch("activity/oneProduct", { product_id });
       this.$router.push({
         name: "Grap",
       });
@@ -141,47 +141,52 @@ export default {
       return this.num(this.hours);
     },
     ...mapState("activity", ["activities"]),
-    ...mapState('user',['userInfo'])
+    ...mapState("user", ["userInfo"]),
   },
 };
 </script>
 
 <style scoped>
+*,
+::after,
+::before {
+  box-sizing: inherit;
+}
 .column {
-  max-width: 32%;
+  width: 48%;
   margin-left: 10px;
   margin-bottom: 10px;
 }
-.time {
-  font-size: 13px;
-  color: rgb(190, 34, 34);
-}
-.boxbottom {
-  padding: 14px;
-  font-size: 16px;
-}
-.bottom {
-  margin-top: 13px;
-  line-height: 12px;
-}
 
-.button {
-  margin: 10px;
+.card-body{
+  overflow: hidden;
+	text-overflow: ellipsis;
+  height: 200px;
+}
+.card-footer{
+  padding-bottom: .8rem;
   float: right;
 }
-
-.image {
-  width: 100%;
+.img-responsive {
   display: block;
+  height: auto;
+  max-width: 100%;
 }
-
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  content: "";
+img {
+  border-style: none;
 }
-
-.clearfix:after {
-  clear: both;
+.btn.btn-primary {
+  background: darkred;
+  border: darkred;
+  color: #fff;
+}
+/* .float-right {
+    float: right!important;
+} */
+.text-gray {
+  color: #bcc3ce !important;
+}
+.el-form{
+  width: 400px;
 }
 </style>

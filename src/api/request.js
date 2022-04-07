@@ -33,7 +33,7 @@ requests.interceptors.response.use(
     (response) => {
         //Message 消息提示
         ElementUI.Message({
-            message: '恭喜你，这是一条成功消息',
+            message: '成功',
             type: 'success'
         });
         return response.data

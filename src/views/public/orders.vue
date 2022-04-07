@@ -1,9 +1,8 @@
 <template>
   <div>
-    <div class="list" v-for="(item,index) in activities" :key="index">
-      <Orderlist :item='item'></Orderlist>
-      <br />
-    </div>
+    <el-card class="box-card" v-for="(item,index) in activities" :key="index" shadow="hover">
+      <Orderlist :item='item' class="text item"></Orderlist>
+    </el-card>
   </div>
 </template>
 
@@ -26,4 +25,15 @@ export default {
 </script>
 
 <style scoped>
+ .text {
+    font-size: 14px;
+  }
+
+  .item {
+    padding: 18px 0;
+  }
+
+  .box-card {
+    margin-bottom: 15px;
+  }
 </style>
