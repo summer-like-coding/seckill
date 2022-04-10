@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import { mapState } from "vuex";
 import VueRouter from 'vue-router'
 import ElementUI from 'element-ui';
 import Home from '../views/home.vue'
