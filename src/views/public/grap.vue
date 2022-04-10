@@ -106,7 +106,13 @@ export default {
     ...mapState("activity", ["product", "activities", "onePath"]),
     // ...mapState("activity", ["activities"]),
     ...mapState("user", ["userInfo"]),
-    ...mapGetters("activity", ["times"]),
+    // ...mapGetters("activity", ["times"]),
+    times() {
+      let time = [];
+      time.push(this.product.startDate);
+      time.push(this.product.endDate);
+      return time;
+    },
   },
 };
 </script>

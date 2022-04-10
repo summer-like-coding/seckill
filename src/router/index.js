@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import { mapState } from "vuex";
 import VueRouter from 'vue-router'
 import ElementUI from 'element-ui';
 import Home from '../views/home.vue'
@@ -17,6 +18,7 @@ import Manage from '../views/admin/manage'
 import Details from '../views/admin/details'
 import Rules from "../views/admin/rules";
 import Variables from '../views/admin/variables.vue'
+import Launch from '../views/admin/launch.vue'
 
 //root用户界面
 import Promote from '../views/root/promote'
@@ -25,11 +27,6 @@ import store from '../store'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'Index',
-    redirect: { name: 'Home' }
-  },
   {
     path: '/home',
     name: 'Home',
@@ -41,7 +38,6 @@ const routes = [
     name: 'Errmsg',
     component: Errmsg,
     meta: { title: '错误页面' }
-
   },
   {
     path: '/signin',
@@ -82,6 +78,13 @@ const routes = [
     name: 'Manage',
     component: Manage,
     meta: { title: '管理活动', isAuth: true }
+
+  },
+  {
+    path: '/launch',
+    name: 'Launch',
+    component: Launch,
+    meta: { title: '发起活动', isAuth: true }
 
   },
   {
@@ -133,19 +136,26 @@ router.beforeEach(async (to, from, next) => {
   // 如果我已经获取到了token，那么就表示，我已经登录过了，那么就登陆不了
   if (localStorage.getItem("TOKEN")) {
     if (to.path === '/signin' || to.path === '/signup') {
-      next('/home')
+      if (localStorage.getItem('ROLE') === 'user') {
+        next('/home')
+      } else if (localStorage.getItem('ROLE') === 'admin') {
+        next('/activities')
+      } else if (localStorage.getItem('ROLE') === 'root') {
+        next('/promote')
+      }
+      // next('/home')
     } else {
       // 我不是去注册登录，对于其他页面只要没有用户名的，我都不允许进入
       // 这时候就要判断类型
       // alert('你已经登录或注册过了')
       // 我需要在页面上显示用户名
       if (store.state.user.userInfo.userName) {
-        console.log("我有用户名，直接跳转");
+        // console.log("我有用户名，直接跳转");
         next()
       } else {
         let phone = localStorage.getItem("PHONE");
-        console.log("--------,用phone查询信息");
-        console.log("我是phone", phone);
+        // console.log("--------,用phone查询信息");
+        // console.log("我是phone", phone);
         store.dispatch('user/getUserInfo', phone);
         next()
       }

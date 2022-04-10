@@ -9,7 +9,6 @@
 <script>
 import Orderlist from "../../components/orderlist.vue";
 import { mapState } from "vuex";
-// import Pagination from '../../components/pagination.vue';
 export default {
   name: "Orders",
   components: { Orderlist},

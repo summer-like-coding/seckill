@@ -1,5 +1,5 @@
 import { result } from "lodash";
-import { reProductList ,reOneProduct,reGetPath,reGetTruePath} from "../api"
+import { reProductList ,reOneProduct,reGetPath,reGetTruePath,reAddProduct,reDelete,reUpdate} from "../api"
 export default {
     namespaced: true,
     actions: {
@@ -34,6 +34,24 @@ export default {
             if (result.code === 666) {
                 console.log(result);
             }
+        },
+        async AddProduct(context, data) {
+            console.log("增加活动", data);
+            let result = await reAddProduct(data);
+            console.log(result);
+            if (result.code === 666) {
+                console.log("操作成功");
+            }
+        },
+        async deleteProduct(context, data) {
+            console.log("删除活动", data);
+            let result = await reDelete(data);
+            console.log(result);
+        },
+        async updateProduct(context, data) {
+            console.log("更改活动", data);
+            let result = await reUpdate(data);
+            console.log(result);
         }
     },
     mutations: {
@@ -62,11 +80,11 @@ export default {
         onePath:''
     },
     getters: {
-        times(state) {
-            let time = [];
-            time.push(state.product.startDate);
-            time.push(state.product.endDate);
-            return time
-        }
+        // times(state) {
+        //     let time = [];
+        //     time.push(state.product.startDate);
+        //     time.push(state.product.endDate);
+        //     return time
+        // }
     }
 }

@@ -31,7 +31,7 @@ export default {
     window.addEventListener("offline", () => {
       // 网络由正常常到异常时触发
       sessionStorage.locationUrl = window.location.href;
-      this.$router.replace("/networkError");
+      this.$router.replace("/404");
     });
     window.addEventListener("online", () => {
       window.location.href = sessionStorage.locationUrl;

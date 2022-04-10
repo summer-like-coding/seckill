@@ -135,3 +135,33 @@ export const reGetTruePath = (params) => {
         method:'get'
     })
 }
+
+
+// admin增加活动
+export const reAddProduct = (data) => {
+    console.log("增加活动", data);
+    return request({
+        url: 'http://47.96.38.160:8800/product/add',
+        method: 'post',
+        data
+    })
+}
+
+// 删除商品
+export const reDelete = (productId) => {
+    console.log("删除", productId);
+    return request({
+        url: `http://47.96.38.160:8800/product/delete/${productId}`,
+        method: 'get',
+    })
+}
+
+// 更改商品信息
+export const reUpdate = (data) => {
+    console.log("更改活动", data);
+    return request({
+        url: 'http://47.96.38.160:8800/product/update',
+        method: 'post',
+        data
+    })
+}

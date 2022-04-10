@@ -45,7 +45,7 @@
       <!-- {{ product.productDetail }} -->
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="onupdate">修改</el-button>
+      <el-button type="primary" @click="onSubmit">立即创建</el-button>
       <el-button type="primary" @click="ondelete">取消</el-button>
     </el-form-item>
   </el-form>
@@ -62,48 +62,29 @@ export default {
   },
   computed: {
     ...mapState("activity", ["product"]),
-    // ...mapGetters("activity", ["times"]),
-    // times() {
-    //   let time = [];
-    //   time.push(this.product.startDate);
-    //   time.push(this.product.endDate);
-    //   return time;
-    // },
   },
   methods: {
-    async onupdate() {
+    async onSubmit() {
       // console.log("submit!");
       // 到时候直接将product传过去就行了
       // 现在我要增加活动
       let startDate = this.times[0];
       let endDate = this.times[1];
-      let productAagr = this.product.productAagr+'';
-      let productDetail = this.product.productDetail;
-      let productId = this.product.productId+'';
-      let productName = this.product.productName;
-      let productPrice = this.product.productPrice+''
-      let productTime = this.product.productTime+''
-      let productType = this.product.productType
-      let stockCount = this.product.stockCount+''
-
-      // console.log(startDate);
-      // console.log(endDate);
-      let product = {productPrice,productTime,productType,productName,productId,productDetail,productAagr,stockCount,startDate,endDate}
-      console.log(product);
-      await this.$store.dispatch("activity/updateProduct", product);
+      console.log(startDate);
+      console.log(endDate);
+      this.product.startDate= startDate;
+      this.product.endDate = endDate;
+      console.log(this.product);
+      await this.$store.dispatch("activity/AddProduct", this.product);
       this.$router.push({
         name:'Activities'
       })
     },
-    async ondelete() {
+    ondelete(){
       // 发送请求删除这个活动
-      let productId = this.product.productId;
-      console.log(productId);
-      await this.$store.dispatch("activity/deleteProduct", productId);
-      this.$router.push({
-        name: "Activities",
-      });
-    },
+      let productId = this.product.productId
+      this.$store.dispatch  ("activity/DeleteProduct",{productId})
+    }
   },
 };
 </script>

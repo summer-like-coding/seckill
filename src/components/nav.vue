@@ -60,22 +60,11 @@
           <span>{{ $store.state.user.userInfo.userName || "我的" }}</span>
         </template>
         <el-menu-item index="imessage">
-          <!-- <router-link to="/imessage">
-            我的信息
-          </router-link> -->
           我的信息
         </el-menu-item>
         <el-menu-item index="home" @click="logout"> 退出 </el-menu-item>
       </el-submenu>
-      <!-- <el-menu-item index="activities" style="float: right">
-        所有活动
-      </el-menu-item> -->
-      <!-- <el-menu-item index="manage" style="float: right">
-        管理活动
-      </el-menu-item> -->
-      <!-- <el-menu-item index="details" style="float: right">
-        报名详情
-      </el-menu-item> -->
+      <el-menu-item index="launch" style="float: right">申请活动</el-menu-item>
       <el-menu-item index="rules" style="float: right"> 规则准入 </el-menu-item>
       <el-menu-item index="variables" style="float: right"> 变量描述 </el-menu-item>
     </el-menu>

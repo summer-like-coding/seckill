@@ -153,18 +153,18 @@ export default {
   box-sizing: inherit;
 }
 .column {
-  width: 48%;
+  width: 32%;
   margin-left: 10px;
   margin-bottom: 10px;
 }
 
-.card-body{
+.card-body {
   overflow: hidden;
-	text-overflow: ellipsis;
+  text-overflow: ellipsis;
   height: 200px;
 }
-.card-footer{
-  padding-bottom: .8rem;
+.card-footer {
+  padding-bottom: 0.8rem;
   float: right;
 }
 .img-responsive {
@@ -186,7 +186,7 @@ img {
 .text-gray {
   color: #bcc3ce !important;
 }
-.el-form{
+.el-form {
   width: 400px;
 }
 </style>

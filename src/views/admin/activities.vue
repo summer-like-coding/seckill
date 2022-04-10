@@ -26,7 +26,7 @@
     </el-table-column>
     <el-table-column label="活动 ID" prop="productId"> </el-table-column>
     <el-table-column label="活动名称" prop="productName"> </el-table-column>
-    <el-table-column label="描述" prop="productDetail"> </el-table-column>
+    <el-table-column label="类型" prop="productType"> </el-table-column>
     <el-table-column label="操作" prop="productId">
       <!-- <el-button size="mini" @click="pushmanage(productId)">管理</el-button> -->
       <template slot-scope="scope">
@@ -48,12 +48,13 @@
 .demo-table-expand .el-form-item {
   margin-right: 0;
   margin-bottom: 0;
-  width: 50%;
+  width: 70%;
 }
 .el-table {
   width: 600px;
   margin: 0 auto;
 }
+
 </style>
 
 <script>

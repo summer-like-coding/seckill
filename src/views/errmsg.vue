@@ -9,7 +9,11 @@
       </div>
       <div class="bullshit">
         <div class="bullshit__info">请检查您输入的网址是否正确，请点击以下按钮返回主页</div>
-        <a href="/" class="bullshit__return-home">返回首页</a>
+        <div class="bullshit__return-home">
+            <router-link to="/home" v-show="role === 'user'">回到首页</router-link>
+            <router-link to="/activities" v-show="role === 'admin'">回到首页</router-link>
+            <router-link to="/promote" v-show="role === 'root'">回到首页</router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -18,7 +22,7 @@
 <script>
 import img_404 from '@/assets/404_images/404.png'
 import img_404_cloud from '@/assets/404_images/404_cloud.png'
-
+import { mapState } from "vuex";
 export default {
   data() {
     return {
@@ -27,6 +31,7 @@ export default {
     }
   },
   computed: {
+    ...mapState('user',['role'])
   }
 }
 </script>
