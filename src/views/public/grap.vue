@@ -56,6 +56,8 @@ export default {
   methods: {
     pushShow: _.throttle(function () {
       console.log("this", this);
+      // ---------------------------------------------------------
+      // 明早改下
       this.$alert("<strong>余额支付</strong>", "请支付", {
         dangerouslyUseHTMLString: true,
         showCancelButton: true,
