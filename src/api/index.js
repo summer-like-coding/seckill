@@ -164,3 +164,12 @@ export const reUpdate = (data) => {
         data
     })
 }
+
+// 通过productid查询活动信息
+export const reSelect = (productId) =>{
+    console.log('获取活动信息', productId);
+    return request({
+        url: `http://47.96.38.160:8800/product/select/${productId}`,
+        method: 'get',
+    })
+}

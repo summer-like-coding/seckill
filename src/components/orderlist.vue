@@ -7,10 +7,10 @@
     <el-descriptions-item label="存款类型" >{{item.productType}}</el-descriptions-item>
     <el-descriptions-item label="结束时间" >{{item.endDate}}</el-descriptions-item>
     <el-descriptions-item label="简介" :span='2' >{{item.productDetail}}</el-descriptions-item>
-    <el-descriptions-item ><el-button @click="pushgrap()"  size="mini">查看活动</el-button></el-descriptions-item>
+    <el-descriptions-item ><el-button @click="pushpay(item)"  size="mini">查看活动</el-button></el-descriptions-item>
     <el-descriptions-item >
-      <el-button size="mini" @click="pushpay()">去付款</el-button>
-      <el-button size="mini">已付款</el-button>
+      <el-button size="mini" @click="pushpay(item)" v-show="this.isPay === 0">去付款</el-button>
+      <el-button size="mini" v-show="this.isPay===1">已付款</el-button>
     </el-descriptions-item>
   </el-descriptions>
 </template>
@@ -25,7 +25,10 @@ export default {
     }
   },
   methods:{
-    pushgrap(){
+    async pushpay(item){
+      console.log("需要跳转",item);
+      let productId  = item.productId;
+      await this.$store.dispatch('activity/selectProduct',productId)
       this.$router.push({
         name:"Grap"
       })
@@ -33,7 +36,7 @@ export default {
   },
   props:['item'],
   computed:{
-    // ...mapState(['IsPay'])
+    ...mapState('activity',['isPay'])
   },
 };
 </script>

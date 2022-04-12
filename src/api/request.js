@@ -32,10 +32,10 @@ requests.interceptors.response.use(
     // 请求成功，返回数据
     (response) => {
         //Message 消息提示
-        ElementUI.Message({
-            message: '成功',
-            type: 'success'
-        });
+        // ElementUI.Message({
+        //     message: '成功',
+        //     type: 'success'
+        // });
         return response.data
     },
     // 请求失败，failed
@@ -44,7 +44,7 @@ requests.interceptors.response.use(
             message: '警告',
             type: 'warning'
         });
-        console.log("是这里问题");
+        // console.log("是这里问题");
         return Promise.reject(error);
     }
 )

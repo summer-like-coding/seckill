@@ -1,5 +1,5 @@
 import { result } from "lodash";
-import { reProductList ,reOneProduct,reGetPath,reGetTruePath,reAddProduct,reDelete,reUpdate} from "../api"
+import { reProductList ,reOneProduct,reGetPath,reGetTruePath,reAddProduct,reDelete,reUpdate,reSelect} from "../api"
 export default {
     namespaced: true,
     actions: {
@@ -52,6 +52,16 @@ export default {
             console.log("更改活动", data);
             let result = await reUpdate(data);
             console.log(result);
+        },
+        async selectProduct(context, data) {
+            console.log("当前活动id", data);
+            let result = await reSelect(data);
+            console.log(result);
+            console.log(result.data);
+            if (result.code === 666) {
+                console.log("我是否执行");
+                context.commit('ONEPRODUCT',result.data)
+            }
         }
     },
     mutations: {
@@ -60,6 +70,7 @@ export default {
             $state.activities = data
         },
         ONEPRODUCT($state, data) {
+            console.log(data);
             $state.product = data
         },
         pay($state, data) {
@@ -76,15 +87,9 @@ export default {
     state: {
         activities: [],
         product: {},
-        IsPay: 0,
+        isPay: 0,
         onePath:''
     },
     getters: {
-        // times(state) {
-        //     let time = [];
-        //     time.push(state.product.startDate);
-        //     time.push(state.product.endDate);
-        //     return time
-        // }
     }
 }
