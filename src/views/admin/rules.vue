@@ -1,7 +1,6 @@
 <template>
   <div class="dashboard-container">
     <div class="fixed-div">
-      <el-button type="primary" @click="disableRule()">禁用规则</el-button>
       <el-button type="primary" @click="handleUpdateRule()">提交修改</el-button>
     </div>
     <div id="test" v-loading="loading" class="rules" style="margin-top: 20px">
@@ -207,7 +206,7 @@ export default {
         id: 1,
         name: this.rule.name,
       }).then((response) => {
-        this.$message("保存成功");
+        // this.$message("保存成功");
         this.fetchData();
       });
     },
@@ -317,14 +316,8 @@ export default {
         children.splice(index, 1);
       }
     },
-    disableRule(){
-      // 点击禁用
-      this.$store.state.isEffective = !this.$store.state.isEffective
-    }
+
   },
-  // computed:{
-  //   // ...mapState(['isEffective'])
-  // }
 };
 </script>
 

@@ -76,7 +76,7 @@ export default {
     state: {
         activities: [],
         product: {},
-        IsPay: '',
+        IsPay: 0,
         onePath:''
     },
     getters: {

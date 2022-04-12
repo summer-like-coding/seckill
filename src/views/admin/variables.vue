@@ -97,7 +97,7 @@ export default {
       // ------------------------------------------------------
       try {
         let id = row.id;
-        await this.$store.dispatch("deleteVariables", id);
+        await this.$store.dispatch("rules/deleteVariables", id);
         console.log(index);
         this.list.splice(index,1)
       } catch (error) {
@@ -113,7 +113,7 @@ export default {
       let description = this.variables.description;
       console.log({ name, type, description });
       console.log(this.$store);
-      await this.$store.dispatch("addVariables", { name, type, description });
+      await this.$store.dispatch("rules/addVariables", { name, type, description });
       // 这边需要刷新下
       this.dialogFormVisible = false;
       //添加 

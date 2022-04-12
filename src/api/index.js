@@ -23,7 +23,6 @@ export const reRegister = (data) => {
 
 export const reLogin = (data) => {
     return request({
-        // baseURL: 'http://121.5.166.154:9090/',
         url: 'http://121.5.166.154:9090/user/login',
         data,
         method: 'post',

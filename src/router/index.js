@@ -152,9 +152,8 @@ router.beforeEach(async (to, from, next) => {
         // console.log("我有用户名，直接跳转");
         next()
       } else {
+        console.log("我是否执行");
         let phone = localStorage.getItem("PHONE");
-        // console.log("--------,用phone查询信息");
-        // console.log("我是phone", phone);
         store.dispatch('user/getUserInfo', phone);
         next()
       }

@@ -8,21 +8,12 @@
       class="column"
     >
       <el-card shadow="hover">
-        <!-- <div class="card-image">
-          <img src="https://picturepan2.github.io/spectre/img/macos-sierra-2.jpg" alt="" class="img-responsive" />
-        </div> -->
         <el-form ref="item" :model="item">
           <div class="card-header">
-            <el-form-item class="card-title">{{
-              item.productName
-            }}</el-form-item>
-            <el-form-item class="card-subtitle text-gray">{{
-              item.productType
-            }}</el-form-item>
+            <el-form-item class="card-title">{{item.productName}}</el-form-item>
+            <el-form-item class="card-subtitle text-gray">{{item.productType}}</el-form-item>
           </div>
-          <el-form-item class="card-body">{{
-            item.productDetail
-          }}</el-form-item>
+          <el-form-item class="card-body">{{item.productDetail}}</el-form-item>
           <div class="card-footer">
             <el-button
               type="primary"

@@ -28,7 +28,7 @@
         start-placeholder="开始日期"
         end-placeholder="结束日期"
         :clearable="false"
-        value-format="yyyy-MM-ddTHH:mm:ss"
+        
       >
       </el-date-picker>
     </el-form-item>

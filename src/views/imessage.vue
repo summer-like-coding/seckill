@@ -56,6 +56,7 @@ export default {
   methods: {
     async onSubmit() {
       try {
+        console.log(this.userInfo);
         await this.$store.dispatch("user/saveUser", this.userInfo);
         // await this.$store.dispatch("user/saveUser", {...this.userInfo});
         console.log("我要跳转到home");

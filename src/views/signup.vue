@@ -90,9 +90,6 @@ export default {
     async submitForm() {
       try {
         const { phone, idCard, password ,userName} = this.ruleForm;
-        // console.log(phone, password);
-        // console.log("手机号", typeof phone);
-        // console.log("密码", typeof password);
         const msg = { phone, password ,idCard,userName};
         await this.$store.dispatch("user/register", msg);
         // console.log("是否执行");
