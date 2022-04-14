@@ -2,35 +2,23 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import ElementUI from 'element-ui';
 // 一些公共页面
-// import Home from '../views/home.vue'
+
 const Home = () => import('../views/home.vue')
-// import Errmsg from '../views/errmsg.vue'
 const Errmsg = () => import('../views/errmsg.vue')
-// import Signin from '../views/signin.vue'
 const Signin = () => import('../views/signin.vue')
-// import Signup from '../views/signup.vue'
 const Signup = () => import('../views/signup.vue')
-// import Imessage from '../views/imessage.vue'
 const Imessage = () => import('../views/imessage.vue')
 // public用户的页面
 
-// import Orders from '../views/public/orders.vue'
 const Orders = () => import('../views/public/orders.vue')
-// import Grap from '../views/public/grap.vue'
 const Grap = () => import('../views/public/grap.vue')
 
 // admin用户页面
-// import Activities from '../views/admin/activities'
 const Activities = () => import('../views/admin/activities')
-// import Manage from '../views/admin/manage'
 const Manage = () => import('../views/admin/manage')
-// import Details from '../views/admin/details'
 const Details = () => import('../views/admin/details')
-// import Rules from "../views/admin/rules";
 const Rules = () => import("../views/admin/rules")
-// import Variables from '../views/admin/variables.vue'
 const Variables = () => import('../views/admin/variables.vue')
-// import Launch from '../views/admin/launch.vue'
 const Launch = () => import('../views/admin/launch.vue')
 
 //root用户界面
