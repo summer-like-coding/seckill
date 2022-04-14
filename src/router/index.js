@@ -126,7 +126,6 @@ const router = new VueRouter({
   mode: 'hash',
   base: process.env.BASE_URL,
   routes,
-  // moudle
 })
 
 
@@ -136,10 +135,13 @@ router.beforeEach(async (to, from, next) => {
   if (localStorage.getItem("TOKEN")) {
     if (to.path === '/signin' || to.path === '/signup') {
       if (localStorage.getItem('ROLE') === 'user') {
+        console.log("我是普通用户");
         next('/home')
       } else if (localStorage.getItem('ROLE') === 'admin') {
+        console.log("我是admin用户");
         next('/activities')
       } else if (localStorage.getItem('ROLE') === 'root') {
+        console.log("我是root用户");
         next('/promote')
       }
       // next('/home')
@@ -169,7 +171,8 @@ router.beforeEach(async (to, from, next) => {
         message: '请登录',
         type: 'error'
       })
-      next('/home')
+      // next('/home')
+      router.push({name:'Signin'})
     } else {
       next()
     }

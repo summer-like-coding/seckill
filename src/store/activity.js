@@ -129,7 +129,6 @@ export default {
         },
         pages(state) {
             return state.allOrderList.pages
-        },
-        
+        }
     }
 }

@@ -4,11 +4,9 @@
       <el-table-column label="ID" prop="id"> </el-table-column>
       <el-table-column label="商品ID" prop="productId"> </el-table-column>
       <el-table-column label="用户ID" prop="userId" > </el-table-column>
-      
       <el-table-column label="数量" prop="payCount" > </el-table-column>
       <el-table-column label="价格" prop="payPrice" > </el-table-column>
       <el-table-column label="支付时间" prop='payDate' :formatter="dateFormat">
-        <!-- <el-date-picker v-model="prop" type="datetime" placeholder="选择日期时间"></el-date-picker> -->
       </el-table-column>
     </el-table>
     <!-- 分页器 -->
@@ -33,19 +31,12 @@ export default {
     };
   },
   computed:{
-    // ...mapState('activity',['activities'])
     ...mapGetters('activity',['orderList','size','total','pages','current'])
   },
   methods: {
-    handleEdit(index, row) {
-      console.log(index, row);
-    },
-    handleDelete(index, row) {
-      console.log(index, row);
-    },
     // 获取页面
     getpage(val) {
-      console.log("current", val);
+      // console.log("current", val);
       let pageNum = val;
       let pageSize = this.paginationData.pageSize;
       // let userName = this.paginationData.userName;

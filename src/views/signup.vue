@@ -91,7 +91,7 @@ export default {
       try {
         const { phone, idCard, password ,userName} = this.ruleForm;
         const msg = { phone, password ,idCard,userName};
-        console.log("提交信息",msg);
+        // console.log("提交信息",msg);
         await this.$store.dispatch("user/register", msg);
         // console.log("是否执行");
         this.$router.push({ name: "Signin" });

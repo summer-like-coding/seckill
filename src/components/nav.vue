@@ -126,6 +126,7 @@ export default {
             message: "退出成功!",
           });
           setTimeout(() => {
+            console.log("是否强制刷新")
             location.reload(); // 强制刷新
           }, 1000);
         })

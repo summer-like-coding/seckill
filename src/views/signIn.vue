@@ -40,11 +40,12 @@ export default {
       try {
         const { phone, password } = this.ruleForm;
         await this.$store.dispatch("user/login", { phone, password });
-        this.$router.push({ name: "Home" });
         // 为了显示我的nav
         setTimeout(() => {
           location.reload(); // 强制刷新
         }, 1000);
+        this.$router.push({ name: "Home" });
+        
       } catch (error) {
         ElementUI.Message({
           type: "error",
