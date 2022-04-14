@@ -26,9 +26,7 @@
         </el-table-column>
         <el-table-column align="right">
           <template slot="header" slot-scope="scope">
-            <el-button type="primary" @click="dialogFormVisible = true"
-              >增加变量</el-button
-            >
+            <el-button type="primary" @click="dialogFormVisible = true" class="ibutton">增加变量</el-button>
           </template>
           <template slot-scope="scope">
             <el-button type="danger" @click="delvar(scope.$index, scope.row)"
@@ -121,3 +119,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+.ibutton{
+  /* margin-left: 30px; */
+  background: darkred;
+  border: darkred;
+  color: #fff;
+
+}
+</style>

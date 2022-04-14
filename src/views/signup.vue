@@ -39,8 +39,8 @@
       <el-input
         type="password"
         v-model="ruleForm.checkPass"
-        autocomplete="off"
-      ></el-input>
+        autocomplete="off">
+      </el-input>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>

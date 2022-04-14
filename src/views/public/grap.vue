@@ -258,7 +258,16 @@ export default {
   /* line-height: 160px; */
 }
 .el-button {
-  margin-left: 30px;
+  /* margin-left: 30px; */
+  background: darkred;
+  border: darkred;
+  color: #fff;
+}
+.el-button:hover {
+  /* margin-left: 30px; */
+  background: rgb(228, 147, 147);
+  border: rgb(154, 56, 56);
+  color: rgb(200, 29, 29);
 }
 .el-input-number {
   margin-right: 30px;

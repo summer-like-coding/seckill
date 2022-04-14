@@ -27,6 +27,24 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/',
+    // redirect: to => {
+    //   let role = localStorage.getItem('ROLE');
+    //   if (role === 'root') {
+    //     console.log("我是root");
+    //     return '/promote'
+    //   } else if (role === 'admin') {
+    //     console.log("我是admin");
+    //     return '/activities'
+    //   } else {
+    //     console.log("我是其他的");
+    //     return '/home'
+    //   }
+      
+    // }
+    redirect:'/home'
+  },
+  {
     path: '/home',
     name: 'Home',
     component: Home,

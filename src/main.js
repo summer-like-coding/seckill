@@ -11,7 +11,7 @@ import moment from 'moment';
 // 注册全局组件
 import Pagination from './components/pagination';
 
-import '../theme/index.css'
+import './assets/icon/iconfont.css'
 
 // 引入mock
 // import './mock/mockServer'

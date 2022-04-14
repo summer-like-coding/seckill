@@ -77,4 +77,17 @@ export default {
   margin-top: 15px;
   height: 400px;
 }
+.el-button {
+  /* margin-left: 30px; */
+  background: darkred;
+  border: darkred;
+  color: #fff;
+}
+.el-button:hover {
+  /* margin-left: 30px; */
+  background: rgb(167, 89, 89);
+  border: rgb(154, 56, 56);
+  color: rgb(214, 185, 185);
+}
+
 </style>

@@ -71,4 +71,9 @@ a {
   text-align: center;
   margin: 0 auto;
 }
+.el-button{
+  background: darkred;
+  border: darkred;
+  color: #fff;
+}
 </style>

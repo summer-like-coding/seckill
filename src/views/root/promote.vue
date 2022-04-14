@@ -22,7 +22,6 @@
     </el-table>
     <!-- 添加分页器 -->
     <Pagination class="pagination" :size = 'size' :total = 'total' :pages = 'pages' :current = 'current' @getPages = 'getpage'></Pagination>
-    <!-- <Pagination class="pagination" :size = '2' :total = '26' :pages = '13' :current = '1' @getPages = 'getpage'></Pagination> -->
   </div>
 </template>
 <script>

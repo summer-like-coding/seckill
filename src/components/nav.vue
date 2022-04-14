@@ -12,19 +12,23 @@
       v-show="
         $store.state.user.role === 'user' ||
         $store.state.user.role === '' ||
-        $store.state.user.role === null
-      "
-      :router="true"
+        $store.state.user.role === null" :router="true"
     >
       <el-menu-item index="home">
-        <!-- <i class="el-icon-house"></i> -->
+        <i class="iconfont icon-home"></i>
         <span>首页</span>
       </el-menu-item>
-      <el-menu-item index="signin"> 登录 </el-menu-item>
-      <el-menu-item index="signup"> 注册 </el-menu-item>
+      <el-menu-item index="signin">
+        <i class="iconfont icon-signin"></i>
+        <span>登录</span>
+      </el-menu-item>
+      <el-menu-item index="signup">
+        <i class="iconfont icon-signup"></i>
+        <span>注册</span>
+      </el-menu-item>
       <el-submenu index="imessage" style="float: right">
         <template slot="title">
-          <!-- <i class="el-icon-user"></i> -->
+          <i class="iconfont icon-user"></i>
           <span>{{ $store.state.user.userInfo.userName || "我的" }}</span>
         </template>
         <el-menu-item index="imessage">
@@ -33,7 +37,7 @@
         <el-menu-item index="home" @click="logout"> 退出 </el-menu-item>
       </el-submenu>
       <el-menu-item index="orders" style="float: right">
-        <!-- <i class="el-icon-goods"></i> -->
+        <i class="iconfont icon-shop"></i>
         <span>订单</span>
       </el-menu-item>
     </el-menu>
@@ -50,13 +54,13 @@
       :router="true"
     >
       <el-menu-item index="activities">
-        <!-- <i class="el-icon-house"></i> -->
+        <i class="iconfont icon-home"></i>
         <span>首页</span>
       </el-menu-item>
       <el-menu-item index="signin"> 请登录 </el-menu-item>
       <el-submenu index="imessage" style="float: right">
         <template slot="title">
-          <!-- <i class="el-icon-user"></i> -->
+          <i class="iconfont icon-user"></i>
           <span>{{ $store.state.user.userInfo.userName || "我的" }}</span>
         </template>
         <el-menu-item index="imessage">
@@ -81,17 +85,20 @@
       :router="true"
     >
       <el-menu-item index="promote">
-        <!-- <i class="el-icon-house"></i> -->
+        <i class="iconfont icon-home"></i>
         <span>首页</span>
       </el-menu-item>
       <el-menu-item index="signin"> 请登录 </el-menu-item>
       <el-submenu index="imessage" style="float: right">
         <template slot="title">
-          <!-- <i class="el-icon-user"></i> -->
+          <i class="iconfont icon-user"></i>
           <span>{{ $store.state.user.userInfo.userName || "我的" }}</span>
         </template>
         <el-menu-item index="imessage"> 我的信息 </el-menu-item>
-        <el-menu-item index="home" @click="logout"> 退出 </el-menu-item>
+        <el-menu-item index="home" @click="logout"> 
+          <!-- <i class="el-icon-s-unfold"></i> -->
+          <span>退出</span>
+        </el-menu-item>
       </el-submenu>
       <el-menu-item index="promote" style="float: right">
         人员升级
@@ -142,4 +149,13 @@ export default {
 </script>
 
 <style scoped>
+.el-submenu.is-opened>.el-submenu__title .el-submenu__icon-arrow{
+	display: none; 
+
+}
+
+.el-submenu>.el-submenu__title .el-submenu__icon-arrow{
+	display: none;
+
+}
 </style>
