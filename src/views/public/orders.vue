@@ -1,5 +1,6 @@
 <template>
   <div>
+    <el-backtop :visibility-height='100'></el-backtop>
     <el-card class="box-card" v-for="(item,index) in activities" :key="index" shadow="hover">
       <Orderlist :item='item' class="text item"></Orderlist>
     </el-card>

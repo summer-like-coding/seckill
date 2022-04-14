@@ -1,31 +1,40 @@
 <template>
-  <el-row>
-    <el-col
-      :span="8"
-      v-for="(item, index) in activities"
-      :key="item.productId"
-      :offset="index > 0 ? activities.length : 0"
-      class="column"
-    >
-      <el-card shadow="hover">
-        <el-form ref="item" :model="item">
-          <div class="card-header">
-            <el-form-item class="card-title">{{item.productName}}</el-form-item>
-            <el-form-item class="card-subtitle text-gray">{{item.productType}}</el-form-item>
-          </div>
-          <el-form-item class="card-body">{{item.productDetail}}</el-form-item>
-          <div class="card-footer">
-            <el-button
-              type="primary"
-              @click="pushShow(item.productId)"
-              class="btn btn-primary"
-              >抢购</el-button
-            >
-          </div>
-        </el-form>
-      </el-card>
-    </el-col>
-  </el-row>
+  <div>
+    <el-backtop :visibility-height='100'></el-backtop>
+    <el-row>
+      <el-col
+        :span="8"
+        v-for="(item, index) in activities"
+        :key="item.productId"
+        :offset="index > 0 ? activities.length : 0"
+        class="column"
+      >
+        <el-card shadow="hover">
+          <el-form ref="item" :model="item">
+            <div class="card-header">
+              <el-form-item class="card-title">{{
+                item.productName
+              }}</el-form-item>
+              <el-form-item class="card-subtitle text-gray">{{
+                item.productType
+              }}</el-form-item>
+            </div>
+            <el-form-item class="card-body">{{
+              item.productDetail
+            }}</el-form-item>
+            <div class="card-footer">
+              <el-button
+                type="primary"
+                @click="pushShow(item.productId)"
+                class="btn btn-primary"
+                >抢购</el-button
+              >
+            </div>
+          </el-form>
+        </el-card>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script>
@@ -179,5 +188,9 @@ img {
 }
 .el-form {
   width: 400px;
+}
+.gotoTop{
+  height: 100vh;
+  overflow-x: hidden;
 }
 </style>

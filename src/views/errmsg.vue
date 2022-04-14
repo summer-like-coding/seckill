@@ -2,10 +2,10 @@
   <div style="background:#f0f2f5;margin-top: -20px;">
     <div class="wscn-http404">
       <div class="pic-404">
-        <img class="pic-404__parent" :src="img_404" alt="404">
-        <img class="pic-404__child left" :src="img_404_cloud" alt="404">
-        <img class="pic-404__child mid" :src="img_404_cloud" alt="404">
-        <img class="pic-404__child right" :src="img_404_cloud" alt="404">
+        <img class="pic-404__parent" src="http://47.97.66.165/img/404.a57b6f31.png" alt="404">
+        <img class="pic-404__child left" src="http://47.97.66.165/img/404_cloud.0f4bc32b.png" alt="404">
+        <img class="pic-404__child mid" src="http://47.97.66.165/img/404_cloud.0f4bc32b.png" alt="404">
+        <img class="pic-404__child right" src="http://47.97.66.165/img/404_cloud.0f4bc32b.png" alt="404">
       </div>
       <div class="bullshit">
         <div class="bullshit__info">请检查您输入的网址是否正确，请点击以下按钮返回主页</div>
@@ -20,14 +20,14 @@
 </template>
 
 <script>
-import img_404 from '@/assets/404_images/404.png'
-import img_404_cloud from '@/assets/404_images/404_cloud.png'
+// import img_404 from '@/assets/404_images/404.png'
+// import img_404_cloud from '@/assets/404_images/404_cloud.png'
 import { mapState } from "vuex";
 export default {
   data() {
     return {
-      img_404,
-      img_404_cloud
+      // img_404,
+      // img_404_cloud
     }
   },
   computed: {

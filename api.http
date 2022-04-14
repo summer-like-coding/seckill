@@ -1,8 +1,0 @@
-GET http://47.96.38.160:8888/${params.userId}/${params.path}/${params.productId} HTTP/1.1
-content-type: application/json
-
-{
-    "userId":"111",
-    "path":"123654",
-    "productId":"26"
-}

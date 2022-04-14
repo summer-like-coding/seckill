@@ -17,14 +17,14 @@
       :router="true"
     >
       <el-menu-item index="home">
-        <i class="el-icon-house"></i>
+        <!-- <i class="el-icon-house"></i> -->
         <span>首页</span>
       </el-menu-item>
       <el-menu-item index="signin"> 登录 </el-menu-item>
       <el-menu-item index="signup"> 注册 </el-menu-item>
       <el-submenu index="imessage" style="float: right">
         <template slot="title">
-          <i class="el-icon-user"></i>
+          <!-- <i class="el-icon-user"></i> -->
           <span>{{ $store.state.user.userInfo.userName || "我的" }}</span>
         </template>
         <el-menu-item index="imessage">
@@ -33,7 +33,7 @@
         <el-menu-item index="home" @click="logout"> 退出 </el-menu-item>
       </el-submenu>
       <el-menu-item index="orders" style="float: right">
-        <i class="el-icon-goods"></i>
+        <!-- <i class="el-icon-goods"></i> -->
         <span>订单</span>
       </el-menu-item>
     </el-menu>
@@ -50,13 +50,13 @@
       :router="true"
     >
       <el-menu-item index="activities">
-        <i class="el-icon-house"></i>
+        <!-- <i class="el-icon-house"></i> -->
         <span>首页</span>
       </el-menu-item>
       <el-menu-item index="signin"> 请登录 </el-menu-item>
       <el-submenu index="imessage" style="float: right">
         <template slot="title">
-          <i class="el-icon-user"></i>
+          <!-- <i class="el-icon-user"></i> -->
           <span>{{ $store.state.user.userInfo.userName || "我的" }}</span>
         </template>
         <el-menu-item index="imessage">
@@ -81,13 +81,13 @@
       :router="true"
     >
       <el-menu-item index="promote">
-        <i class="el-icon-house"></i>
+        <!-- <i class="el-icon-house"></i> -->
         <span>首页</span>
       </el-menu-item>
       <el-menu-item index="signin"> 请登录 </el-menu-item>
       <el-submenu index="imessage" style="float: right">
         <template slot="title">
-          <i class="el-icon-user"></i>
+          <!-- <i class="el-icon-user"></i> -->
           <span>{{ $store.state.user.userInfo.userName || "我的" }}</span>
         </template>
         <el-menu-item index="imessage"> 我的信息 </el-menu-item>
