@@ -56,12 +56,9 @@ export default {
 .el-footer {
   color: #333;
   margin-bottom: 30px;
-  /* text-align: center; */
-  /* line-height: 60px; */
 }
 .el-main {
   color: #333;
-  /* text-align: center; */
 }
 a {
   text-decoration: none;
