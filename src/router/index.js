@@ -1,26 +1,41 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import ElementUI from 'element-ui';
-import Home from '../views/home.vue'
-import Errmsg from '../views/errmsg.vue'
-import Signin from '../views/signin.vue'
-import Signup from '../views/signup.vue'
-import Imessage from '../views/imessage.vue'
+// 一些公共页面
+// import Home from '../views/home.vue'
+const Home = () => import('../views/home.vue')
+// import Errmsg from '../views/errmsg.vue'
+const Errmsg = () => import('../views/errmsg.vue')
+// import Signin from '../views/signin.vue'
+const Signin = () => import('../views/signin.vue')
+// import Signup from '../views/signup.vue'
+const Signup = () => import('../views/signup.vue')
+// import Imessage from '../views/imessage.vue'
+const Imessage = () => import('../views/imessage.vue')
 // public用户的页面
 
-import Orders from '../views/public/orders.vue'
-import Grap from '../views/public/grap.vue'
+// import Orders from '../views/public/orders.vue'
+const Orders = () => import('../views/public/orders.vue')
+// import Grap from '../views/public/grap.vue'
+const Grap = () => import('../views/public/grap.vue')
 
 // admin用户页面
-import Activities from '../views/admin/activities'
-import Manage from '../views/admin/manage'
-import Details from '../views/admin/details'
-import Rules from "../views/admin/rules";
-import Variables from '../views/admin/variables.vue'
-import Launch from '../views/admin/launch.vue'
+// import Activities from '../views/admin/activities'
+const Activities = () => import('../views/admin/activities')
+// import Manage from '../views/admin/manage'
+const Manage = () => import('../views/admin/manage')
+// import Details from '../views/admin/details'
+const Details = () => import('../views/admin/details')
+// import Rules from "../views/admin/rules";
+const Rules = () => import("../views/admin/rules")
+// import Variables from '../views/admin/variables.vue'
+const Variables = () => import('../views/admin/variables.vue')
+// import Launch from '../views/admin/launch.vue'
+const Launch = () => import('../views/admin/launch.vue')
 
 //root用户界面
-import Promote from '../views/root/promote'
+// import Promote from '../views/root/promote'
+const Promote = () => import('../views/root/promote')
 
 import store from '../store'
 Vue.use(VueRouter)
@@ -28,21 +43,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    // redirect: to => {
-    //   let role = localStorage.getItem('ROLE');
-    //   if (role === 'root') {
-    //     console.log("我是root");
-    //     return '/promote'
-    //   } else if (role === 'admin') {
-    //     console.log("我是admin");
-    //     return '/activities'
-    //   } else {
-    //     console.log("我是其他的");
-    //     return '/home'
-    //   }
-      
-    // }
-    redirect:'/home'
+    redirect: '/home'
   },
   {
     path: '/home',
@@ -190,7 +191,7 @@ router.beforeEach(async (to, from, next) => {
         type: 'error'
       })
       // next('/home')
-      router.push({name:'Signin'})
+      router.push({ name: 'Signin' })
     } else {
       next()
     }

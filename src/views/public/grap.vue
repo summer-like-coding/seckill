@@ -42,8 +42,8 @@
       <!-- {{ product.productDetail }} -->
     </el-form-item>
     <el-form-item>
-      <el-button v-show="judgeTime === 0" class="noBegin">活动结束</el-button>
-      <el-button v-show="judgeTime === 1" class="noBegin">{{
+      <el-button v-show="judgeTime === 0" >活动结束</el-button>
+      <el-button v-show="judgeTime === 1">{{
         `距离活动开始还剩${startTime}`
       }}</el-button>
       <el-button @click="pushShow()" v-show="judgeTime === 2"
@@ -272,7 +272,5 @@ export default {
 .el-input-number {
   margin-right: 30px;
 }
-.noBegin {
-  color: rgb(209, 21, 21);
-}
+
 </style>
