@@ -7,8 +7,8 @@ export default {
     async register(context, data) {
       // console.log(data);
       let result = await reRegister(data);
-      // console.log(result.data.userId);
-      if (result.code === "200") {
+      console.log(result);
+      if (result.code === 200) {
         context.commit("GETUSERINFO", result.data);
         return "ok"
       } else {
@@ -19,7 +19,7 @@ export default {
       // console.log('传过去的', data);
       let result = await reLogin(data);
       console.log("到这儿", result);
-      if (result.code === "200") {
+      if (result.code === 200) {
         localStorage.setItem('TOKEN', result.data.token);
         localStorage.setItem('ROLE', result.data.role);
         localStorage.setItem('PHONE', result.data.phone);
@@ -33,7 +33,7 @@ export default {
       // console.log("传过来的id", data);
       let result = await reGetUserInfo(data)
       // console.log("我要获取当前用户信息", result);
-      if (result.code === "200") {
+      if (result.code === 200) {
         context.commit("GETUSERINFO", result.data);
       } else {
         console.log("我的code不是200");
@@ -48,7 +48,7 @@ export default {
       let result = await reGetAllList();
       // console.log("获取所有用户信息，在promote使用", result);
       // console.log(result);
-      if (result.code === "200") {
+      if (result.code === 200) {
         context.commit("GETALLLIST", result.data)
       }
     },
@@ -58,7 +58,7 @@ export default {
       let result = await reSaveUser(data);
       // localStorage.setItem("PHONE",result.data.phone)
       console.log("修改", result);
-      if (result.code === '200') {
+      if (result.code === 200) {
         console.log("成功修改");
       } else {
         console.log("未修改");

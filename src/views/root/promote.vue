@@ -6,36 +6,17 @@
       <el-table-column prop="userName" label="姓名"> </el-table-column>
       <el-table-column prop="age" label="年龄"> </el-table-column>
       <el-table-column prop="phone" label="电话"> </el-table-column>
-      <el-table-column
-        prop="hasWork"
-        label="工作情况"
-        :formatter="formatBoolean"
-        :show-overflow-tooltip="true"
-      >
+      <el-table-column prop="hasWork" label="工作情况" :formatter="formatBoolean" :show-overflow-tooltip="true">
       </el-table-column>
-      <el-table-column
-        prop="hasCredit"
-        label="诚信程度"
-        :formatter="formatBoolean1"
-        :show-overflow-tooltip="true"
-      >
+      <el-table-column prop="hasCredit" label="诚信程度" :formatter="formatBoolean1" :show-overflow-tooltip="true" >
       </el-table-column>
       <el-table-column>
         <template slot="header" slot-scope="scope">
-          <el-input
-            v-model="paginationData.userName"
-            size="mini"
-            placeholder="输入关键字搜索"
-          />
+          <el-input v-model="paginationData.userName" size="mini" placeholder="输入关键字搜索"/>
         </template>
         <template slot-scope="scope">
-          <el-button
-            @click="
-              handleEdit(scope.$index, scope.row);
-              open();
-            "
-            >提升</el-button
-          >
+          <el-button @click="handleEdit(scope.$index, scope.row);open();">提升
+          </el-button>
         </template>
       </el-table-column>
     </el-table>

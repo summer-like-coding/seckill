@@ -1,47 +1,40 @@
 <template>
-  <el-table
-    :data="
-      activities.filter(
-        (data) =>
-          !search || data.name.toLowerCase().includes(search.toLowerCase())
-      )
-    "
-  >
-    <el-table-column label="ID" prop="ID"> </el-table-column>
-    <el-table-column label="姓名" prop="name"> </el-table-column>
-    <el-table-column label="电话" prop="phone"> </el-table-column>
-    <el-table-column label="状态" prop="state"> </el-table-column>
-    <el-table-column label="原因" prop="reason"> </el-table-column>
-    <el-table-column align="right">
-      <template slot="header">
-        <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
-      </template>
-      <template slot-scope="scope">
-        <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
-          >Edit</el-button
-        >
-        <el-button
-          size="mini"
-          type="danger"
-          @click="handleDelete(scope.$index, scope.row)"
-          >Delete</el-button
-        >
-      </template>
-    </el-table-column>
-  </el-table>
+  <div>
+    <el-table :data="orderList" style="width: 100%">
+      <el-table-column label="ID" prop="id"> </el-table-column>
+      <el-table-column label="商品ID" prop="productId"> </el-table-column>
+      <el-table-column label="用户ID" prop="userId" > </el-table-column>
+      
+      <el-table-column label="数量" prop="payCount" > </el-table-column>
+      <el-table-column label="价格" prop="payPrice" > </el-table-column>
+      <el-table-column label="支付时间" prop='payDate' :formatter="dateFormat">
+        <!-- <el-date-picker v-model="prop" type="datetime" placeholder="选择日期时间"></el-date-picker> -->
+      </el-table-column>
+    </el-table>
+    <!-- 分页器 -->
+    <Pagination class="pagination" :size = 'size' :total = 'total' :pages = 'pages' :current = 'current' @getPages = 'getpage'></Pagination>
+  </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
+import moment from "moment";
+import pagination from '../../components/pagination.vue';
 export default {
+  components: { pagination },
   name:"Details",
   data() {
     return {
       search: "",
+      paginationData: {
+        pageNum: 1,
+        pageSize: 10
+      },
     };
   },
   computed:{
-    ...mapState('activity',['activities'])
+    // ...mapState('activity',['activities'])
+    ...mapGetters('activity',['orderList','size','total','pages','current'])
   },
   methods: {
     handleEdit(index, row) {
@@ -50,6 +43,29 @@ export default {
     handleDelete(index, row) {
       console.log(index, row);
     },
+    // 获取页面
+    getpage(val) {
+      console.log("current", val);
+      let pageNum = val;
+      let pageSize = this.paginationData.pageSize;
+      // let userName = this.paginationData.userName;
+      console.log("请求消息", pageNum, pageSize);
+      this.$store.dispatch("activity/getOrderList", { pageNum, pageSize});
+    },
+    // 格式化时间
+    dateFormat (row, column){
+	    let date = row[column.property]
+	    if (date === undefined){
+	      return ''
+	    }
+	    return moment(date).format("YYYY-MM-DD HH:mm:ss")
+	  }
   },
+  mounted(){
+    // 在挂载前，就去获取
+    let {pageNum,pageSize} = this.paginationData;
+    let productId = this.$store.state.activity.productId
+    this.$store.dispatch('activity/getOrderList',{pageNum,pageSize,productId})
+  }
 };
 </script>

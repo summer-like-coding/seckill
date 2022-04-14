@@ -1,5 +1,5 @@
 import { result } from "lodash";
-import { reProductList ,reOneProduct,reGetPath,reGetTruePath,reAddProduct,reDelete,reUpdate,reSelect} from "../api"
+import { reProductList ,reOneProduct,reGetPath,reGetTruePath,reAddProduct,reDelete,reUpdate,reSelect,reResult,reorderList} from "../api"
 export default {
     namespaced: true,
     actions: {
@@ -62,6 +62,20 @@ export default {
                 console.log("我是否执行");
                 context.commit('ONEPRODUCT',result.data)
             }
+        },
+        async getResult(context, data) {
+            console.log("查找结果", data);
+            let result = await reResult(data);
+            console.log(result);
+            context.commit('GETRESULT',result.msg)
+        },
+        async getOrderList(context, data) {
+            console.log("获取到的页码等信息", data);
+            let result = await reorderList(data);
+            console.log(result);
+            if (result.code === 200) {
+                context.commit('ORDERLIST',result.data)
+            }
         }
     },
     mutations: {
@@ -82,14 +96,40 @@ export default {
             console.log(data);
             $state.onePath = data 
         },
-        
+        GETRESULT($state, data) {
+            console.log("获取秒杀结果", data);
+            $state.msgNew = data
+        },
+        ORDERLIST($state, data) {
+            console.log("分页获取所有信息", data);
+            $state.allOrderList = data
+        }
     },
     state: {
         activities: [],
         product: {},
         isPay: 0,
-        onePath:''
+        onePath: '',
+        msgNew: '',
+        allOrderList: [],
+        productId:1
     },
     getters: {
+        orderList(state) {
+            return state.allOrderList.records
+        },
+        size(state) {
+            return state.allOrderList.size
+        },
+        total(state) {
+            return state.allOrderList.total
+        },
+        current(state) {
+         return state.allOrderList.current   
+        },
+        pages(state) {
+            return state.allOrderList.pages
+        },
+        
     }
 }

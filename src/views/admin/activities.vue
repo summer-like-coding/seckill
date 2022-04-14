@@ -77,7 +77,8 @@ export default {
       this.$router.push({ name: "Manage" });
     },
     pushdetail(row){
-      console.log(row);
+      console.log("这是第几个呀",row.productId);
+      this.$store.state.activity.productId = row.productId
       this.$router.push({ name: "Details" });
     }
   },

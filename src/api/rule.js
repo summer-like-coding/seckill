@@ -2,7 +2,7 @@ import request from './request'
 // 获取变量的数据
 export function listVariable(token) {
   return request({
-    url: 'http://121.5.166.154:9090/sally/variables/allvar',
+    url: 'http://47.96.38.160:8800/sally/variables/allvar',
     method: 'get',
     params: { token }
   })
@@ -10,7 +10,7 @@ export function listVariable(token) {
 // 增加变量
 export function addVariable(data) {
   return request({
-    url: 'http://121.5.166.154:9090/sally/variables/addvar',
+    url: 'http://47.96.38.160:8800/sally/variables/addvar',
     data,
     method:'post'
   })
@@ -20,7 +20,7 @@ export function addVariable(data) {
 export function deleteVariable(id) {
   console.log(id);
   return request({
-    url: `http://121.5.166.154:9090/sally/variables/delvar/${id}`,
+    url: `http://47.96.38.160:8800/sally/variables/delvar/${id}`,
     method:'post'
   })
 }
@@ -28,20 +28,20 @@ export function deleteVariable(id) {
 // 查看所有规则
 export function getLatestRule(id) {
   return request({
-    url:'http://121.5.166.154:9090/sally/rules/latest',
+    url:'http://47.96.38.160:8800/sally/rules/latest',
     method: 'get'
   })
 }
 
 // 插入规则
 export function insertRule(data) {
-  return request.jsonPost('http://121.5.166.154:9090/sally/rules/insert', data)
+  return request.jsonPost('http://47.96.38.160:8800/sally/rules/insert', data)
 }
 
 // 执行规则
 export function executeRule(data) {
   return request({
-    url: 'http://121.5.166.154:9090/sally/rules/execute',
+    url: 'http://47.96.38.160:8800/sally/rules/execute',
     data,
     method:'post'
   })

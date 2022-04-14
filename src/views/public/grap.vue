@@ -17,15 +17,7 @@
       <!-- {{ product.productAagr }} -->
     </el-form-item>
     <el-form-item label="时间">
-      <el-date-picker
-        v-model="times"
-        type="datetimerange"
-        range-separator="至"
-        start-placeholder="开始日期"
-        end-placeholder="结束日期"
-        :readonly="true"
-        :clearable="false"
-      >
+      <el-date-picker v-model="times" type="datetimerange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :readonly="true" :clearable="false">
       </el-date-picker>
     </el-form-item>
     <el-form-item label="库存">
@@ -33,12 +25,7 @@
       <!-- {{ product.stockCount }} -->
     </el-form-item>
     <el-form-item label="活动形式">
-      <el-input
-        v-model="product.productDetail"
-        type="textarea"
-        :rows="8"
-        :readonly="true"
-      ></el-input>
+      <el-input v-model="product.productDetail" type="textarea" :rows="8" :readonly="true"></el-input>
       <!-- {{ product.productDetail }} -->
     </el-form-item>
     <el-form-item>
@@ -51,23 +38,24 @@
 <script>
 import _ from "lodash";
 import { mapState, mapGetters } from "vuex";
+// import { reResult } from "@/api";
 export default {
   name: "Grap",
   data() {
     return {
       num: 1,
-      isPay: "",
+      msg: "秒杀中",
     };
   },
   methods: {
     pushShow: _.throttle(async function () {
-      console.log("this", this);
+      // console.log("this", this);
       // ---------------------------------------------------------
       // 明早改下
       let actId = this.product.productId;
       let userId = this.userInfo.userId;
-      console.log(actId);
-      console.log(userId);
+      // console.log(actId);
+      // console.log(userId);
       await this.$store.dispatch("rules/executeRules", { userId, actId });
       if (this.isEffective === "SUCCESS") {
         this.$alert("<strong>余额支付</strong>", "请支付", {
@@ -78,57 +66,52 @@ export default {
             // 发送ajax请求，获取path值
             let user_id = this.userInfo.userId;
             let product_id = this.product.productId;
-            await this.$store.dispatch("activity/getPath", {
-              user_id,
-              product_id,
-            });
-            try {
-              if (action === "confirm") {
-                // 现在获得真正的路径
-                this.$store.state.activity.isPay = 1;
-                console.log(this.$store.state.activity.isPay);
-                let userId = this.userInfo.userId;
-                let path = this.onePath;
-                let productId = this.product.productId;
-                // console.log(userId);
-                // console.log(path);
-                // console.log(productId);
-                this.$store.dispatch("activity/getTruePath", {
-                  userId,
-                  path,
-                  productId,
-                });
-                // 判断支付
-                // let pay = 1;
-                // this.$store.state.activity.isPay = 1
-                // console.log(this);
-                // this.isPay = 1;
-                done();
-                this.$router.push({
-                  name: "Orders",
-                });
-              } else {
-                this.$store.state.activity.isPay = 0;
-                done();
-                this.$router.push({
-                  name: "Orders",
-                });
-              }
-            } catch (error) {
+            await this.$store.dispatch("activity/getPath", {user_id,product_id});
+            if (action === "confirm") {
+              // 现在获得真正的路径
+              this.$store.state.activity.isPay = 1;
+              // console.log(this.$store.state.activity.isPay);
+              let userId = this.userInfo.userId;
+              let path = this.onePath;
+              let productId = this.product.productId;
+              // console.log(userId);
+              // console.log(path);
+              // console.log(productId);
+              this.$store.dispatch("activity/getTruePath", {userId,path,productId});
+              // 判断支付
+              // let pay = 1;
+              // this.$store.state.activity.isPay = 1
+              // console.log(this);
+              // this.isPay = 1;
+              // 轮询
+              this.judgeStatus()
               done();
+              // 先不跳转
+              // this.$router.push({ name: "Orders" });
+            } else {
+              this.$store.state.activity.isPay = 0;
+              done();
+              // 先不跳转
+              // this.$router.push({ name: "Orders" });
             }
           },
         });
       } else {
-        this.$message({
-          message: "不可以参加该产品秒杀",
-          type: "warning",
-        });
-      }
+        this.$message({message: "不可以参加该产品秒杀",type: "warning"})
+        }
     }, 5000),
+    // 轮询开始
+    async judgeStatus() {
+      let user_id = this.userInfo.userId
+      let product_id = this.product.productId
+      console.log("我获取的userId",user_id);
+      console.log("我获取的商品",product_id);
+      await this.$store.dispatch('activity/getResult',{user_id,product_id})
+      this.msg = this.msgNew
+    },
   },
   computed: {
-    ...mapState("activity", ["product", "activities", "onePath"]),
+    ...mapState("activity", ["product", "activities", "onePath",'msgNew']),
     // ...mapState("activity", ["activities"]),
     ...mapState("user", ["userInfo"]),
     ...mapState("rules", ["isEffective"]),
@@ -148,13 +131,28 @@ export default {
       let minute = date.getMinutes(); //获取分钟
       let second = date.getSeconds(); //获取秒
       let num = year + "-" + month + "-" + day + "T" + hour + ":" + minute + ":" + second;
-      console.log(num);
-      console.log(this.times[1]);
-      console.log(num < this.times[1]);
       return num < this.times[1];
+    }
+  },
+  watch: {
+    msg(newval, oldval) {
+      console.log("新状态", newval);
+      console.log("旧状态", oldval);
+      if (newval === "秒杀中") {
+        var timer = setInterval(() => {
+          setTimeout(this.judgeStatus, 0);
+        }, 5000);
+      }
+      // 当返回成功
+      if (newval === "秒杀成功!") {
+        clearInterval(timer);
+      }
+      // 当页面关闭，直接关闭定时器
+      this.$once("hook:boforeDestory", () => {
+        clearInterval(timer);
+      });
     },
   },
-  mounted() {},
 };
 </script>
 

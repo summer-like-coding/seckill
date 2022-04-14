@@ -7,6 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import axios from 'axios';
 import Router from 'vue-router';
 import lodash from "lodash";
+import moment from 'moment';
 // 注册全局组件
 import Pagination from './components/pagination';
 

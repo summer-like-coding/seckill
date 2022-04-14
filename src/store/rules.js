@@ -17,9 +17,9 @@ export default {
         async executeRules(context, data) {
             console.log("规则执行", data);
             let result = await executeRule(data);
-            // console.log(result);
+            console.log(result);
             if (result.code === 200) {
-                context.commit('EXECUTERULES', result.message)
+                context.commit('EXECUTERULES', result.msg)
             }
         }
     },

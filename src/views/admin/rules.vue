@@ -19,7 +19,7 @@
                   <!-- scope.$index,获取每一行的index -->
                   <!-- scope.$row,获取每一行的数据 -->
                   <el-select filterable v-if="scope.$index % 2 == 0" style="width: 150px" class="filter-item" v-model="scope.row.l" clearable>
-                    <el-option v-for="t in variables" :key="t.name" :label="t.name" :value="t.name">
+                    <el-option v-for="(t,index) in variables" :key="index" :label="t.name" :value="t.name">
                     </el-option>
                   </el-select>
                 </template>
@@ -27,31 +27,14 @@
               <el-table-column width="180">
                 <template slot-scope="scope">
                   <el-select v-if="scope.$index % 2 == 0 && scope.row.l == ''" style="width: 150px" class="filter-item" v-model="scope.row.o"  clearable>
+                    <el-option v-for="(t,index) in expressionOp" :key="index" :label="t" :value="t">
+                    </el-option>
+                  </el-select>
+                  <el-select v-else-if="scope.$index % 2 == 0 && scope.row.l != ''" style="width: 150px" class="filter-item" v-model="scope.row.o" clearable>
                     <el-option v-for="t in expressionOp" :key="t" :label="t" :value="t">
                     </el-option>
                   </el-select>
-                  <el-select
-                    v-else-if="scope.$index % 2 == 0 && scope.row.l != ''"
-                    style="width: 150px"
-                    class="filter-item"
-                    v-model="scope.row.o"
-                    clearable
-                  >
-                    <el-option
-                      v-for="t in expressionOp"
-                      :key="t"
-                      :label="t"
-                      :value="t"
-                    >
-                    </el-option>
-                  </el-select>
-                  <el-select
-                    v-else-if="scope.$index % 2 == 1"
-                    style="width: 150px"
-                    class="filter-item"
-                    v-model="scope.row.o"
-                    clearable
-                  >
+                  <el-select v-else-if="scope.$index % 2 == 1" style="width: 150px" class="filter-item" v-model="scope.row.o" clearable>
                     <el-option v-for="t in op" :key="t" :label="t" :value="t">
                     </el-option>
                   </el-select>
@@ -59,13 +42,7 @@
               </el-table-column>
               <el-table-column>
                 <template slot-scope="scope">
-                  <el-input
-                    v-if="scope.$index % 2 == 0"
-                    style="width: 150px"
-                    class="filter-item"
-                    :placeholder="scope.row.r"
-                    v-model="scope.row.r"
-                  >
+                  <el-input v-if="scope.$index % 2 == 0" style="width: 150px" class="filter-item" :placeholder="scope.row.r" v-model="scope.row.r">
                   </el-input>
                 </template>
               </el-table-column>
@@ -94,7 +71,6 @@ export default {
         value: "",
         variable: "",
         determine: "",
-        
       },
       list: [],
       variables: [],
@@ -158,6 +134,7 @@ export default {
     },
     handleUpdateRule() {
       // todo 增量修改
+      console.log("我点击了")
       let listCopy = clone(this.list);
       let result = {
         ver: constant.ruleVersion,
@@ -172,8 +149,8 @@ export default {
         }
         let rule = element.rule;
         rule.forEach(function (element, index) {
-          console.log(element);
-          console.log(this.variablesMap);
+          // console.log(element);
+          // console.log(this.variablesMap);
           if (element.l !== "") {
             element.r_t = this.variablesMap[element.l];
           }
@@ -183,12 +160,13 @@ export default {
           if (index % 2 === 1) {
             valid = element.o !== "";
           }
-          console.log(element);
+          // console.log(element);
         }, this);
         if (rule.length % 2 === 0) {
           valid = false;
         }
       }, this);
+      console.log('看下是否执行')
       if (!valid) {
         this.$message("请填写完整");
         return;
@@ -197,8 +175,8 @@ export default {
         this.$message(error);
         return;
       }
-      console.log(result);
-      console.log(JSON.stringify(result));
+      // console.log(result);
+      // console.log(JSON.stringify(result));
       result.expression.coarse = this.hitRadio;
       result.expression.fine = this.flow;
       insertRule({
@@ -206,7 +184,7 @@ export default {
         id: 1,
         name: this.rule.name,
       }).then((response) => {
-        // this.$message("保存成功");
+        this.$message("保存成功");
         this.fetchData();
       });
     },

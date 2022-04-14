@@ -55,8 +55,6 @@ export default {
   // total，请求数
   // current，当前页数
   // size，页面大小
-
-    // ...mapGetters('user',['size','current','pages','total']),
 };
 </script>
 

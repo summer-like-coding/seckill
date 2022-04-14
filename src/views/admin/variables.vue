@@ -46,10 +46,7 @@
             <el-input v-model="variables.type" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="变量描述" :label-width="formLabelWidth">
-            <el-input
-              v-model="variables.description"
-              autocomplete="off"
-            ></el-input>
+            <el-input v-model="variables.description" autocomplete="off"></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
