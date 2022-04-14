@@ -28,7 +28,6 @@
         start-placeholder="开始日期"
         end-placeholder="结束日期"
         :clearable="false"
-        
       >
       </el-date-picker>
     </el-form-item>
@@ -46,7 +45,7 @@
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onupdate">修改</el-button>
-      <el-button type="primary" @click="ondelete">取消</el-button>
+      <el-button type="primary" @click="ondelete">删除</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -77,32 +76,50 @@ export default {
       // 现在我要增加活动
       let startDate = this.times[0];
       let endDate = this.times[1];
-      let productAagr = this.product.productAagr+'';
+      let productAagr = this.product.productAagr + "";
       let productDetail = this.product.productDetail;
-      let productId = this.product.productId+'';
+      let productId = this.product.productId + "";
       let productName = this.product.productName;
-      let productPrice = this.product.productPrice+''
-      let productTime = this.product.productTime+''
-      let productType = this.product.productType
-      let stockCount = this.product.stockCount+''
+      let productPrice = this.product.productPrice + "";
+      let productTime = this.product.productTime + "";
+      let productType = this.product.productType;
+      let stockCount = this.product.stockCount + "";
 
       // console.log(startDate);
       // console.log(endDate);
-      let product = {productPrice,productTime,productType,productName,productId,productDetail,productAagr,stockCount,startDate,endDate}
+      let product = {
+        productPrice,
+        productTime,
+        productType,
+        productName,
+        productId,
+        productDetail,
+        productAagr,
+        stockCount,
+        startDate,
+        endDate,
+      };
       console.log(product);
       await this.$store.dispatch("activity/updateProduct", product);
       this.$router.push({
-        name:'Activities'
-      })
+        name: "Activities",
+      });
     },
     async ondelete() {
       // 发送请求删除这个活动
-      let productId = this.product.productId;
-      console.log(productId);
-      await this.$store.dispatch("activity/deleteProduct", productId);
-      this.$router.push({
-        name: "Activities",
-      });
+      try {
+        let productId = this.product.productId;
+        console.log(productId);
+        await this.$store.dispatch("activity/deleteProduct", productId);
+        this.$router.push({
+          name: "Activities",
+        });
+      } catch (error) {
+        this.$message({
+          type: "error",
+          message: "不可修改，请检查修改是否合理",
+        });
+      }
     },
   },
 };

@@ -92,6 +92,7 @@ export default {
       // ------------------------------------------------------
       try {
         let id = row.id;
+        console.log('商品id',id)
         await this.$store.dispatch("rules/deleteVariables", id);
         console.log(index);
         this.list.splice(index,1)

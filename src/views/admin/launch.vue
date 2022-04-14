@@ -82,8 +82,11 @@ export default {
     },
     ondelete(){
       // 发送请求删除这个活动
-      let productId = this.product.productId
-      this.$store.dispatch  ("activity/DeleteProduct",{productId})
+      // let productId = this.product.productId
+      // this.$store.dispatch  ("activity/DeleteProduct",{productId})
+      this.$router.push({
+        name:'Activities'
+      })
     }
   },
 };

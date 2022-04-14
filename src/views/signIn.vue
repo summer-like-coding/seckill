@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import ElementUI from "element-ui";
+
 export default {
   name: "Signin",
   data() {
@@ -39,11 +39,11 @@ export default {
         // 为了显示我的nav
         setTimeout(() => {
           location.reload(); // 强制刷新
-        }, 1000);
+        }, 500);
         this.$router.push({ name: "Home" });
         
       } catch (error) {
-        ElementUI.Message({
+        this.$message({
           type: "error",
           message: "登陆失败，请检查用户名或密码是否正确",
         });

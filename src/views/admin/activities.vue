@@ -51,7 +51,7 @@
   width: 70%;
 }
 .el-table {
-  width: 600px;
+  /* width: 600px; */
   margin: 0 auto;
 }
 

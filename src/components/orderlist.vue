@@ -17,11 +17,14 @@
 
 <script>
 import { mapState } from "vuex";
+import moment from 'moment'
 export default {
   name: "orderlist",
   data(){
     return {
-      
+      methods:{
+        
+      }
     }
   },
   methods:{

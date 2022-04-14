@@ -5,7 +5,7 @@ import request from "./request";
 export const reRegister = (data) => {
     console.log("注册信息",data);
     return request({
-        url: 'http://47.96.38.160:7777/user/register',
+        url: 'http://localhost:7777/user/register',
         // data:JSON.stringify(data),
         data,
         method:'post'
@@ -23,7 +23,7 @@ export const reRegister = (data) => {
 
 export const reLogin = (data) => {
     return request({
-        url: 'http://47.96.38.160:7777/user/login',
+        url: 'http://localhost:7777/user/login',
         data,
         method: 'post',
         
@@ -54,7 +54,7 @@ export const reLogin = (data) => {
 
 export const reGetAllList = () => {
     return request({
-        url: 'http://47.96.38.160:8800/user/index',
+        url: 'http://localhost:9999/user/index',
         method:'get'
     })
 }
@@ -63,7 +63,7 @@ export const reGetAllList = () => {
 // 修改用户信息
 export const reSaveUser = (data) => {
     return request({
-        url: 'http://47.96.38.160:7777/user/save',
+        url: 'http://localhost:7777/user/save',
         method: 'post',
         data
     })
@@ -75,14 +75,14 @@ export const reGetUserInfo = (phone) => {
     // console.log("axios封装的电话", phone);
     // console.log("axios封装的电话",phone);
     return request({
-        url: `http://47.96.38.160:7777/user/myself/${phone}`,
+        url: `http://localhost:7777/user/myself/${phone}`,
         method: 'get'
     })
 }
 
 export const rePage = (params) => {
     return request({
-        url: 'http://47.96.38.160:8800/user/page',
+        url: 'http://localhost:9999/user/page',
         params,
         method:'get'
     }) 
@@ -100,7 +100,7 @@ export const rePage = (params) => {
 export const reProductList = () => {
     // console.log("发送请求");
     return request({
-        url: 'http://47.96.38.160:7777/product/list',
+        url: 'http://localhost:7777/product/list',
         method:'get'
     })
 }
@@ -111,7 +111,7 @@ export const reOneProduct = (params) => {
     // console.log("获取用户ID",params.user_id);
     // console.log("获取商品ID",params);
     return request({
-        url: `http://47.96.38.160:7777/product/${params.product_id}`,
+        url: `http://localhost:7777/product/${params.product_id}`,
         method:'get'
     })
 }
@@ -120,7 +120,7 @@ export const reOneProduct = (params) => {
 export const reGetPath = (params) => {
     // console.log("获取参数",params);
     return request({
-        url: `http://47.96.38.160:8888/getPath/${params.user_id}/${params.product_id}`,
+        url: `http://localhost:8888/getPath/${params.user_id}/${params.product_id}`,
         method:'get'
     })
 }
@@ -130,7 +130,7 @@ export const reGetPath = (params) => {
 export const reGetTruePath = (params) => {
     // console.log("获取真正的参数", params);
     return request({
-        url: `http://47.96.38.160:8888/${params.userId}/${params.path}/${params.productId}`,
+        url: `http://localhost:8888/${params.userId}/${params.path}/${params.productId}`,
         method:'get'
     })
 }
@@ -140,7 +140,7 @@ export const reGetTruePath = (params) => {
 export const reAddProduct = (data) => {
     // console.log("增加活动", data);
     return request({
-        url: 'http://47.96.38.160:8800/product/add',
+        url: 'http://localhost:9999/product/add',
         method: 'post',
         data
     })
@@ -150,7 +150,7 @@ export const reAddProduct = (data) => {
 export const reDelete = (productId) => {
     // console.log("删除", productId);
     return request({
-        url: `http://47.96.38.160:8800/product/delete/${productId}`,
+        url: `http://localhost:9999/product/delete/${productId}`,
         method: 'get',
     })
 }
@@ -159,7 +159,7 @@ export const reDelete = (productId) => {
 export const reUpdate = (data) => {
     // console.log("更改活动", data);
     return request({
-        url: 'http://47.96.38.160:8800/product/update',
+        url: 'http://localhost:9999/product/update',
         method: 'post',
         data
     })
@@ -169,7 +169,7 @@ export const reUpdate = (data) => {
 export const reSelect = (productId) =>{
     // console.log('获取活动信息', productId);
     return request({
-        url: `http://47.96.38.160:8800/product/select/${productId}`,
+        url: `http://localhost:9999/product/select/${productId}`,
         method: 'get',
     })
 }
@@ -178,7 +178,7 @@ export const reSelect = (productId) =>{
 export const reResult = (params) => {
     // console.log("查看秒杀结果", params);
     return request({
-        url: `http://47.96.38.160:7777/order/result/${params.user_id}/${params.product_id}`,
+        url: `http://localhost:7777/order/result/${params.user_id}/${params.product_id}`,
         method:'get'
     })
 }
@@ -187,7 +187,7 @@ export const reResult = (params) => {
 export const reorderList = (params) => {
     // console.log("所有订单查询", params);
     return request({
-        url: 'http://47.96.38.160:8800/order/list',
+        url: 'http://localhost:9999/order/list',
         method: 'get',
         params
     })

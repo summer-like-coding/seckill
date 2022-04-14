@@ -43,7 +43,7 @@
       </el-input>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
+      <el-button type="primary" @click="submitForm('ruleForm')">注册</el-button>
       <el-button @click="resetForm('ruleForm')">重置</el-button>
     </el-form-item>
   </el-form>
@@ -97,6 +97,10 @@ export default {
         this.$router.push({ name: "Signin" });
       } catch (error) {
         // alert('fail')
+        this.$message({
+          type: "error",
+          message: "注册失败，请正确输入信息",
+        });
       }
     },
     resetForm(formName) {
@@ -110,5 +114,17 @@ export default {
 .el-form {
   width: 600px;
   margin: 0 auto;
+}
+.el-button {
+  /* margin-left: 30px; */
+  background: darkred;
+  border: darkred;
+  color: #fff;
+}
+.el-button:hover {
+  /* margin-left: 30px; */
+  background: rgb(228, 147, 147);
+  border: rgb(154, 56, 56);
+  color: rgb(200, 29, 29);
 }
 </style>
