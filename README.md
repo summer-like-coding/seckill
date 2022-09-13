@@ -1,4 +1,4 @@
-# miaosha
+# seckil
 
 ## Project setup
 ```
